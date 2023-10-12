@@ -3,7 +3,7 @@ import style from './common.module.scss'
 
 function Header() {
 	return (
-		<header className={style.header}>
+		<header className={style.header+` header`}>
 			{/* <div>Header</div> */}
 			<p><img src='/asset/common/logo.svg' alt='제제픽 로고' /></p>
 		</header>
