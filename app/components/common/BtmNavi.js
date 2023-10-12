@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 function BtmNavi() {
 	return (
-		<footer className={style.footer}>
+		<footer className={style.footer+` bottom`}>
 			<ul className={style.footer_wrap + ' inner'}>
 				<li className={style.footer_item}>
 					<Link href='/pages/favorite'>
@@ -15,7 +15,7 @@ function BtmNavi() {
 				<li className={style.footer_item}>
 					<Link href='/pages/course-list'>
 						<img src='/asset/common/Icon_course-list.svg' />
-						<p>코스만들기</p>
+						<p>여행 코스</p>
 					</Link>
 				</li>
 				<li className={style.footer_item}>
