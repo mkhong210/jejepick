@@ -5,7 +5,7 @@ import Link from 'next/link';
 function page() {
 	return (
 		<>
-			<div className={style.div}>JEJEPICK 메인입니당</div>
+			<div className={style.div +` inner`}>JEJEPICK 메인입니당</div>
 			<Link href='/'>홈</Link>
 		</>
 	)
