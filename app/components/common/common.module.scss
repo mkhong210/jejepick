@@ -1,0 +1,35 @@
+// header
+.header {
+	background-color: #fff;
+	height: 80px;
+	margin: 0 auto;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	p {
+	}
+}
+
+// footer
+.footer {
+	height: 100px;
+	background-color: #fff;
+	box-shadow: 0 -8px 10px rgba(0, 0, 0, 0.1);
+}
+.footer_wrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+	.footer_item a {
+		display: flex;
+    flex-direction: column;
+    align-items: center;
+		justify-content: center;
+		font-size: 1.6rem;
+		p {
+			margin: 4px 0;
+		}
+	}
+}
