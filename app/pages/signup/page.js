@@ -1,12 +1,12 @@
+import Memberform from '@/app/components/Memberform'
 import React from 'react'
-import style from './signup.module.scss'
 
 function page() {
-	return (
-		<>
-			<div>page</div>
-		</>
-	)
+  return (
+    <main>
+        <Memberform/>
+    </main>
+  )
 }
 
 export default page
