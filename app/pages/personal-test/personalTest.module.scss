@@ -1,0 +1,30 @@
+.testbefore{
+    width: 100%;
+    height: 932px;
+    background: #FFE668;
+    position: relative;
+    .testbeforeback{
+        z-index: 50;
+        position: absolute;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        background: url('/asset/image/test/patten2.png');
+    }
+    .start{
+        position: absolute;
+        left: 50%; top: 700px;
+        transform: translate(-50%,-50%);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 186px; height: 50px;
+        border-radius: 30px;
+        background: #FFF;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+}
