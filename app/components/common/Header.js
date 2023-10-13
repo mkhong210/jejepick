@@ -1,17 +1,23 @@
 "use client";
-import React, { useContext } from 'react'
-import style from './common.module.scss'
+import React, { useContext, useEffect } from 'react'
 import { MyContext } from '../Context'
+import style from './common.module.scss'
+import Link from 'next/link';
 
 
 function Header() {
-	const ddd = useContext(MyContext)
+	const {headStatus, setHeadStatus} = useContext(MyContext);
+	useEffect(() => {
+		setHeadStatus(false);
+	}, []);
 
-	console.log(ddd)
+	// console.log(ddd)
 	return (
-		<header className={style.header+` header`}>
+		<header className={`${style.header} ${headStatus ? 'hidden':''}`+ ` header`}>
 			{/* <div>Header</div> */}
-			<p><img src='/asset/common/logo.svg' alt='제제픽 로고' /></p>
+			<Link href='/pages/main'>
+			<img src='/asset/common/logo.svg' alt='제제픽 로고' />
+			</Link>
 		</header>
 	)
 }
