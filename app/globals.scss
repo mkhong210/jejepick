@@ -21,3 +21,17 @@
 .hidden {
 	display: none !important;
 }
+
+*{
+	box-sizing: border-box;
+}
+
+body,p,h2,h3{
+	margin: 0;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
