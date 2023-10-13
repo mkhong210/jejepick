@@ -6,7 +6,8 @@ export async function GET(){
         baseURL: 'https://api.visitjeju.net/vsjApi/contents/searchList',
         params: { 
             apiKey: 'nn3u13ncqicdt5o0',
-            locale: 'kr'
+            locale: 'kr',
+            page : 3
         }
     })
     
