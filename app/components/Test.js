@@ -47,7 +47,7 @@ export default function Test() {
         if (num < questions.length - 1) {
             setNum(num + 1);
         } else {
-          // 테스트 종료 또는 결과 페이지로 이동
+          // 테스트 종료 또는 결과 페이지로 이동npm
         }
     };
 
