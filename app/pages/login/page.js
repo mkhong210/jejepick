@@ -1,12 +1,11 @@
 import React from 'react'
-import style from './login.module.scss'
-
+import Login from '@/app/components/Login'
 function page() {
-	return (
-		<>
-			<div>login</div>
-		</>
-	)
+  return (
+    <main>
+        <Login/>
+    </main>
+  )
 }
 
 export default page
