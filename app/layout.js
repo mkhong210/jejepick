@@ -1,3 +1,4 @@
+import Context from './components/Context'
 import BtmNavi from './components/common/BtmNavi'
 import Header from './components/common/Header'
 import './globals.scss'
@@ -17,11 +18,13 @@ export default function RootLayout({ children }) {
 			</head>
 			<body>
 				<div className='jejepick'>
-					<Header />
-					<main>
-						{children}
-					</main>
-					<BtmNavi />
+					<Context>
+						<Header />
+						<main>
+							{children}
+						</main>
+						<BtmNavi />
+					</Context>
 				</div>
 			</body>
 		</html>

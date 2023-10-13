@@ -1,7 +1,13 @@
-import React from 'react'
+"use client";
+import React, { useContext } from 'react'
 import style from './common.module.scss'
+import { MyContext } from '../Context'
+
 
 function Header() {
+	const ddd = useContext(MyContext)
+
+	console.log(ddd)
 	return (
 		<header className={style.header+` header`}>
 			{/* <div>Header</div> */}
