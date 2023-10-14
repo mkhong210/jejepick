@@ -1,0 +1,23 @@
+[
+    {
+        "questions" : "관광 여행시 나는?",
+        "options" : [["/asset/image/test/IMG_question1sight1.jpg","역시 여행은 활동","체험"],["/asset/image/test/IMG_question1sight2.jpg","쉬어야지","힐링"],["/asset/image/test/IMG_question1sight3.jpg","걷기가 좋아","오름"],["/asset/image/test/IMG_question1sight4.jpg","지적인 활동이 좋아","문화유적지"]]
+    },
+    {
+        "questions" : "숙소 선택시 나는?",
+        "options" : [["/asset/image/test/IMG_question2lodging1.jpg","기왕이면 시원한 바다근처에 있는 숙소","바다"],["/asset/image/test/IMG_question2lodging2.jpg","잠만 잘수있다면 어디든 OK","바다X"]]
+    },
+    {
+        "questions" : "반려동물과 함께하는 여행인가?",
+        "options" : [["/asset/image/test/IMG_question3petno.jpg","그렇다","반려동물"],["/asset/image/test/IMG_question3petyes.jpg","아니다","반려동물X"]]
+    },
+    {
+        "questions" : "여행중 음식점을 가게 된다면?",
+        "options" : [["/asset/image/test/IMG_question4food1.webp","제주시내에 있는 유명한 맛집","제주시내"],["/asset/image/test/IMG_question4food2.jpg","나만의 새로운 맛집을 찾아보는걸 선호","제주시내X"]]
+    },
+    {
+        "questions" : "여행시 내가 원하는 이동수단은?",
+        "options" : [["/asset/image/test/IMG_question5move1.jpg","나는야 두다리 건강한 뚜벅이!","공용주차장X"],["/asset/image/test/IMG_question5move2.jpg","나는야 베스트드라이버!","공용주차장"]]
+    }
+    
+]
