@@ -7,7 +7,7 @@ function MypageMemberCheck() {
   const [data,setData]=useState([]);
   console.log(data);
   const getData = ()=>{     //데이터를 받아올게
-    axios.get('/api')       //api 폴더 에서
+    axios.get('/server_api')       //api 폴더 에서
     .then(res=>{
         setData(res.data);  
     })
