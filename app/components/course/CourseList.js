@@ -5,7 +5,17 @@ import CouseItem from './CouseItem'
 function CourseList() {
 	return (
 		<>
-			<CouseItem />
+			<ul className={style.list_wrap}>
+				<li>
+					<CouseItem />
+				</li>
+				<li>
+					<CouseItem />
+				</li>
+				<li>
+					<CouseItem />
+				</li>
+			</ul>
 		</>
 	)
 }
