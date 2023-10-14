@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .testbefore {
 	width: 100%;
 	height: 932px;
@@ -14,11 +21,64 @@
 		background: url('/asset/image/test/patten2.png');
 	}
 
+	.whiteback{
+		z-index: 100;
+		position: absolute;
+	 	left: 50%; top: 89px;
+		transform: translateX(-50%);
+		width: 540px;
+		height: 623px;
+		border-radius: 68px;
+		background: url('/asset/image/test/Frame.png');
+	}
+
+	.startcon{
+		z-index: 150;
+		position: absolute;
+	 	left: 50%; top: 140px;
+		 transform: translateX(-50%);
+		 .startjeje{
+			margin: 0 auto;
+			width: 103.511px;
+			height: 72px;
+			background: url('/asset/image/test/start-jeje.svg');
+		 }
+		 .con{
+			margin-top: 43px;
+			>div{
+				font-family: 'BMJUA';
+				font-size: 24px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: normal;
+				>span{
+					color: #FFA366;
+					text-align: center;
+					font-family: 'BMJUA';
+					font-size: 32px;
+					font-style: normal;
+					font-weight: 400;
+					line-height: normal;
+				}
+			}
+			>p{
+				text-align: center;
+				margin-top: 16px;
+				color: rgba(65, 65, 65, 0.70);
+				font-size: 16px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: normal;
+			}
+		 }
+	}
+
 	.start {
+		cursor: pointer;
 		position: absolute;
 		left: 50%;
-		top: 700px;
-		transform: translate(-50%, -50%);
+		top: 784px;
+		transform: translateX(-50%);
 		z-index: 100;
 		display: flex;
 		align-items: center;

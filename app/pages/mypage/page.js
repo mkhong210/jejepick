@@ -1,8 +1,28 @@
-import React from 'react'
+"use client"
+import React, { useContext, useEffect } from 'react'
 import Memberform from '@/app/components/MypageMemberCheck'
 import style from './mypage.module.scss'
+import { MyContext } from '@/app/components/Context';
 
 function page() {
+	const {headStatus, setHeadStatus, btmStatus,setBtmStatus} = useContext(MyContext);
+	
+	useEffect(() => {
+		setHeadStatus(true);
+		setBtmStatus(false);
+
+		const header = document.getElementsByClassName('hidden');
+		const status = header[0];
+		if(status){
+			console.log(main)
+			main.classList.remove('no')
+			main.classList.add('on')
+		} else {
+			main.classList.remove('on')
+			main.classList.add('no')
+		}
+	}, []);
+
 	return (
 		<>
 			<div className={style.profile +` inner`}>

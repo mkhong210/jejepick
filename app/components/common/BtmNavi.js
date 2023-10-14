@@ -1,10 +1,17 @@
-import React from 'react'
+"use client";
+import React, { useContext, useEffect } from 'react'
+import { MyContext } from '../Context';
 import style from './common.module.scss'
 import Link from 'next/link'
 
 function BtmNavi() {
+	const {btmStatus,setBtmStatus} = useContext(MyContext);
+	useEffect(() => {
+		setBtmStatus(false);
+	}, []);
+
 	return (
-		<footer className={style.footer+` bottom`}>
+		<footer className={`${style.footer} ${btmStatus ? 'hidden':''}`+` bottom`}>
 			<ul className={style.footer_wrap + ' inner'}>
 				<li className={style.footer_item}>
 					<Link href='/pages/favorite'>
