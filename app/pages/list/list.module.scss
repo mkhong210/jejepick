@@ -1,0 +1,24 @@
+.hidden {
+	// display: none !important;
+}
+// List.js
+.list {
+	display: flex;
+	gap: 20px;
+	.list_item {
+		width: calc((100% - 40px) / 3);
+	}
+}
+
+// TotalList.js
+.total_list{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	.total_item{
+		width: calc((100% - 20px) / 2);
+		// div>div:first-child>div::after{
+		// 	padding-bottom: 100% !important;
+		// }
+	}
+}

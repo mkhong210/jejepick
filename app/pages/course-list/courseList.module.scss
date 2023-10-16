@@ -1,0 +1,41 @@
+// page course-list
+.course_list {
+	h2{
+		font-size: 2rem;
+		color: #979797;
+		font-weight: 400;
+	}
+
+}
+// comp courselist
+.list_wrap {
+}
+
+// comp courseitem
+.item_wrap {
+	background-color: #fff;
+	padding: 20px;
+	box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+	border-radius: 50px;
+	display: flex;
+	align-items: center;
+	position: relative;
+	margin: 20px auto;
+	.txt {
+		font-size: 1.6rem;
+		margin-left: 20px;
+		font-weight: 600;
+	}
+	.del_btn {
+		color: #F88561;
+		font-size: 1.6rem;
+		margin-left: 20px;
+		font-weight: 500;
+		background-color: transparent;
+		border: none;
+		position: absolute;
+		top: 50%;
+		right: 20px;
+		transform: translateY(-50%);
+	}
+}
