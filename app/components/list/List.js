@@ -5,7 +5,7 @@ import ListItem from './ListItem'
 function List() {
 	return (
 		<>
-			<ul className={style.list+` inner`}>
+			<ul className={style.list}>
 				<li className={style.list_item}>
 					<ListItem />
 				</li>

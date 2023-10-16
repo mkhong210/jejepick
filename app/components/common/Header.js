@@ -11,7 +11,6 @@ function Header() {
 		setHeadStatus(false);
 	}, []);
 
-	// console.log(ddd)
 	return (
 		<header className={`${style.header} ${headStatus ? 'hidden':''}`+ ` header`}>
 			{/* <div>Header</div> */}
