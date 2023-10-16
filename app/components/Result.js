@@ -57,38 +57,35 @@ export default function Result({selectedOptions}) {
       setNum(7)
     }
 },[])
-  
-  console.log(include1);
-  console.log(jsondata);
 
   console.log(testResultValue);
   
   return (
     <>
       <div className={style.testbefore}>
-            <div className={style.testbeforeback}></div>
-            <div className={style.test + ` inner`}></div>
-            <div className={style.result}>
-               <div className={style.resulttop}>
-                  <div>퉁퉁이님의 여행타입은?</div>
-                  <div className={style.resultprofile}>
-                     <div className={style.propen}>{jsondata[num].tendency}</div>
-                     <div className={style.resultimg}>
-                        <img src={jsondata[num].image}></img>
-                     </div>
-                     <div className={style.tag}>
-                        {
+				<div className={style.testbeforeback}></div>
+				<div className={style.test + ` inner`}></div>
+				<div className={style.result}>
+					<div className={style.resulttop}>
+						<div>퉁퉁이님의 여행타입은?</div>
+						<div className={style.resultprofile}>
+							<div className={style.propen}>{jsondata[num].tendency}</div>
+							<div className={style.resultimg}>
+								<img src={jsondata[num].image}></img>
+							</div>
+							<div className={style.tag}>
+								{
                   jsondata[num].tag.map((v,k)=>(
                     <span key={k}>{v}</span>
                 ))
                 }
-                     </div>
-                  </div>
-               </div>
-               <div className={style.resultbottom}>
-                  <div className={style.resultcon}>
-                     <div className={style.propencon}>
-                        {
+							</div>
+						</div>
+					</div>
+					<div className={style.resultbottom}>
+						<div className={style.resultcon}>
+							<div className={style.propencon}>
+								{
                   jsondata[num].contents.map((v,k)=>(
                     <div key={k}>
                       <img src='/asset/image/test/resultmarker.svg' />
@@ -96,25 +93,24 @@ export default function Result({selectedOptions}) {
                     </div>
                 ))
                 }
-                     </div>
-                     <div className={style.mate}>
-                        <div className={style.bestmate}>
-                           <p>나와 맞는 유형</p>
-                           <h4>{jsondata[num].types[0]}</h4>
-                           <img src={jsondata[num].types_img[0]}></img>
-                        </div>
-                        <div className={style.worstmate}>
-                           <p>나와 안맞는 유형</p>
-                           <h4>{jsondata[num].types[1]}</h4>
-                           <img src={jsondata[num].types_img[1]}></img>
-                        </div>
-                     </div>
-                  </div>
-                  <div className={style.listmove}>맞춤 여행지 보러가기</div>
-               </div>
-            </div>
-         </div>
-
+							</div>
+							<div className={style.mate}>
+								<div className={style.bestmate}>
+									<p>나와 맞는 유형</p>
+									<h4>{jsondata[num].types[0]}</h4>
+									<img src={jsondata[num].types_img[0]}></img>
+								</div>
+								<div className={style.worstmate}>
+									<p>나와 안맞는 유형</p>
+									<h4>{jsondata[num].types[1]}</h4>
+									<img src={jsondata[num].types_img[1]}></img>
+								</div>
+							</div>
+						</div>
+						<div className={style.listmove}>맞춤 여행지 보러가기</div>
+					</div>
+				</div>
+			</div>
     </>
   )
 }

@@ -1,4 +1,3 @@
-
 .jejepick{
     width: 100%;
     height: 932px;
@@ -68,6 +67,7 @@
 					flex-wrap: wrap;
 					align-items: center;
 					justify-content: space-between;
+
 					>figure{
 						cursor: pointer;
 						>div{
@@ -121,9 +121,10 @@
 				}
 			}
 		}
-		.testbottom{
+		.testbottom {
 			margin-top: -150px;
-			width: 100%; height: 416px;
+			width: 100%;
+			height: 416px;
 			background: url('/asset/image/test/testingback.svg') no-repeat;
 			background-position-y: bottom;
 			background-size: contain;

@@ -5,7 +5,9 @@ import Result from '@/app/components/Result'
 function page() {
 	return (
 		<>
-			<Result/>
+
+		<Result />
+			
 		</>
 	)
 }
