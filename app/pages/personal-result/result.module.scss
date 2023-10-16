@@ -114,7 +114,7 @@
                 align-items: center;
                 justify-content: space-between;
                 >div{
-                    width: 219px;
+                    width: 47%;
                     height: 185px;
                     border-radius: 30px;
                     >p{
@@ -147,6 +147,7 @@
             }
         }
         .listmove{
+            cursor: pointer;
             margin: 0 auto;
             display: flex;
             align-items: center;
