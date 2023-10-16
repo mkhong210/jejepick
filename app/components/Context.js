@@ -24,7 +24,7 @@ function Context({ children }) {
 	}, [])
 
 	const value ={ 
-    common, headStatus,setHeadStatus, 
+    common, headStatus,setHeadStatus,
     btmStatus, setBtmStatus,
     testResultValue,setTestResultValue
   }
