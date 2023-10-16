@@ -21,6 +21,8 @@ export async function GET(req,{params}){
     return Response.json(id);
 }
 
+
+
 /* 
     const id= await queryExecute ('SELECT id from jejumembership where id=?',[params.num])
         const data = await req.json();

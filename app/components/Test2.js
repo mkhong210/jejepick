@@ -1,10 +1,10 @@
 "use client"
 import testdb from "../../testdb/data.json"
 import style from '../pages/personal-test/personalTest.module.scss'
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import axios from 'axios';
 import { useRouter } from "next/navigation";
-import { MyContext } from "./Context";
+//import Result from "./Result";
 
 export default function Test() {
 
@@ -16,8 +16,7 @@ export default function Test() {
 
     const [num, setNum] = useState(0);
     const [option, setOption] = useState('')
-    const [selectedOptions, setSelectedOptions] = useState([]);
-    const {setTestResultValue} = useContext(MyContext)
+    const [selectedOptions, setSelectedOptions] = useState([]);   
 
     async function getData() {
         const result = await axios.get('/api/visit');
@@ -32,7 +31,14 @@ export default function Test() {
 
     console.log(data);
 
-    
+    //키워드 2개 필터링
+    function filter(e) {
+        e.preventDefault();
+        
+        let filteredData = data ? data.filter(obj => obj.alltag && obj.alltag.includes('잡화') && obj.alltag.includes('제주시내')) : [];
+        console.log(filteredData);
+        setData(filteredData)
+    }
     
     //다음 질문으로 이동
     const next = () => {
@@ -43,7 +49,7 @@ export default function Test() {
                 setOption('')
 
             } else {
-                setTestResultValue([option,...selectedOptions])
+                setSelectedOptions([option,...selectedOptions]);
                 router.push("/pages/personal-result");
             }
         }else{
@@ -57,15 +63,13 @@ export default function Test() {
         setOption(keyword.target.parentElement.getAttribute("data-keyword"));
         keyword.currentTarget.classList.toggle(`${style.active}`);
     }
-    
-    
+
     if (loading) {
         return <div>로딩 중...</div>;
     }
-    
     return (
         <>
-
+        {/* <Result selectedOptions={selectedOptions} />     */}
         <div className={style.jejepick}>
             <div className={style.testbeforeback}></div>
             <div className={style.test}></div>

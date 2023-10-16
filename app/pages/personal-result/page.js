@@ -1,7 +1,14 @@
+"use client"
 import React from 'react'
 import style from './personalResult.module.scss'
+import { useRouter } from 'next/navigation'
 
 function page() {
+
+	const router = useRouter();
+
+	setTimeout(() => router.push('./personal-result/result01'), 1500);
+		
 	return (
 		<>
 			<div className={style.testbefore}>
