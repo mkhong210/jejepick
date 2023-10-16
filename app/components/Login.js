@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import style from './login.module.scss';
+import style from '../pages/login/login.module.scss';
 function Login() {
     const [id,setidInput]=useState('');
     const [password, setPasswordInput] = useState(''); 
@@ -20,6 +20,7 @@ function Login() {
             // 로그인 요청 보내기
             const response = await axios.get(`/server_api?id=${id}&pw=${password}`);
             console.log(response.data);
+            
             if (response.data.success) {
                 // 로그인 성공
                 localStorage.setItem('loginId', id);
@@ -36,20 +37,14 @@ function Login() {
         } */
     }
 
-    const insertFn = (e)=>{
-        e.preventDefault();
-        const formdata =new FormData(e.target);
-        const values=Object.fromEntries(formdata);
-        
-        axios.get('/server_api',{params:values,})
-        console.log();
-    }
+    
+
   return (
     <div className={style.LoginContents}>
         <div className={style.mainimage} >
             <img src='/asset/common/JEJEPicklogin.svg'/>
         </div>
-        <form onSubmit={insertFn}  className={style.loginform}>
+        <form onSubmit={onClickLogin}  className={style.loginform}>
             <div className={style.loginInput}>
                 <div className={style.idInputContents}>
                     <img src='/asset/common/icon_id.svg'></img>
@@ -84,7 +79,6 @@ function Login() {
                     type='submit' 
                     name='Login' 
                     value='로그인' 
-                    onClick={onClickLogin}
                     className={style.Loginbtn}
                 />
             </div>
