@@ -1,6 +1,5 @@
 "use client"
 import React, { useContext, useEffect } from 'react'
-import Memberform from '@/app/components/MypageMemberCheck'
 import style from './mypage.module.scss'
 import { MyContext } from '@/app/components/Context';
 
