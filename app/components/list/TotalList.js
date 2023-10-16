@@ -10,16 +10,20 @@ function TotalList() {
 		// console.log(e)
     // const v = k.current.childNodes[0];
     // v.childNodes[0].classList.add('active')
+		// console.log(k)
+		const plx = document.getElementsByClassName(`.${style.total_item} .item_wrap .img_wrap`);
+		console.log(plx)
+		// plx.classList.add('active')
   },[])
+
+
   return (
     <>
-			<ul className={`inner `+style.total_list}>
+			<ul className={style.total_list}>
 				<li className={style.total_item}>
-				{/* <li className={style.total_item} ref={e=>{k.current.childNodes[0]=e}}> */}
 					<ListItem />
-					{/* <ListItem className={style.item} /> */}
 				</li>
-				<li className={style.total_item} ref={k}>
+				<li className={style.total_item}>
 					<ListItem />
 				</li>
 				<li className={style.total_item}>
