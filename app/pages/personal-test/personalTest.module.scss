@@ -1,55 +1,44 @@
-.jejepick {
-	width: 100%;
-	height: 932px;
-	background: #FFE668;
-	position: relative;
-
-	.testbeforeback {
-		z-index: 50;
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		background: url('/asset/image/test/patten2.png');
-	}
-
-	.test {
-		cursor: pointer;
-		position: absolute;
-		z-index: 100;
-		margin-top: 88px;
-		width: 100%;
-		height: 844px;
-		background-color: #fff;
-		border-radius: 40px 40px 0px 0px;
-	}
-
-	.testcon {
+.jejepick{
+    width: 100%;
+    height: 932px;
+    background: #FFE668;
+    position: relative;
+    .testbeforeback{
+        z-index: 50;
+        position: absolute;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        background: url('/asset/image/test/patten2.png');
+    }
+	.test{ 
+        cursor: pointer;
+        position: absolute;
+        z-index: 100;
+        margin-top: 88px;
+        width: 100%; height: 844px;
+        background-color: #fff;
+        border-radius: 40px 40px 0px 0px;
+    }
+	.testcon{
 		width: 100%;
 		position: absolute;
-		z-index: 200;
-		margin-top: 88px;
-
-		.mar {
+        z-index: 200;
+        margin-top: 88px;
+		.mar{
 			width: 100%;
-
-			.testcontop {
-				.testque {
+			.testcontop{
+				.testque{
 					margin: 63px 0 19px 0;
 					display: flex;
 					align-items: center;
 					justify-content: space-between;
-
-					>div {
+					>div{
 						display: inline-flex;
 						align-items: center;
-
-						>img {
+						>img{
 							margin-right: 7px;
 						}
-
-						>h2 {
+						>h2{
 							display: inline-block;
 							font-size: 20px;
 							font-style: normal;
@@ -57,41 +46,35 @@
 							line-height: normal;
 						}
 					}
-
-					>p {
+					>p{
 						font-size: 16px;
 						font-style: normal;
 						font-weight: 400;
 						line-height: normal;
 					}
 				}
-
-				.ing {
+				.ing{
 					width: 100%;
 					margin-bottom: 50px;
-
-					>svg {
+					>svg{
 						width: 100%;
 					}
 				}
 			}
-
-			>ul {
-				>li {
+			>ul{
+				>li{
 					display: flex;
 					flex-wrap: wrap;
 					align-items: center;
 					justify-content: space-between;
 
-					>figure {
+					>figure{
 						cursor: pointer;
-
-						>div {
+						>div{
 							width: 279px;
 							height: 215px;
 							border-radius: 20px;
-
-							>img {
+							>img{
 								width: 279px;
 								height: 215px;
 								position: relative;
@@ -100,8 +83,7 @@
 								border-radius: 20px;
 							}
 						}
-
-						>figcaption {
+						>figcaption{
 							display: flex;
 							align-items: center;
 							justify-content: center;
@@ -112,18 +94,15 @@
 							line-height: normal;
 						}
 					}
-
-					>figure.active div {
+					>figure.active div{
 						box-shadow: 0 0 0 4.5px #FFA366 inset;
 					}
 				}
 			}
-
-			>div {
+			>div{
 				width: 100%;
 				text-align: center;
-
-				.next {
+				.next{
 					cursor: pointer;
 					display: inline-flex;
 					align-items: center;
@@ -142,7 +121,6 @@
 				}
 			}
 		}
-
 		.testbottom {
 			margin-top: -150px;
 			width: 100%;

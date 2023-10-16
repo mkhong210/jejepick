@@ -1,7 +1,9 @@
 // page course-list
 .course_list {
+	padding-top: 20px;
 	h2{
-		font-size: 2rem;
+		margin-left: 10px;
+		font-size: 1.6rem;
 		color: #979797;
 		font-weight: 400;
 	}
@@ -31,8 +33,6 @@
 		font-size: 1.6rem;
 		margin-left: 20px;
 		font-weight: 500;
-		background-color: transparent;
-		border: none;
 		position: absolute;
 		top: 50%;
 		right: 20px;

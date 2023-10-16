@@ -8,6 +8,8 @@
         flex-direction: row;
         justify-content: center;
         position: relative;
+        
+        margin-bottom: 10rem;
         //뒤로가기 버튼 이미지
         img{
             position: absolute;
@@ -16,6 +18,7 @@
         }
         //회원가입 제목
         h2{
+            font-size: large;
             text-align: center;
         }
     }

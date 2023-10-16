@@ -2,9 +2,8 @@
 import React, { useCallback, useState } from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import MypageMemberCheck from './MypageMemberCheck';
 import Link from 'next/link';
-import style from './memberform.module.scss';
+import style from '../pages/signup/signup.module.scss';
 function Memberform() {
 
 

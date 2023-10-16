@@ -57,8 +57,6 @@ export default function Result({selectedOptions}) {
       setNum(7)
     }
 },[])
-  
-  console.log(num);
 
   console.log(testResultValue);
   
@@ -113,7 +111,6 @@ export default function Result({selectedOptions}) {
 					</div>
 				</div>
 			</div>
-
     </>
   )
 }
