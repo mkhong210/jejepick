@@ -8,7 +8,6 @@ import { MyContext } from "./Context";
 
 export default function BestList () {
 
-    
   const router = useRouter();
     const listmove = (e) => {
         router.push("/pages/list");
