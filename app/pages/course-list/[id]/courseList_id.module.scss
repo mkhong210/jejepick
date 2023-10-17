@@ -1,0 +1,39 @@
+.main{
+    height: 100vh;
+    margin: 8rem 0;
+}
+
+.frame{
+    margin: 40px;
+}
+.frame > p {
+    font-size: 16px;
+}
+.title{
+    margin-bottom: 20px;
+}
+
+.title > h1{
+    font-size: 20px;
+
+}
+
+.sec1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sec2{
+    width: 525px;
+    height: 47px;
+    background-color: rgb(255,209,103);
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-radius: 30px;
+}
+.sec2 > p{
+    font-size: 16px;
+}
+

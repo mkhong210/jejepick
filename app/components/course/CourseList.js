@@ -1,20 +1,36 @@
-import React from 'react'
+"use client";
+import React, { useEffect, useState } from 'react'
 import style from '../../pages/course-list/courseList.module.scss'
 import CouseItem from './CouseItem'
+import axios from 'axios';
 
 function CourseList() {
+	
+	const [data, setData] = useState([]);
+	const loginID = window.localStorage.getItem('loginId');
+	async function getCourse() {
+		
+		const result = await axios.get(`/server_api/course?profile=${loginID}`)
+		.then(res=>{
+			setData(res.data)})
+	}
+
+	useEffect(()=>{
+		getCourse();
+	},[])
+
 	return (
 		<>
 			<ul className={style.list_wrap}>
-				<li>
-					<CouseItem />
-				</li>
-				<li>
-					<CouseItem />
-				</li>
-				<li>
-					<CouseItem />
-				</li>
+			{
+					data.map((item,k)=>(
+
+					<li key={k}>
+						<CouseItem item={item} />
+					</li>
+					))
+				}
+			
 			</ul>
 		</>
 	)

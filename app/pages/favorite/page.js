@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import React from 'react'
 import style from './favorite.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -150,7 +150,7 @@ function page() {
 
 			<div className={style.mid_title}>
 				<p>내가 찜한 장소들</p>
-				<a><p className={style.mid_title_p}>코스 만들기</p></a>
+				<a href="./course-make"><p className={style.mid_title_p}>코스 만들기</p></a>
 			</div>
 
 			<div className={style.whole}>
@@ -277,7 +277,6 @@ function page() {
 		</>
 		
 		);
-		<CourseMake data={data} data2={data2} data3={data3} />
 }
 
 export default page
