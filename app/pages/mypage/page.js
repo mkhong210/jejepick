@@ -1,10 +1,17 @@
 "use client"
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import style from './mypage.module.scss'
 import { MyContext } from '@/app/components/Context';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 function page() {
 	const {status, headStatus, setHeadStatus, btmStatus,setBtmStatus} = useContext(MyContext);
+	const [data, setData] = useState([]);
+	const router = useRouter();
+
+    const id = localStorage.getItem('loginId');
+
 	
 	useEffect(() => {
 		setHeadStatus(true);
@@ -20,7 +27,23 @@ function page() {
 		// 	main.classList.remove('on')
 		// 	main.classList.add('no')
 		// }
+
+		getData();
 	}, []);
+
+	const getData = ()=>{
+        // axios.get('/server_api/personal_result', {params:{id:id}})
+        axios.get(`/server_api/personal_result?profile=${id}`)
+        .then(res=>{
+            setData(res.data);
+        })
+    }
+
+	const next = ()=>{
+		router.push("/pages/personal_result");
+	}
+
+console.log(data);
 
 	return (
 		<>
@@ -56,7 +79,7 @@ function page() {
 						<div className={style.jejeimg}></div>
 					</div>
 					<div className={style.myevent}>
-						<div className={style.recom}>
+						<div onClick={next} className={style.recom}>
 							<h4>제제픽이 말아주는 추천 리스트 다시보기</h4>
 							<p>추천 리스트 보기</p>
 						</div>

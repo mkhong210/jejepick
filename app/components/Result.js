@@ -4,9 +4,12 @@ import { useContext, useEffect, useState } from "react";
 import resultdb from "../../testdb/result.json"
 import style from '../pages/personal-result/result.module.scss'
 import { MyContext } from "./Context";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
-export default function Result({selectedOptions}) {
+export default function Result() {
   
+  const router = useRouter();
   const [jsondata, setJsondata] = useState(resultdb);
   const [num, setNum] = useState(0);
   const {testResultValue} = useContext(MyContext);
@@ -16,7 +19,6 @@ export default function Result({selectedOptions}) {
     e.preventDefault();
     
     let filteredData = data ? data.filter(obj => obj.alltag && obj.alltag.includes('잡화') && obj.alltag.includes('제주시내')) : [];
-    console.log(filteredData);
     setData(filteredData)
   }
 
@@ -58,8 +60,23 @@ export default function Result({selectedOptions}) {
     }
 },[])
 
-  console.log(testResultValue);
+  console.log(jsondata[num]);
   
+  const insert = (e)=>{
+    
+    const id = localStorage.getItem('loginId');
+
+    console.log(id);
+    const testData = jsondata[num];
+    const json = JSON.stringify(testData);
+    const value =  JSON.stringify(testResultValue);
+    axios.post('/server_api/personal_result', {profile:id,contents:json, keywords:value})
+
+    router.push('/pages/best-list')
+  }
+  
+  console.log(testResultValue);
+
   return (
     <>
       <div className={style.testbefore}>
@@ -107,7 +124,7 @@ export default function Result({selectedOptions}) {
 								</div>
 							</div>
 						</div>
-						<div className={style.listmove}>맞춤 여행지 보러가기</div>
+						<div onClick={insert} className={style.listmove}>맞춤 여행지 보러가기</div>
 					</div>
 				</div>
 			</div>
