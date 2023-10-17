@@ -1,13 +1,14 @@
 "use client";
 
 import axios from "axios";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import React from 'react'
 import style from './courseMake.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
+import { useRouter } from "next/navigation";
 
 
 function page() {
@@ -16,10 +17,11 @@ function page() {
 	const [data, setData] = useState(); // 숙박 관련 
 	const [data2, setData2] = useState(); // 관광지 관련
 	const [data3, setData3] = useState(); // 음식점 관련
-	const [loading, setLoading] = useState(true);
-	const [selectedItems, setSelectedItems] = useState([]);
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [selectedItemContent, setSelectedItemContent] = useState('');
+	const [loading, setLoading] = useState(true); //api 불러올때
+	const [selectedItems, setSelectedItems] = useState([]); // 선택 함수
+	const [isModalOpen, setIsModalOpen] = useState(false); // 모달 
+	const [selectedItemContent, setSelectedItemContent] = useState(''); //클릭한 아이템 내용들
+	const router = useRouter();
 	const [modalTitle, setModalTitle] = useState('');
 	
 	function openModal() {
@@ -29,6 +31,25 @@ function page() {
 	  function closeModal() {
 		setIsModalOpen(false);
 	  }
+
+	 
+
+	 const insertFn = (e)=>{
+		
+        e.preventDefault();
+		const loginID = window.localStorage.getItem('loginId');
+		const contentIds = selectedItems.map((item) => item.contentsid);
+        const formdata =new FormData(e.target);
+        const values=Object.fromEntries(formdata);
+		axios.post(`/server_api/course`,{...values,profile:loginID,item_id:contentIds})
+		.then((response)=>{(response.data);})
+		console.log('sdfsdf')
+		router.push('/pages/course-list')
+    }
+	 
+
+
+
 
 	function ItemClick(item){
 			// 이미 선택된 항목인지 확인
@@ -76,7 +97,7 @@ function page() {
 
 
 	return (
-		<>
+		<div className={style.main}>
 			<div className={style.mid_title}>
 				<p>내가 만든 여행코스로 더욱 즐겁게 여행해요!</p>
 				<a></a>
@@ -86,7 +107,7 @@ function page() {
 				<div>
 					<div className={style.label}>
 						
-							<img src="/asset/common/home.svg"/>
+							<img src="/asset/image/map/ICON_sleep_pin.svg"/>
 						
 						<p>숙소 중 한곳을 선택해주세요</p>
 					</div>
@@ -130,7 +151,7 @@ function page() {
 			
 				<div>
 					<div className={style.label}>
-						<img src="/asset/common/meal.svg"/>
+						<img src="/asset/image/map/ICON_food_pin.svg"/>
 						<p>가고 싶은 맛집을 두 곳을 선택해 주세요</p>
 					</div>
 					<Swiper 
@@ -167,7 +188,7 @@ function page() {
 
 				<div>
 					<div className={style.label}>
-						<img src="/asset/common/place.svg"/>
+						<img src="/asset/image/map/ICON_tour_pin.svg"/>
 						<p>가고 싶은 명소를 두곳 선택해주세요</p>
 					</div>
 					
@@ -220,32 +241,42 @@ function page() {
 								<h2>코스 이름을 입력해 주세요!</h2>
 								<button onClick={closeModal}>x</button>
 							</div>
-							<input
-							 type="text"
-							 placeholder="제목을 입력하세요"
-							 className={style.search}
-							>
+							<form onSubmit={insertFn}>
+								<input
+								type="text"
+								name="coursename"
+								placeholder="제목을 입력하세요"
+								className={style.search}
+								>
+								</input>
 							
-							</input>
-							<p>
+							
+							<div>
 								{selectedItems.map((item, index) => (
+									
 									<React.Fragment key={item.contentsid}>
 										<div className={style.modal_itemlist}>
 											{item.title}
 											{index !== selectedItems.length - 1 && <br />} {/* 마지막 항목이 아닌 경우에만 줄 바꿈 추가 */}
 										</div>
 									</React.Fragment>
+									
 								))}
-							</p>
-
-							<button onClick={()=>{}}>코스저장</button>
+									<button>
+										
+										코스 저장
+										
+									</button>
+								
+							</div>
+							</form>
 						</div>
 					</div>
 				)}
 
 
 
-		</>
+		</div>
 	)
 }
 
