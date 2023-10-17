@@ -1,20 +1,43 @@
 "use client"
 import Image from 'next/image'
 import style from './page.module.scss'
-import Link from 'next/link'
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { MyContext } from './components/Context';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+	const { status, headStatus, setHeadStatus, btmStatus, setBtmStatus } = useContext(MyContext);
+	const router = useRouter();
+	
 	useEffect(() => {
-		const head = document.getElementsByClassName(`header`);
-		head[0].classList.add(style.hidden);
-		// const btm = document.getElementsByClassName(`bottom`);
-		// btm[0].classList.add(style.hidden);
+		setHeadStatus(true);
+		setBtmStatus(true);
+		// common();
 	}, []);
+
+	setTimeout(() => router.push('/pages/main'), 2000);
 
 	return (
 		<>
-			<h1>splash 페이지</h1>
+			<div className={style.splash_bg}>
+				<div className={style.splash_logo + ` inner`}>
+					<div>
+						<img src="/asset/common/logo_2.svg" />
+					</div>
+				</div>
+				<ul className={style.splash_balloon + ` inner`}>
+					<li className={style.splash_balloon1}>
+						<div>
+							<img src="/asset/image/splash/IMG_balloon1.png" />
+						</div>
+					</li>
+					<li className={style.splash_balloon2 + ` inner`}>
+						<div>
+							<img src="/asset/image/splash/IMG_balloon2.png" />
+						</div>
+					</li>
+				</ul>
+			</div>
 		</>
 	)
 }

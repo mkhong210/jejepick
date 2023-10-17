@@ -10,15 +10,36 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 // import required modules
 import { Autoplay } from 'swiper/modules';
+import CourseList from "@/app/components/course/CourseList";
 
 function page() {
-	const { common, headStatus, setHeadStatus, btmStatus, setBtmStatus } = useContext(MyContext);
+	const { status, headStatus, setHeadStatus, btmStatus, setBtmStatus } = useContext(MyContext);
+
 	useEffect(() => {
 		setHeadStatus(false);
 		setBtmStatus(false);
-		common();
+		status();
+		height();
 	}, []);
-	
+
+	const height = () => {
+		const totalItems = document.getElementsByClassName(`${style.contents_2_bestplacelist}`);
+		console.log(totalItems);
+
+		for (let i = 0; i < totalItems.length; i++) {
+			const item = totalItems[i];
+			const children = item.children;
+
+			if (children.length > 0) {
+				const child = children[0].children[0].children;
+				for (let i = 0; i < child.length; i++) {
+					const childc = child[i].children[0];
+					childc.classList.add('child')
+				}
+			}
+		}
+	}
+
 	return (
 		<>
 			<div className={style.back}>
@@ -59,7 +80,6 @@ function page() {
 					<div className={style.contents_2_bestplacelist}>
 						<Swiper
 							spaceBetween={20}
-							// centeredSlides={true}
 							slidesPerView={2.3}
 							autoplay={{
 								delay: 2500,
@@ -78,7 +98,15 @@ function page() {
 						</Swiper>
 					</div>
 				</div>
-				<div className={style.contents_3 + ` inner`}></div>
+				<div className={style.contents_3 + ` inner`}>
+					<div className={style.text_wrap}>
+						<h2>나의 여행코스</h2>
+						<p>더보기</p>
+					</div>
+					<div className={style.course_wrap}>
+						<CourseList />
+					</div>
+				</div>
 			</div>
 		</>
 	);

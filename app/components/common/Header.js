@@ -3,13 +3,14 @@ import React, { useContext, useEffect } from 'react'
 import { MyContext } from '../Context'
 import style from './common.module.scss'
 import Link from 'next/link';
-
+// import commonstatus from './commonstatus';
 
 function Header() {
 	const {headStatus, setHeadStatus} = useContext(MyContext);
 	useEffect(() => {
 		setHeadStatus(false);
 	}, []);
+	// commonstatus();
 
 	return (
 		<header className={`${style.header} ${headStatus ? 'hidden':''}`+ ` header`}>

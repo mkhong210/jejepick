@@ -4,16 +4,13 @@ import style from './list.module.scss'
 import List from '@/app/components/list/List';
 import TotalList from '@/app/components/list/TotalList';
 import { MyContext } from '@/app/components/Context';
+// import commonstatus from '@/app/components/common/commonstatus';
 
 function Page() {
-	const { common, headStatus, setHeadStatus, btmStatus, setBtmStatus } = useContext(MyContext);
-	useEffect(() => {
-		setHeadStatus(false);
-		setBtmStatus(false);
-		common();
-		tab_click();
-	}, []);
-
+	const { status, headStatus, setHeadStatus, btmStatus, setBtmStatus } = useContext(MyContext);
+	const [tabTxt, setTabTxt] = useState("숙소");
+	
+	// 검색 창
 	function searchBox(e) {
 		e.preventDefault();
 		let sText = e.target.children[0].value;
@@ -25,21 +22,50 @@ function Page() {
 		tab.classList.add('hidden')
 	}
 
+	// 탭 메뉴
 	function tab_click() {
 		// const tabItem = document.querySelectorAll('.tab_list .tab_item')
 		const tabItem = document.getElementsByClassName(`${style.tab_list}`);
 		const tabtab = [...tabItem[0].children];
 		const hadActive = document.getElementsByClassName(`${style.active}`);
 		
-		let num = 0;
+		let num = 0, txt = '';
 		tabtab.forEach(function(v,k) {
 			v.addEventListener('click', function() {
 				tabtab[num].classList.remove(`${style.active}`);
 				this.classList.add(`${style.active}`);
+				txt = this.children[1].innerText;
+				console.log(txt);
+				setTabTxt(txt);
 				num = k;
 			})
 		});
 	}
+
+	const height = () => {
+		const totalItems = document.getElementsByClassName(`${style.list_item}`);
+		// console.log(totalItems)
+		
+		for (let i = 0; i < totalItems.length; i++) {
+			const item = totalItems[i];
+			const children = item.children;
+			
+			if (children.length > 0) {
+				children[0].classList.add('active')
+			}
+		}
+	}
+
+	useEffect(() => {
+		setHeadStatus(false);
+		setBtmStatus(false);
+		status();
+		tab_click();
+		// commonstatus();
+		height();
+		setTabTxt("숙소");
+	}, []);
+	console.log(tabTxt)
 
 	return (
 		<>
@@ -65,7 +91,7 @@ function Page() {
 						
 						<li className={`${style.tab_item} ${style.active}`}>
 							<img src='/asset/image/map/ICON_yellow_pin.svg' />
-							<p>숙박</p>
+							<p>숙소</p>
 						</li>
 						<li className={style.tab_item}>
 							<img src='/asset/image/map/ICON_yellow_pin.svg' />
@@ -83,7 +109,7 @@ function Page() {
 				</div>
 				<div className={style.totallist_wrap}>
 					<h2>전체 여행 정보</h2>
-					<TotalList />
+					<TotalList tabTxt={tabTxt}/>
 				</div>
 			</div>
 		</>
