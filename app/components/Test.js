@@ -17,7 +17,25 @@ export default function Test() {
     const [num, setNum] = useState(0);
     const [option, setOption] = useState('')
     const [selectedOptions, setSelectedOptions] = useState([]);
-    const {setTestResultValue} = useContext(MyContext)
+    const {setTestResultValue} = useContext(MyContext);
+
+    const keywords1 = ["체험", "바다"]
+    const keywords2 = ["체험", "바다X"]
+    const keywords3 = ["힐링", "바다"]
+    const keywords4 = ["힐링", "바다X"]
+    const keywords5 = ["오름", "바다"]
+    const keywords6 = ["오름", "바다X"]
+    const keywords7 = ["문화유적지", "바다"]
+    const keywords8 = ["문화유적지", "바다X"]
+
+    const include1 = keywords1.every(keyword => testResultValue.includes(keyword));
+    const include2 = keywords2.every(keyword => testResultValue.includes(keyword));
+    const include3 = keywords3.every(keyword => testResultValue.includes(keyword));
+    const include4 = keywords4.every(keyword => testResultValue.includes(keyword));
+    const include5 = keywords5.every(keyword => testResultValue.includes(keyword));
+    const include6 = keywords6.every(keyword => testResultValue.includes(keyword));
+    const include7 = keywords7.every(keyword => testResultValue.includes(keyword));
+    const include8 = keywords8.every(keyword => testResultValue.includes(keyword));
 
     async function getData() {
         const result = await axios.get('/api/visit');
@@ -30,10 +48,6 @@ export default function Test() {
         getData();
     }, [])
 
-    console.log(data);
-
-    
-    
     //다음 질문으로 이동
     const next = () => {
         if(option){
