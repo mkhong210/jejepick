@@ -8,12 +8,9 @@ export async function GET(req){
 
     if(status === 'idcheck'){
         //idcheck =회원가입 시 아이디 중복확인 체크
-
         const id = req.nextUrl.searchParams.get('id'); 
         // 아이디 파라미터를 가져옴
-
         const existingUsers = await queryExecute ('SELECT * from jejumembership where id=?',[id])
-
         return Response.json(existingUsers);
     }else{
         // 그게 아니라면 로그인 할때 아이디와 패스워드 값을 가져와야함

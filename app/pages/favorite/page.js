@@ -13,13 +13,15 @@ import CourseMake from '../course-make/page.js';
 
 function page() {
 
-	const [data, setData] = useState(); // 숙박 관련 
-	const [data2, setData2] = useState(); // 관광지 관련
-	const [data3, setData3] = useState(); // 음식점 관련
+	const [data, setData] = useState([]); // 숙박 관련 
+	const [data2, setData2] = useState([]); // 관광지 관련
+	const [data3, setData3] = useState([]); // 음식점 관련
 	const [loading, setLoading] = useState(true); //api 불러올떄 관련
 	const [apiData, setApiData] = useState([]); // 마커 관련
+	/* -------------------------------------------- */
+	const [select,setSelct]=useState([]);
 
-
+	const [aaaa,setAaaa] = useState(null);
 	const filterData = (data) => {
 		const filteredData1 = data.filter(item => item.contentscd.label === '숙박');
 		const filteredData2 = data.filter(item => item.contentscd.label === '관광지');
@@ -29,7 +31,6 @@ function page() {
 		setData2(filteredData2); // 관광지 관련 데이터 저장
 		setData3(filteredData3); // 음식점 관련 데이터 저장
 	};
-	  
 	async function getData() {
 		const result = await axios.get('/api/visit');
 		const newData = result.data
@@ -37,6 +38,37 @@ function page() {
 		setApiData(newData);
 		setLoading(false);
 	}
+
+	//찜클릭 -------------------------------------------------
+	const isSelected = (itemId) => {
+		return select.includes(itemId);
+	  }
+	const heartclick = (itemId)=>{
+		const loginID = window.localStorage.getItem('loginId'); 
+		if(loginID){
+			if(!isSelected(itemId)){
+				axios.post(`/server_api/item`,{profile:loginID,contentsid:itemId})
+				.then((response)=>{
+					alert("찜목록에 추가되었습니다.");
+					setAaaa(response.data);
+					setSelct([...select, itemId]);
+				})
+				.catch((error)=>{console.log('Error:'.error)});
+			}
+			else{
+				axios.delete(`/server_api/item`,{data:{profile:loginID, contentsid:itemId}})
+				
+				.then((response)=>{
+					alert("찜목록에서 제거되었습니다.")
+					setAaaa(response.data);
+					setSelct(select.filter((item) => item !== itemId));
+				})
+				.catch((error)=>{console.log('Error:'.error)});
+			}
+		}
+	}
+	console.log(data[0]?.contentsid);
+	/* ------------------------------------------------------ */
 
 	useEffect(() => {
 		getData();
@@ -149,7 +181,15 @@ function page() {
 								<a className={style.api_pic_list}>
 									<div className={style.api_explain}>
 										<p className={style.api_explain_title}>{item.title}</p>
-										<img className={style.api_explain_heart} src="../asset/common/icon_favorite_full.svg">{/* 하트, 클릭 이벤트 데이터 저장 */}</img>
+										<img className={style.api_explain_heart} 
+
+										onClick={()=>{
+											if(item.contentsid){
+												heartclick(item.contentsid)
+											}
+										}} 
+										
+										src="../asset/common/icon_favorite_full.svg">{/* 하트, 클릭 이벤트 데이터 저장 */}</img>
 									</div>
 									<p className={style.api_pic_grad}>
 									</p>
@@ -181,7 +221,6 @@ function page() {
 							
 						{data3.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
-								
 								<a className={style.api_pic_list}>
 									<div className={style.api_explain}>
 										<p className={style.api_explain_title}>{item.title}</p>
