@@ -14,6 +14,12 @@ export default function Result() {
   const [num, setNum] = useState(0);
   const {testResultValue} = useContext(MyContext);
 
+
+  const router = useRouter();
+    const listmove = (e) => {
+        router.push("/pages/best-list");
+    }
+
   //키워드 2개 필터링
   function filter(e) {
     e.preventDefault();
@@ -59,7 +65,6 @@ export default function Result() {
       setNum(7)
     }
 },[])
-
   console.log(jsondata[num]);
   
   const insert = (e)=>{
@@ -124,7 +129,7 @@ export default function Result() {
 								</div>
 							</div>
 						</div>
-						<div onClick={insert} className={style.listmove}>맞춤 여행지 보러가기</div>
+						<div onClick={insert} className={style.listmove} onClick={listmove}>맞춤 여행지 보러가기</div>
 					</div>
 				</div>
 			</div>
