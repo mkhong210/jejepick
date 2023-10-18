@@ -14,11 +14,11 @@ function Page() {
 	function searchBox(e) {
 		e.preventDefault();
 		let sText = e.target.children[0].value;
-		console.log(sText);
+		// console.log(sText);
 		e.target.children[0].value = '';
 
 		const tab = document.getElementById('tabMenu');
-		console.log(tab)
+		// console.log(tab)
 		tab.classList.add('hidden')
 	}
 
@@ -35,7 +35,6 @@ function Page() {
 				tabtab[num].classList.remove(`${style.active}`);
 				this.classList.add(`${style.active}`);
 				txt = this.children[1].innerText;
-				console.log(txt);
 				setTabTxt(txt);
 				num = k;
 			})
@@ -65,7 +64,7 @@ function Page() {
 		height();
 		setTabTxt("숙소");
 	}, []);
-	console.log(tabTxt)
+	// console.log(tabTxt)
 
 	return (
 		<>

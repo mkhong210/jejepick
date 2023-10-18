@@ -9,7 +9,7 @@ function page() {
           <li>서귀포시</li>
           <li>
             <p>
-              명문가시리식당 <span>음식점</span>
+              명문가시리식당 <span>| 음식점</span>
             </p>
             <p>
               찜하기

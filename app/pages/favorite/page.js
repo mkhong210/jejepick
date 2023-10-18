@@ -10,6 +10,8 @@ import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
 import CourseMake from '../course-make/page.js';
 import Heart from "@/app/components/Heart";
+import ListItem from "@/app/components/list/ListItem";
+import Loading from "@/app/components/loading/Loading";
 
 
 function page() {
@@ -39,39 +41,6 @@ function page() {
 		setApiData(newData);
 		setLoading(false);
 	}
-
-	//찜클릭 -------------------------------------------------
-	
-	
-	const isSelected = (itemId) => {
-		return select.includes(itemId);
-	  }
-	const heartclick = (itemId)=>{
-		const loginID = window.localStorage.getItem('loginId'); 
-		if(loginID){
-			if(!isSelected(itemId)){
-				axios.post(`/server_api/item`,{profile:loginID,contentsid:itemId})
-				.then((response)=>{
-					alert("찜목록에 추가되었습니다.");
-					setAaaa(response.data);
-					setSelct([...select, itemId]);
-				})
-				.catch((error)=>{console.log('Error:'.error)});
-			}
-			else{
-				axios.delete(`/server_api/item`,{data:{profile:loginID, contentsid:itemId}})
-				
-				.then((response)=>{
-					alert("찜목록에서 제거되었습니다.")
-					setAaaa(response.data);
-					setSelct(select.filter((item) => item !== itemId));
-				})
-				.catch((error)=>{console.log('Error:'.error)});
-			}
-		}
-	}
-	console.log(data[0]?.contentsid);
-	/* ------------------------------------------------------ */
 
 	useEffect(() => {
 		getData();
@@ -144,27 +113,25 @@ function page() {
  
 
 	if (loading) {
-		return <div>로딩 중...</div>;
+		return <div><Loading /></div>;
+		// return <div>로딩중</div>;
 	}
 	return (
 		<>
-
 			<div id="maps" style={{ width: '100%', height: '370px' }}></div>
-
-			<div className={style.mid_title}>
+			<div className={style.mid_title+ ` inner`}>
 				<p>내가 찜한 장소들</p>
-				<a href="./course-make"><p className={style.mid_title_p}>코스 만들기</p></a>
+				<a href="./course-make" className={style.mid_title_a}>
+					<p className={style.mid_title_p}>코스 만들기</p>
+					<img src="/asset/common/Icon_arrow_right.svg" alt="오른쪽 화살표" />
+				</a>
 			</div>
-
-			<div className={style.whole}>
+			<div className={style.whole+ ` inner`}>
 				<div>
 					<div className={style.label}>
-						
-							<img src="/asset/image/map/ICON_sleep_pin.svg"/>
-						
+						<img src="/asset/image/map/ICON_sleep_pin.svg"/>
 						<p>숙소</p>
 					</div>
-
 
 					<Swiper 
 						slidesPerView={3}
@@ -180,8 +147,8 @@ function page() {
 							
 						{data.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
-								
-								<a className={style.api_pic_list}>
+								<ListItem data={item} />
+								{/* <a className={style.api_pic_list}>
 									<div className={style.api_explain}>
 										<p className={style.api_explain_title}>{item.title}</p>
 										<Heart itemId={item.contentsid}/>
@@ -189,8 +156,7 @@ function page() {
 									<p className={style.api_pic_grad}>
 									</p>
 										<img className={style.api_pic} src={item?.repPhoto?.photoid?.thumbnailpath} alt=""/>
-								</a> {/* 여기는 API 불러온 데이터 부분 */}
-								
+								</a> 여기는 API 불러온 데이터 부분 */}
 							</SwiperSlide>
 						))}
 					</Swiper>
@@ -210,22 +176,10 @@ function page() {
 						  clickable: true,
 						}}
 						modules={[FreeMode, Pagination]}
-						
 						className={style.api_pic_list}>
-
-							
 						{data3.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
-								<a className={style.api_pic_list}>
-									<div className={style.api_explain}>
-										<p className={style.api_explain_title}>{item.title}</p>
-										<Heart itemId={item.contentsid}/>
-									</div>
-									<p className={style.api_pic_grad}>
-									</p>
-										<img className={style.api_pic} src={item?.repPhoto?.photoid?.thumbnailpath} alt=""/>
-								</a> {/* 여기는 API 불러온 데이터 부분 */}
-								
+								<ListItem data={item} />
 							</SwiperSlide>
 						))}
 					</Swiper>
@@ -245,23 +199,11 @@ function page() {
 						  clickable: true,
 						}}
 						modules={[FreeMode, Pagination]}
-						
 						className={style.api_pic_list}>
-
-							
+						
 						{data2.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
-								
-								<a className={style.api_pic_list}>
-									<div className={style.api_explain}>
-										<p className={style.api_explain_title}>{item.title}</p>
-										<Heart itemId={item.contentsid}/>
-									</div>
-									<p className={style.api_pic_grad}>
-									</p>
-										<img className={style.api_pic} src={item?.repPhoto?.photoid?.thumbnailpath} alt=""/>
-								</a> {/* 여기는 API 불러온 데이터 부분 */}
-								
+								<ListItem data={item} />
 							</SwiperSlide>
 						))}
 					</Swiper>
