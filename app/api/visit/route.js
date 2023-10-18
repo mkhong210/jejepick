@@ -11,7 +11,6 @@ export async function GET(){
     })
     
     let jejuData = [];
-
     for(let i=1;i<10;i++){
         const jeju1 = await jj1.get('/',{params:{page:i}});
         jejuData.push(...jeju1.data.items)

@@ -14,8 +14,6 @@ export default function Result() {
   const [num, setNum] = useState(0);
   const {testResultValue} = useContext(MyContext);
 
-
-  const router = useRouter();
     const listmove = (e) => {
         router.push("/pages/best-list");
     }

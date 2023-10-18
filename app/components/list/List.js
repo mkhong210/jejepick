@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import style from '../../pages/list/list.module.scss'
 import ListItem from './ListItem'
 import Link from 'next/link'
