@@ -22,10 +22,26 @@ function page() {
 	const [loading, setLoading] = useState(true); //api 불러올떄 관련
 	const [apiData, setApiData] = useState([]); // 마커 관련
 	/* -------------------------------------------- */
-	const [select,setSelct]=useState([]);
+	const [localx,setLocalx] =useState(null);
+	const loginID = window.localStorage.getItem('loginId'); 
+	const [JejuData,setJejuData]=useState([]);
 
-	const [aaaa,setAaaa] = useState(null);
+	const [a,setA]=useState([]);
+	/* -------------------------------------------- */
+	
+
 	const filterData = (data) => {
+		const filteredData1 = data.filter(item => item.contentscd.label === '숙박');
+		const filteredData2 = data.filter(item => item.contentscd.label === '관광지');
+		const filteredData3 = data.filter(item => item.contentscd.label === '음식점');
+		setData(filteredData1);
+		setData2(filteredData2);
+		setData3(filteredData3);
+
+		
+	};
+	
+	/* const filterData = (data) => {
 		const filteredData1 = data.filter(item => item.contentscd.label === '숙박');
 		const filteredData2 = data.filter(item => item.contentscd.label === '관광지');
 		const filteredData3 = data.filter(item => item.contentscd.label === '음식점');
@@ -33,26 +49,29 @@ function page() {
 		setData(filteredData1); // 숙박 관련 데이터 저장
 		setData2(filteredData2); // 관광지 관련 데이터 저장
 		setData3(filteredData3); // 음식점 관련 데이터 저장
-	};
+	}; */
 	async function getData() {
-		const result = await axios.get('/api/visit');
-		const newData = result.data
-		filterData(newData);
-		setApiData(newData);
-		setLoading(false);
+		//const result = await axios.get('/api/visit');
+		//const newData = result.data	
+		//filterData(newData); 		//3가지로 필터링 하기 위한 데이터
+		//setApiData(newData);		//지도 위치 데이터
+		setLoading(false);			//그냥 로딩
 	}
 
+	/* --데이터 필터링 요청-- */
 	useEffect(() => {
 		getData();
 	}, [])
-	
+	/* --지도 요청 및 로딩 요청-- */
 	useEffect(() => {
+		
+		
+
 		if(!loading){
 			const kakaoMapScript = document.createElement('script')
 			kakaoMapScript.async = false
 			kakaoMapScript.src = `http://dapi.kakao.com/v2/maps/sdk.js?appkey=700d399006256f95732f06b19c046ba5&autoload=false`
 			document.head.appendChild(kakaoMapScript)
-		
 			let _map;
 		
 		
@@ -110,7 +129,39 @@ function page() {
 			kakaoMapScript.onload = onLoadKakaoAPI;
 		}
 	},[loading, apiData]);
- 
+	
+/* ------------------------------- */
+
+	/* --비짓제주 api데이터 요청-- */
+	useEffect(()=>{
+		axios.get('/api/visit')
+		.then((response) => {
+			// 비짓제주에서 가져온 데이터를 setJejuData에 저장
+			setJejuData(response.data);
+		})
+	},[])
+	
+	/* --서버 데이터 요청-- */
+	useEffect(()=>{
+		axios.get(`/server_api/item?profile=${loginID}`)
+		.then((response)=>{setLocalx(response.data);})
+		.catch((error)=>{console.log('Error:'.error)});
+	},[loginID])
+
+	useEffect(()=>{
+		if(JejuData && localx){ //전체데이터와 찜한데이터가 있다면
+			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
+			const filtercontentsid=JejuData.filter((item)=>localxContentsIds.includes(item.contentsid))
+			// filterData(filtercontentsid);
+			// return filtercontentsid;
+			// setA(filtercontentsid)
+
+			console.log(filtercontentsid); //
+			filterData(filtercontentsid); 
+			setApiData(filtercontentsid);
+		}
+	},[JejuData,localx])
+/* ------------------------------- */
 
 	if (loading) {
 		return <div><Loading /></div>;
@@ -132,7 +183,7 @@ function page() {
 						<img src="/asset/image/map/ICON_sleep_pin.svg"/>
 						<p>숙소</p>
 					</div>
-
+					
 					<Swiper 
 						slidesPerView={3}
 						spaceBetween={10}
@@ -143,11 +194,21 @@ function page() {
 						modules={[FreeMode, Pagination]}
 						
 						className={style.api_pic_list}>
-
-							
+						
+						
 						{data.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
 								<ListItem data={item} />
+								{/* {
+									localx?.map((item,index)=>(
+										
+										<div key={index}>
+											<p>{item.contentsid}</p>
+										</div>
+										
+									)
+									)
+								} */}
 								{/* <a className={style.api_pic_list}>
 									<div className={style.api_explain}>
 										<p className={style.api_explain_title}>{item.title}</p>
