@@ -17,12 +17,30 @@ export default function BestList () {
   const [aaa, setAaa] = useState({ data1: null, data2: null });
 
   const {testResultValue} = useContext(MyContext);
-  console.log(testResultValue );
+
+  //api 데이터
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
+  
+  async function getData() {
+      const result = await axios.get('/api/visit');
+      const newData = result.data;
+     
+      setData(newData);
+      setLoading(false);
+  }
+  
+  useEffect(() => {
+    getData();
+  }, [])
+
+  console.log(data);
+  
   // 첫 번째 요청 (로그인내용)
   useEffect(() => {
     if (loginID) {
       axios.get(`/server_api/ja?id=${loginID}`)
-        .then((response) => {
+      .then((response) => {
           setAaa((prevData) => ({
             ...prevData,
             data1: response.data,
@@ -31,14 +49,14 @@ export default function BestList () {
         .catch((error) => {
           console.log('Error:', error);
         });
-    }
-  }, [loginID]);
+      }
+    }, [loginID]);
 
   // 두 번째 요청(성향테스트결과)
   useEffect(() => {
     if (loginID) {
       axios.get(`/server_api/jaresult?profile=${loginID}`)
-        .then((response) => {
+      .then((response) => {
           setAaa((prevData) => ({
             ...prevData,
             data2: response.data,
@@ -47,43 +65,46 @@ export default function BestList () {
         .catch((error) => {
           console.log('Error:', error);
         });
+      }
+    }, [loginID]);
+    
+    let myName = null;
+    let tendency = null;
+    let image = null;
+    let tags = null;
+    let bestlist = null;
+    
+    if (aaa.data1 && aaa.data1.length > 0) {
+      myName = aaa.data1[0].name;
+      
     }
-  }, [loginID]);
-
-  let myName = null;
-  let tendency = null;
-  let image = null;
-  let tags = null;
-  let bestlist = null;
-
-  if (aaa.data1 && aaa.data1.length > 0) {
-    myName = aaa.data1[0].name;
-    console.log(myName);
-  }
-
-  if (aaa.data2 && aaa.data2.length > 0) {
-    const parsedProfileData = JSON.parse(aaa.data2[0].contents);
-    bestlist= aaa.data2[0].keywords;
-    tendency = parsedProfileData.tendency;
-    image = parsedProfileData.image;
-
-    console.log(bestlist);
-
-    if (Array.isArray(parsedProfileData.tag)) {
+    
+    if (aaa.data2 && aaa.data2.length > 0) {
+      const parsedProfileData = JSON.parse(aaa.data2[0].contents);
+      bestlist = JSON.parse(aaa.data2[0].keywords);
+      tendency = parsedProfileData.tendency;
+      image = parsedProfileData.image;
+      
+      console.log(bestlist);
+      
+      if (Array.isArray(parsedProfileData.tag)) {
         tags = parsedProfileData.tag.map(tag => tag.trim());
       } else if (typeof parsedProfileData.tag === 'string') {
         tags = parsedProfileData.tag.split(',').map(tag => tag.trim());
       } else {
         console.error('Unexpected format for tags:', parsedProfileData.tag);
       }
-
-    console.log(tags[0]);
-  }
-
+      
+      
+    }
   
-
-  return (
-    <>
+    
+    if (loading) {
+        return <div>로딩 중...</div>;
+    }
+    
+    return (
+      <>
 	  <div className={style.best}>
       <div className={style.contents_bestlist_back}>
         <div className={style.contents_profile + ` inner`}>
@@ -125,21 +146,21 @@ export default function BestList () {
           <div className={style.listcon}>
             <h2><img src="/asset/image/bestlist/marker1.svg"/>숙소 추천</h2>
           </div>
-          <List bestlist={bestlist}/>
+          <List bestlist={[bestlist[1],bestlist[2]]} data={data[0]} />
         </div>
 
         <div className={style.list}>
           <div className={style.listcon}>
             <h2><img src="/asset/image/bestlist/marker2.svg"/>맛집 추천</h2>
           </div>
-          <List bestlist={bestlist}/>
+          <List bestlist={[bestlist[3],bestlist[4]]} data={data[1]} />
         </div>
 
         <div className={style.list}>
           <div className={style.listcon}>
             <h2><img src="/asset/image/bestlist/marker3.svg"/>명소 추천</h2>
           </div>
-          <List bestlist={bestlist}/>
+          <List bestlist={[bestlist[0],bestlist[4]]} data={data[2]}/>
         </div>
 
         </div>
