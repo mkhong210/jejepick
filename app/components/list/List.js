@@ -5,24 +5,15 @@ import Link from 'next/link'
 import Heart from '../Heart';
 
 function List({bestlist,data}) {
-	
+
 let [ddd,setDdd] = useState([]);
 	
 	if (!bestlist || !data) {
 		return <div>Loading...</div>;
 	}
 	
-	console.log(bestlist);
+	// console.log(bestlist);
 	console.log(data);
-
-	//빈배열바꾸기
-	for (let i = 0; i < bestlist.length; i++) {
-		if(bestlist[i] === "X" ){
-			bestlist[i] = "";
-		}
-		
-	}
-
 
 	function filter(e) {
 		

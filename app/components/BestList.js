@@ -85,7 +85,17 @@ export default function BestList () {
       tendency = parsedProfileData.tendency;
       image = parsedProfileData.image;
       
+      
+      //빈배열바꾸기
+      for (let i = 0; i < bestlist.length; i++) {
+        if (bestlist[i].includes("X")) {
+          bestlist[i] = "";
+        }
+      }
+      
       console.log(bestlist);
+
+      
       
       if (Array.isArray(parsedProfileData.tag)) {
         tags = parsedProfileData.tag.map(tag => tag.trim());
@@ -97,6 +107,7 @@ export default function BestList () {
       
       
     }
+    
   
     
     if (loading) {
@@ -146,14 +157,14 @@ export default function BestList () {
           <div className={style.listcon}>
             <h2><img src="/asset/image/bestlist/marker1.svg"/>숙소 추천</h2>
           </div>
-          <List bestlist={[bestlist[1],bestlist[2]]} data={data[0]} />
+          <List bestlist={[bestlist[2],bestlist[3]]} data={data[0]} />
         </div>
 
         <div className={style.list}>
           <div className={style.listcon}>
             <h2><img src="/asset/image/bestlist/marker2.svg"/>맛집 추천</h2>
           </div>
-          <List bestlist={[bestlist[3],bestlist[4]]} data={data[1]} />
+          <List bestlist={[bestlist[0],bestlist[1]]} data={data[1]} />
         </div>
 
         <div className={style.list}>
