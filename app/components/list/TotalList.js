@@ -4,9 +4,10 @@ import style from '../../pages/list/list.module.scss'
 import List from '@/app/components/list/List';
 import ListItem from './ListItem';
 import axios from 'axios';
+import Loading from '../loading/Loading';
 
 function TotalList({ tabTxt }) {
-	console.log(tabTxt);
+	// console.log(tabTxt);
 	// 데이터 불러오기
 	const [data, setData] = useState(); // 숙박/숙소
 	const [data2, setData2] = useState(); // 음식점/맛집
@@ -70,7 +71,8 @@ function TotalList({ tabTxt }) {
 	// },[getData])
 
 	if (loading) {
-		return <div>로딩 중...</div>;
+		return <div><Loading /></div>;
+		// return <div>로딩 중...</div>;
 	}
 	return (
 		<>
@@ -79,19 +81,19 @@ function TotalList({ tabTxt }) {
 					tabTxt === "숙소"
 						? data.map((item, k) => (
 							<li className={style.total_item} key={k}>
-								<p>{item.title}</p>
-								{/* <img src={item.repPhoto.photoid.thumbnailpath}></img> */}
 								<ListItem data={item} />
 							</li>
 						))
 						: (tabTxt === "맛집"
-							? data2.map((v, k) => (
-								<p>{data2[k].title}</p>
-								// console.log(data2)
+							? data2.map((item, k) => (
+								<li className={style.total_item} key={k}>
+									<ListItem data={item} />
+								</li>
 							))
-							: data3.map((v, k) => (
-								<p>{data3[k].title}</p>
-								// console.log(data3)
+							: data3.map((item, k) => (
+								<li className={style.total_item} key={k}>
+									<ListItem data={item} />
+								</li>
 							))
 						)
 				}
