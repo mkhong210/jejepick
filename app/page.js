@@ -9,13 +9,13 @@ export default function Home() {
 	const { status, headStatus, setHeadStatus, btmStatus, setBtmStatus } = useContext(MyContext);
 	const router = useRouter();
 	
-	useEffect(() => {
+/* 	useEffect(() => {
 		setHeadStatus(true);
 		setBtmStatus(true);
 		// common();
 	}, []);
 
-	setTimeout(() => router.push('/pages/main'), 2000);
+	setTimeout(() => router.push('/pages/main'), 2000); */
 
 	return (
 		<>

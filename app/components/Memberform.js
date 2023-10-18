@@ -19,15 +19,15 @@ function Memberform() {
         //존재하는 아이디들을 배열로 추출
         const a = userData.map(item => item.id); 
         if (a.includes(account)) {
-            setAccountMessage('현재 이 아이디는 이미 사용 중입니다.');
+            setAccountMessage('중복된 아이디 입니다.');
             setAccountMessageStyle({ color: 'red' }); 
         } 
         else {
-            setAccountMessage('사용가능한 아이디입니다.');
+            setAccountMessage('사용 가능한 아이디입니다.');
             setAccountMessageStyle({ color: 'green' }); 
         }
         if (account.length===0){
-            setAccountMessage('아이디는 필수 정보입니다')
+            setAccountMessage('아이디를 입력해주세요.')
             setAccountMessageStyle({ color: 'red' }); 
         }
       }
@@ -54,10 +54,10 @@ function Memberform() {
         setPasswordError(passwordConfirm !== passwordCurrent) 
         setPasswordCheck(passwordCurrent)
         if (!passwordRegex.test(passwordCurrent)) { //입력값이 정규식이랑 다르면 
-            setPasswordMessage('숫자+영문자+특수문자 조합으로 8-15자리로 입력해주세요!')
+            setPasswordMessage('숫자+영문자+특수문자 조합으로 8-15자리로 입력해주세요.')
             setIsPassword(false)
           } else {
-            setPasswordMessage('안전한 비밀번호에요')
+            setPasswordMessage('안전한 비밀번호 입니다.')
             setIsPassword(true)
           }
           setPassword(passwordCurrent); //비밀번호에 입력값을 넣음
@@ -67,11 +67,11 @@ function Memberform() {
         const passwordConfirmCurrent = e.target.value;
         setPasswordConfirm(passwordConfirmCurrent);
         if (password === passwordConfirmCurrent) {
-            setPasswordConfirmMessage('비밀번호가 일치해요.');
+            setPasswordConfirmMessage('비밀번호가 일치합니다.');
             setIsPasswordConfirm(true);
             setIsPasswordMatch(true); // 일치할 때 true로 설정
         } else {
-            setPasswordConfirmMessage('비밀번호가 일치하지 않아요. 다시 확인해주세요.');
+            setPasswordConfirmMessage('비밀번호가 일치하지 않습니다.');
             setIsPasswordConfirm(false);
             setIsPasswordMatch(false); // 일치않알 때 false로 설정
         }
@@ -97,7 +97,7 @@ function Memberform() {
     <div className={style.membershipform}>
         <div className={style.header}>
             <Link href="/pages/login">
-                <img src="/asset/common/backbtn.svg" alt="설명"/> 
+                <img src="/asset/common/back_btn.svg" alt="설명"/> 
             </Link>
             <h2>회원가입</h2>
         </div>
@@ -157,8 +157,7 @@ function Memberform() {
             </div>
             <div className={style.PWrecontents}>
                 <div className={style.PWretxt}>
-                    <b>비밀번호 재확인</b>
-                    
+                    <b>비밀번호 재확인</b>      
                     <p style={getPasswordConfirmStyle()}>{passwordConfirmMessage}{isPasswordConfirm}</p>
                 </div>
                 
