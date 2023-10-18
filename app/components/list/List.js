@@ -13,7 +13,7 @@ let [ddd,setDdd] = useState([]);
 	}
 	
 	// console.log(bestlist);
-	console.log(data);
+	// console.log(data);
 
 	function filter(e) {
 		
@@ -33,20 +33,6 @@ let [ddd,setDdd] = useState([]);
 	
 	const randomItems = getRandomItems(ddd, 3);
 	
-
-
-
-	
-	// function filter(e) {
-		
-	// 	let filteredData = data ? data.filter(obj => obj.alltag && obj.alltag.includes('휴식') && obj.alltag.includes('편의점') && obj.contentscd.label.includes('숙박')) : [];
-	// 	// console.log(filteredData);
-	// 	setData(filteredData)
-	// }
-	// useEffect(()=>{
-	// 	filter();
-	// },[])
-
 	return (
 		<>
 			<ul className={style.list}>

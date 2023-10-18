@@ -33,8 +33,6 @@ export default function BestList () {
   useEffect(() => {
     getData();
   }, [])
-
-  console.log(data);
   
   // 첫 번째 요청 (로그인내용)
   useEffect(() => {
@@ -93,10 +91,8 @@ export default function BestList () {
         }
       }
       
-      console.log(bestlist);
+      // console.log(bestlist);
 
-      
-      
       if (Array.isArray(parsedProfileData.tag)) {
         tags = parsedProfileData.tag.map(tag => tag.trim());
       } else if (typeof parsedProfileData.tag === 'string') {
