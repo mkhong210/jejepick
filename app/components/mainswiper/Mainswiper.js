@@ -27,8 +27,8 @@ function Mainswiper() {
 
 		const randomItem = [];
 		const selectItem = [];
-		console.log(filteredData.length)
-		for(let i=0; i<6; i++){
+		// console.log(filteredData.length)
+		for(let i=0; i<8; i++){
 			let randomIndex = Math.floor(Math.random() * filteredData.length);
 			const selectItem = filteredData[randomIndex];
 			randomItem.push(selectItem);
@@ -58,7 +58,7 @@ function Mainswiper() {
 			}
 		}
 	}
-		console.log(dataFilt);
+	// console.log(dataFilt);
 
 
 	if (loading) {

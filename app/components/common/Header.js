@@ -8,7 +8,7 @@ import Link from 'next/link';
 function Header() {
 	const {headStatus, setHeadStatus} = useContext(MyContext);
 	useEffect(() => {
-		setHeadStatus(false);
+		setHeadStatus(true);
 	}, []);
 	// commonstatus();
 

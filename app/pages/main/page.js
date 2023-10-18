@@ -7,11 +7,12 @@ import CourseList from "@/app/components/course/CourseList";
 import Mainswiper from "@/app/components/mainswiper/Mainswiper";
 
 function page() {
-	const { status, headStatus, setHeadStatus, btmStatus, setBtmStatus } = useContext(MyContext);
+	const { status, setHeadStatus, setBtmStatus } = useContext(MyContext);
 
 	useEffect(() => {
 		setHeadStatus(false);
 		setBtmStatus(false);
+		commonstatus();
 		status();
 		height();
 	}, []);
