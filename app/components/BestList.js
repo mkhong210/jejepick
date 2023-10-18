@@ -15,7 +15,6 @@ export default function BestList () {
 
   const loginID = window.localStorage.getItem('loginId');
   const [aaa, setAaa] = useState({ data1: null, data2: null });
-
   const {testResultValue} = useContext(MyContext);
 
   //api 데이터
