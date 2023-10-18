@@ -30,8 +30,8 @@ function ListItem({ data }) {
 	return (
 		<>
 			{/* <p>{data['title']}</p> */}
-			{/* <Link href={`/pages/list/${data.contentsid}`} className='item_wrap'> */}
-			<Link href='#' className='item_wrap'>
+			<Link href={`/pages/list/${data.contentsid}`} className='item_wrap'>
+			{/* <Link href='#' className='item_wrap'> */}
 				<div className='img_wrap'>
 					{/* <img src={data.repPhoto[thumbnailpath]} alt={data.title} /> */}
 					{data ? (
