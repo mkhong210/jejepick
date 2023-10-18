@@ -1,16 +1,10 @@
 "use client"
 import React, { useContext, useEffect } from "react";
 import style from "./main.module.scss";
-import ListItem from "@/app/components/list/ListItem";
 import { MyContext } from "@/app/components/Context";
-
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
-import 'swiper/css';
-// import required modules
-import { Autoplay } from 'swiper/modules';
+import Weather from "@/app/components/weather/Weather";
 import CourseList from "@/app/components/course/CourseList";
+import Mainswiper from "@/app/components/mainswiper/Mainswiper";
 
 function page() {
 	const { status, headStatus, setHeadStatus, btmStatus, setBtmStatus } = useContext(MyContext);
@@ -31,11 +25,11 @@ function page() {
 			const children = item.children;
 
 			if (children.length > 0) {
-				const child = children[0].children[0].children;
-				for (let i = 0; i < child.length; i++) {
-					const childc = child[i].children[0];
-					childc.classList.add('child')
-				}
+				// const child = children[0].children[0].children;
+				// for (let i = 0; i < child.length; i++) {
+				// 	const childc = child[i].children[0];
+				// 	childc.classList.add('child')
+				// }
 			}
 		}
 	}
@@ -56,9 +50,9 @@ function page() {
 								<div className={style.weather_img}>
 									<img src="/asset/image/map/ICON_yellow_pin.svg" />
 								</div>
-								<div className={style.weather_text}>
+								<div className={style.weather_text_wrap}>
 									<p>제주특별자치도</p>
-									<p><span>26</span><span>˚</span>C<span>맑음</span></p>
+									<p className={style.weather_text}><Weather /></p>
 								</div>
 							</div>
 						</div>
@@ -78,9 +72,11 @@ function page() {
 						</div>
 					</div>
 					<div className={style.contents_2_bestplacelist}>
-						<Swiper
+						<Mainswiper />
+						{/* <Swiper
 							spaceBetween={20}
 							slidesPerView={2.3}
+							loop={true}
 							autoplay={{
 								delay: 2500,
 								disableOnInteraction: false,
@@ -95,7 +91,7 @@ function page() {
 							<SwiperSlide><ListItem /></SwiperSlide>
 							<SwiperSlide><ListItem /></SwiperSlide>
 							<SwiperSlide><ListItem /></SwiperSlide>
-						</Swiper>
+						</Swiper> */}
 					</div>
 				</div>
 				<div className={style.contents_3 + ` inner`}>
@@ -104,7 +100,7 @@ function page() {
 						<p>더보기</p>
 					</div>
 					<div className={style.course_wrap}>
-						<CourseList />
+						{/* <CourseList /> */}
 					</div>
 				</div>
 			</div>
