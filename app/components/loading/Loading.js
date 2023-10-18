@@ -10,7 +10,7 @@ function Loading() {
 					</div>
 					<p>맞춤 여행지 추천 서비스</p>
 				</div>
-				<div div className={style.loding}>
+				<div className={style.loding}>
 					<img src="/asset/image/test/loding.gif" />
 				</div>
 			</div>
