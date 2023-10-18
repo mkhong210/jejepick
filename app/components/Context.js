@@ -6,10 +6,12 @@ export const MyContext = createContext(null);
 function Context({ children }) {
 	const [headStatus, setHeadStatus] = useState(false);
 	const [btmStatus, setBtmStatus] = useState(false);
-	const [testResultValue, setTestResultValue] = useState();
+	const [testResultValue, setTestResultValue] = useState([]);
 
-	const loginID = window.localStorage.getItem('loginId');
-	// console.log(loginID);
+	// if(window.localStorage){
+	// 	const loginID = window.localStorage.getItem('loginId');
+	// 	console.log(loginID);
+	// }
 
 	const status = () => {
 		const header = document.getElementsByClassName('header')[0];

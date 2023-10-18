@@ -24,7 +24,7 @@ function Login() {
             if (response.data.success) {
                 // 로그인 성공
                 localStorage.setItem('loginId', id);
-                nv.push('/pages/main'); // 로그인 후 보여줄 페이지
+                nv.push('/pages/personal-start'); // 로그인 후 보여줄 페이지
             } else {
                 // 로그인 실패 처리
                 alert(response.data.message);
