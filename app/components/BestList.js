@@ -23,7 +23,7 @@ export default function BestList () {
   const [loading, setLoading] = useState(true);
   
   async function getData() {
-      const result = await axios.get('/api/visit');
+      const result = await axios.get('/api/visit2');
       const newData = result.data;
      
       setData(newData);
