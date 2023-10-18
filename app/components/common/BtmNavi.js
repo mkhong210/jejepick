@@ -7,7 +7,7 @@ import Link from 'next/link'
 function BtmNavi() {
 	const {btmStatus,setBtmStatus} = useContext(MyContext);
 	useEffect(() => {
-		// setBtmStatus(false);
+		setBtmStatus(true);
 	}, []);
 
 	return (

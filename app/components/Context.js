@@ -4,8 +4,8 @@ const { createContext, useState, useEffect } = require("react");
 export const MyContext = createContext(null);
 
 function Context({ children }) {
-	const [headStatus, setHeadStatus] = useState(false);
-	const [btmStatus, setBtmStatus] = useState(false);
+	const [headStatus, setHeadStatus] = useState(true);
+	const [btmStatus, setBtmStatus] = useState(true);
 	const [testResultValue, setTestResultValue] = useState([]);
 
 	// if(window.localStorage){
@@ -14,9 +14,9 @@ function Context({ children }) {
 	// }
 
 	const status = () => {
-		const header = document.getElementsByClassName('header')[0];
-		const hide = header.classList.contains('hidden');
-		console.log(header, headStatus);
+		// const header = document.getElementsByClassName('header')[0];
+		// const hide = header.classList.contains('on');
+		// console.log(header, headStatus);
 
 		// const statusplz = document.getElementById('main')
 		// const plz = statusplz.classList.contains('no')

@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
 				<div className='jejepick'>
 					<Context>
 						<Header />
-						<main id='main' className='on'>
+						<main id='main' className='no'>
 							{children}
 						</main>
 						<BtmNavi />

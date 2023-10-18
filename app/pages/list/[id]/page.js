@@ -9,15 +9,9 @@ function page() {
 	const [data, setData] = useState();
 	const [dataFilt, setDataFilt] = useState();
 	const [loading, setLoading] = useState(true);
-	// const { paramId } = useParams();
+	const params  = useParams();
 	
-  const router = useRouter()
-  // const { paramId } = router.query
-	// console.log(router.push);
-  // const params = useSearchParams();
-	console.log(router.push);
-  // const { id } = router.query;
-	// console.log(id);
+	console.log(params.id);
 
 	useEffect(() => {
 		// getData();
