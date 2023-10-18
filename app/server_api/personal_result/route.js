@@ -8,11 +8,20 @@ export async function POST(req){
 }
 
 export async function GET(req){
-    const profile = req.nextUrl.searchParams.get('profile');
-    console.log(profile);
 
-    const [data] = await queryExecute('SELECT * from tendency_table WHERE profile=?' , [profile]  )
+    const profile = req.nextUrl.searchParams.get('profile');
+
+    const [data] = await queryExecute('SELECT * from tendency_table WHERE profile=?' , [profile])
     
     return Response.json(data);
+}
+
+export async function DELETE(req){
+    // const {profile} = await req.json();
+    const profile = req.nextUrl.searchParams.get('profile');
+    
+    const data = await queryExecute(`delete from tendency_table where profile=?`,[profile])
+
+    return Response.json([]);
 }
 

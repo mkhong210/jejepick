@@ -1,9 +1,15 @@
-"use client";
-import React, { useEffect } from "react";
-import style from "./personalStart.module.scss";
-import { useRouter } from "next/navigation";
+"use client"
+import React, { useEffect, useState } from 'react'
+import style from './personalStart.module.scss'
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 function page() {
+
+  const [data, setData] = useState([]);
+  const loginID = localStorage.getItem('loginId');
+
+
   useEffect(() => {
     const head = document.getElementsByClassName(`header`);
     head[0].classList.add(style.hidden);
@@ -13,8 +19,16 @@ function page() {
 
   const router = useRouter();
 
-  function next() {
-    router.push("/pages/personal-test");
+  const delData = ()=>{
+    axios.delete(`/server_api/personal_result?profile=${loginID}`)
+    .then(res=>{
+        setData(res.data);
+    })
+  }
+
+  function next(){
+    delData();
+    router.push('/pages/personal-test')
   }
 
   return (

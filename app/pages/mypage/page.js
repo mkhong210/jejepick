@@ -39,8 +39,12 @@ function page() {
         })
     }
 
-	const next = ()=>{
-		router.push("/pages/personal_result");
+	const moveResult = ()=>{
+		router.push("/pages/personal-result");
+	}
+
+	const moveTest = ()=>{
+		router.push("/pages/personal-start");
 	}
 
 console.log(data);
@@ -72,14 +76,14 @@ console.log(data);
 			<div className={style.prolist +` inner`}>
 				<div className={style.mypagecon1}>
 					<div className={style.myevent}>
-						<div className={style.recom}>
+						<div onClick={moveTest} className={style.recom}>
 							<h4>추천 여행지가 아쉬우신가요?</h4>
 							<p>테스트 다시하기</p>
 						</div>
 						<div className={style.jejeimg}></div>
 					</div>
 					<div className={style.myevent}>
-						<div onClick={next} className={style.recom}>
+						<div onClick={moveResult} className={style.recom}>
 							<h4>제제픽이 말아주는 추천 리스트 다시보기</h4>
 							<p>추천 리스트 보기</p>
 						</div>
