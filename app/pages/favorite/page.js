@@ -9,6 +9,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
 import CourseMake from '../course-make/page.js';
+import Heart from "@/app/components/Heart";
 
 
 function page() {
@@ -40,6 +41,8 @@ function page() {
 	}
 
 	//찜클릭 -------------------------------------------------
+	
+	
 	const isSelected = (itemId) => {
 		return select.includes(itemId);
 	  }
@@ -181,15 +184,7 @@ function page() {
 								<a className={style.api_pic_list}>
 									<div className={style.api_explain}>
 										<p className={style.api_explain_title}>{item.title}</p>
-										<img className={style.api_explain_heart} 
-
-										onClick={()=>{
-											if(item.contentsid){
-												heartclick(item.contentsid)
-											}
-										}} 
-										
-										src="../asset/common/icon_favorite_full.svg">{/* 하트, 클릭 이벤트 데이터 저장 */}</img>
+										<Heart itemId={item.contentsid}/>
 									</div>
 									<p className={style.api_pic_grad}>
 									</p>
@@ -224,7 +219,7 @@ function page() {
 								<a className={style.api_pic_list}>
 									<div className={style.api_explain}>
 										<p className={style.api_explain_title}>{item.title}</p>
-										<img className={style.api_explain_heart} src="../asset/common/icon_favorite_full.svg">{/* 하트, 클릭 이벤트 데이터 저장 */}</img>
+										<Heart itemId={item.contentsid}/>
 									</div>
 									<p className={style.api_pic_grad}>
 									</p>
@@ -260,7 +255,7 @@ function page() {
 								<a className={style.api_pic_list}>
 									<div className={style.api_explain}>
 										<p className={style.api_explain_title}>{item.title}</p>
-										<img className={style.api_explain_heart} src="../asset/common/icon_favorite_full.svg">{/* 하트, 클릭 이벤트 데이터 저장 */}</img>
+										<Heart itemId={item.contentsid}/>
 									</div>
 									<p className={style.api_pic_grad}>
 									</p>
