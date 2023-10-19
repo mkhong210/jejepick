@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import React from 'react'
 import style from './favorite.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -9,6 +9,10 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
 import CourseMake from '../course-make/page.js';
+import Heart from "@/app/components/Heart";
+import ListItem from "@/app/components/list/ListItem";
+import Loading from "@/app/components/loading/Loading";
+import { MyContext } from "@/app/components/Context";
 
 
 function page() {
@@ -142,17 +146,18 @@ function page() {
 		if(JejuData && localx){ //전체데이터와 찜한데이터가 있다면
 			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
 			const filtercontentsid=JejuData.filter((item)=>localxContentsIds.includes(item.contentsid))
-			console.log(filtercontentsid);
+			// console.log(worldofwarcraft);
 			// filterData(filtercontentsid);
-			// return filtercontentsid;
 			// setA(filtercontentsid)
-
-			// console.log(filtercontentsid); 
+			
 			filterData(filtercontentsid); 
 			setApiData(filtercontentsid);
+
 		}
 	},[JejuData,localx])
-/* ------------------------------- */
+	/* ------------------------------- */
+
+	
 
 	if (loading) {
 		return <div><Loading /></div>;
