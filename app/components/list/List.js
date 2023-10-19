@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import style from '../../pages/list/list.module.scss'
+import './listitem.scss'
 import ListItem from './ListItem'
 import Link from 'next/link'
 import Heart from '../Heart';
@@ -43,7 +44,7 @@ let [ddd,setDdd] = useState([]);
 								<img src={item.repPhoto.photoid.imgpath}></img>
 							</div>
 							<div className='text_wrap'>
-								<p>{item.title}</p>
+								<p id='overflow'>{item.title}</p>
 								<Heart dataId={data.contentsid}/>
 							</div>
 						</Link>

@@ -56,9 +56,14 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 20px 15px;
+		padding:  15px 15px ;
 
 		p {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			width: 100px;
+			height: 20px;
 			font-size: 1.6rem;
 			color: #fff;
 		}
@@ -75,4 +80,44 @@
 			}
 		}
 	}
+}
+
+
+@media screen and (max-width: 460px) {
+
+	.text_wrap {
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: 1;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 15px 11px;
+
+		p {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			width: 55px;
+			height: 20px;
+			font-size: 1.5rem;
+			color: #fff;
+		}
+
+		.like {
+			width: 20px;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			img {
+				width: 100%;
+			}
+		}
+	}
+
+
 }

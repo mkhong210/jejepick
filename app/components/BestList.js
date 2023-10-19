@@ -132,9 +132,7 @@ export default function BestList () {
             <p>이런 여행지는 어떠신가요?</p>
           </div>
           <p onClick={listmove}>전체보기 
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="8" viewBox="0 0 26 8" fill="none">
-              <path d="M1 6.5H23.7701C24.7016 6.5 25.1271 5.33835 24.416 4.73661L20 1" stroke="#FFA366" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
+              <img src="/asset/common/back_btn.svg"/>
           </p>
         </div>
       </div>

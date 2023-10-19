@@ -83,6 +83,8 @@ export default function Weather() {
 		}
 	}
 
+	console.log(tmpValue);
+
 	return (
 		<>
 			<span>{tmpValue}</span><span className={style.tmp}>°</span><span>C</span>
