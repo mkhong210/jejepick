@@ -5,6 +5,7 @@ import { MyContext } from "@/app/components/Context";
 import Weather from "@/app/components/weather/Weather";
 import CourseList from "@/app/components/course/CourseList";
 import Mainswiper from "@/app/components/mainswiper/Mainswiper";
+import commonstatus from "@/app/components/common/commonstatus";
 
 function page() {
 	const { status, setHeadStatus, setBtmStatus } = useContext(MyContext);
