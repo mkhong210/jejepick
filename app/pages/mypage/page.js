@@ -10,8 +10,12 @@ function page() {
 	const [data, setData] = useState([]);
 	const router = useRouter();
 
-    const id = localStorage.getItem('loginId');
+	//로컬아이디
+	const loginID = window.localStorage.getItem('loginId');
+	//성향,이름 데이터
+	const [aaa, setAaa] = useState({ data1: null, data2: null });
 
+	// console.log(aaa);
 	
 	useEffect(() => {
 		setHeadStatus(true);
@@ -28,16 +32,7 @@ function page() {
 		// 	main.classList.add('no')
 		// }
 
-		getData();
 	}, []);
-
-	const getData = ()=>{
-        // axios.get('/server_api/personal_result', {params:{id:id}})
-        axios.get(`/server_api/personal_result?profile=${id}`)
-        .then(res=>{
-            setData(res.data);
-        })
-    }
 
 	const logOut = ()=>{
 		localStorage.removeItem('loginId');
@@ -52,29 +47,87 @@ function page() {
 		router.push("/pages/personal-start");
 	}
 
-console.log(data);
+	console.log(data);
+  
+	// 첫 번째 요청 (로그인내용)
+	useEffect(() => {
+	  if (loginID) {
+		axios.get(`/server_api/ja?id=${loginID}`)
+		.then((response) => {
+			setAaa((prevData) => ({
+			  ...prevData,
+			  data1: response.data,
+			}));
+		  })
+		  .catch((error) => {
+			console.log('Error:', error);
+		  });
+		}
+	  }, [loginID]);
+  
+	// 두 번째 요청(성향테스트결과)
+	useEffect(() => {
+	  if (loginID) {
+		axios.get(`/server_api/jaresult?profile=${loginID}`)
+		.then((response) => {
+			setAaa((prevData) => ({
+			  ...prevData,
+			  data2: response.data,
+			}));
+		})
+		  .catch((error) => {
+			console.log('Error:', error);
+		  });
+		}
+	  }, [loginID]);
+	  
+	  let myName = null;
+	  let tendency = null;
+	  let image = null;
+	  let tags = null;
+	  
+	  if (aaa.data1 && aaa.data1.length > 0) {
+		myName = aaa.data1[0].name;
+	  }
+	  
+	  if (aaa.data2 && aaa.data2.length > 0) {
+		const parsedProfileData = JSON.parse(aaa.data2[0].contents);
+		tendency = parsedProfileData.tendency;
+		image = parsedProfileData.image;
+		
+  
+		if (Array.isArray(parsedProfileData.tag)) {
+		  tags = parsedProfileData.tag.map(tag => tag.trim());
+		} else if (typeof parsedProfileData.tag === 'string') {
+		  tags = parsedProfileData.tag.split(',').map(tag => tag.trim());
+		} else {
+		  console.error('Unexpected format for tags:', parsedProfileData.tag);
+		}
+		
+		
+	  }
 
 	return (
 		<>
 			<div className={style.profile +` inner`}>
 				<div className={style.proback}></div>
 				<div className={style.mytop}>
-					<div></div>
 					<div>마이페이지</div>
-					<div>프로필편집</div>
 				</div>
 				<div className={style.procon}>
 					<div className={style.procontop}>
-						<div className={style.profileimg}></div>
+						<div className={style.myprofileimg}>
+							<img src={image} />
+						</div>
 						<div>
-							<p>‘계획대로 되고있어’ 천혜향</p>
-							<h3>김혜수님</h3>
+							<p>{tendency}</p>
+							<h3>{myName}</h3>
 						</div>
 					</div>
 					<div className={style.proconbottom}>
-						<span>#계획적</span>
-						<span>#활동적</span>
-						<span>#열정</span>
+						{tags && tags[0] && <span>{tags[0]}</span>}
+						{tags && tags[1] && <span>{tags[1]}</span>}
+						{tags && tags[2] && <span>{tags[2]}</span>}
 					</div>
 				</div>
 			</div>
@@ -89,8 +142,8 @@ console.log(data);
 					</div>
 					<div className={style.myevent}>
 						<div onClick={moveResult} className={style.recom}>
-							<h4>제제픽이 말아주는 추천 리스트 다시보기</h4>
-							<p>추천 리스트 보기</p>
+							<h4>제제픽이 말아주는 나의 여행성향은?</h4>
+							<p>성향 결과 보기</p>
 						</div>
 						<div className={style.jejeimg}></div>
 					</div>
@@ -100,23 +153,7 @@ console.log(data);
 					<p>더보기</p>
 				</div>
 				<div className={style.mypagecon2}>
-					{/* <div className={style.heartlistnone}>찜하러 가기</div> */}
-					<div className={style.heartlist}>
-						<div>
-							<div className={style.heartcon}>
-								<h3>똘똘이 국밥집</h3>
-								<div>하트</div>
-							</div>
-						</div>
-						<div>
-							<h3>똘똘이 국밥집</h3>
-							<div>하트</div>
-						</div>
-						<div>
-							<h3>똘똘이 국밥집</h3>
-							<div>하트</div>
-						</div>
-					</div>
+					<div className={style.heartlistnone}>찜하러 가기</div>
 				</div>
 				<div className={style.mycontopnav}>
 					<h2>나의 여행코스</h2>
