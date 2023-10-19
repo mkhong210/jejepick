@@ -16,26 +16,17 @@ export default function Weather() {
 				.toString()
 				.padStart(2, "0")}`;
 
-			const hours = today.getHours();
+			const hours = today.getHours()-1;
 			console.log(hours);
 			
 			// const minutes = today.getMinutes();
 			// console.log(minutes);
 			
-			let hoursM, ho;
+			let ho;
 
-			if (today.getMinutes() < 40) {
-				hoursM = hours - 1;
-				if (hoursM < 0) {
-					hoursM = 22;
-					// 날짜도 이전 날로 변경해야 할 수 있음
-					// 예시: day = ...
-				}else{
-					hoursM = hours - 1;
-				}
-			} 
+
 			
-			ho = `${hoursM.toString().padStart(2, "0")}30`;
+			ho = `${hours.toString().padStart(2, "0")}30`;
 
 			console.log(ho);
 			const nx = 48;
