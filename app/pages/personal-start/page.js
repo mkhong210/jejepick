@@ -1,13 +1,17 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import style from './personalStart.module.scss'
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { MyContext } from "../../components/Context";
+
 
 function page() {
 
   const [data, setData] = useState([]);
   const loginID =localStorage.getItem('loginId');
+  const {setTestResultValue} = useContext(MyContext);
+  
 
 
   useEffect(() => {
@@ -28,6 +32,7 @@ function page() {
 
   function next(){
     delData();
+    setTestResultValue([]);
     router.push('/pages/personal-test')
   }
 
