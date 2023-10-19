@@ -26,12 +26,19 @@ function CourseList() {
 					data.map((item,k)=>(
 
 					<li key={k}>
-						<CouseItem item={item} />
+						
+							<CouseItem item={item} setData={setData} />
+						
+						
 					</li>
 					))
-				}
-			
+				}			
 			</ul>
+			
+				<button className={style.course_btn}>
+					<p>코스 다시 만들기</p>
+				</button>
+			
 		</>
 	)
 }

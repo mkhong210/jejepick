@@ -17,3 +17,11 @@ export async function GET(req){
     return Response.json(data);
 }
 
+
+export async function DELETE(req){
+    
+    const num=req.nextUrl.searchParams.get('num');
+    const data = await queryExecute('DELETE from coursetable where  num=? ',[num]);
+    const getData = await queryExecute('select * from coursetable');
+    return Response.json(getData);
+}

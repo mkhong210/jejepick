@@ -1,20 +1,38 @@
-import React, { useEffect, useState } from 'react'
-// import style from './course.module.scss'
-import style from '../../pages/course-list/courseList.module.scss'
+"use client";
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import style from '../../pages/course-list/courseList.module.scss';
+import axios from 'axios'; // axios를 import
 
-	
+function CouseItem({ item,setData }) {
+	const router  = useRouter()
+	const handleDelete = async (num) => {
+		try {
+		const del = await axios.delete(`/server_api/course?num=${num}`);
+		setData(del.data);
+		} catch (error) {
+		}
+	};
 
-function CouseItem({item}) {	
-	
 
-	
 	return (
-		<div className={style.item_wrap}>
-			<img src='/asset/image/map/ICON_yellow_pin.svg' alt='yellow pin' />
-			<p className={style.txt}>{item.coursename}</p>
-			<button className={style.del_btn}>삭제</button>
-		</div>
-	)
-}
+		<>
 
-export default CouseItem
+			<button className={style.item_wrap} onClick={()=>{
+				router.push(`../../pages/course-list/detail?name=${item.coursename}&id=${item.item_id}`)
+			}}>
+				<img src='/asset/image/map/ICON_yellow_pin.svg' alt='yellow pin' />
+				<p className={style.txt}>{item.coursename}</p>
+			</button>
+			
+
+			<button className={style.del_btn} onClick={()=>{handleDelete(item.num)}}>
+				삭제
+			</button>
+		
+		</>
+		
+	);
+	}
+
+export default CouseItem;

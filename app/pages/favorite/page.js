@@ -9,9 +9,6 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
 import CourseMake from '../course-make/page.js';
-import Heart from "@/app/components/Heart";
-import ListItem from "@/app/components/list/ListItem";
-import Loading from "@/app/components/loading/Loading";
 
 
 function page() {
@@ -47,11 +44,11 @@ function page() {
 		setData3(filteredData3); // 음식점 관련 데이터 저장
 	}; */
 	async function getData() {
-		//const result = await axios.get('/api/visit');
-		//const newData = result.data	
-		//filterData(newData); 		//3가지로 필터링 하기 위한 데이터
-		//setApiData(newData);		//지도 위치 데이터
-		setLoading(false);			//그냥 로딩
+		const result = await axios.get('/api/visit');
+		const newData = result.data
+		filterData(newData);
+		setApiData(newData);
+		setLoading(false);
 	}
 
 	/* --데이터 필터링 요청-- */
