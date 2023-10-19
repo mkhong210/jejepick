@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import style from '../../pages/main/main.module.scss'
 
 // Import Swiper React components
@@ -12,8 +12,10 @@ import ListItem from '../list/ListItem';
 import axios from 'axios';
 import Loading from '../loading/Loading';
 import Heart from '../Heart';
+import { MyContext } from '../Context';
 
 function Mainswiper() {
+	const {isStatus} = useContext(MyContext);
 	const [data, setData] = useState();
 	const [dataFilt, setDataFilt] = useState();
 	const [loading, setLoading] = useState(true);

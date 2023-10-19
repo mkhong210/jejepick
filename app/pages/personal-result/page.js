@@ -80,7 +80,7 @@ function page() {
 	},[state])
 
 	//2초 딜레이 후 페이지 이동
-	setTimeout(() => router.push('./personal-result/result01'), 2500);
+	// setTimeout(() => router.push('./personal-result/result01'), 2500);
 
 	console.log(num);
 	
