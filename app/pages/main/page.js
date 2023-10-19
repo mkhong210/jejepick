@@ -20,7 +20,7 @@ function page() {
 
 	const height = () => {
 		const totalItems = document.getElementsByClassName(`${style.contents_2_bestplacelist}`);
-		console.log(totalItems);
+		
 
 		for (let i = 0; i < totalItems.length; i++) {
 			const item = totalItems[i];

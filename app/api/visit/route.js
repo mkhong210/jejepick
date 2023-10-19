@@ -41,6 +41,8 @@ export async function GET() {
     for (let i = 1; i < 3; i++) {
         const jeju3 = await jj3.get('/', { params: { page: i } });
         jejuData.push(...jeju3.data.items)
+
+        
     }
 
     // let jejuDataFilter = ['숙박','관광지','음식점']

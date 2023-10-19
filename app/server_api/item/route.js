@@ -1,7 +1,7 @@
 import { queryExecute } from "../db";
 export async function POST(req){
     const {contentsid,profile} = await req.json();
-    console.log(contentsid,profile)
+
     const data = await queryExecute(`insert into itemtable (contentsid,profile) values (?,?)`,[contentsid,profile]);
     //데이터를 넣는법
     return Response.json([]);
@@ -10,10 +10,14 @@ export async function POST(req){
 
 export async function GET(req){
     const profile=req.nextUrl.searchParams.get('profile');
-    console.log(profile);
+    const contentsId=req.nextUrl.searchParams.get('contentsId');
     
-    const data = await queryExecute('SELECT * from itemtable where profile=?',[profile]);
-    //데이터를 가져옴 , 스키마이름 ,테이블이름(jejumembership) 꼭확인!!! 제발!!!!
+    let data;
+    if(contentsId){
+        data = await queryExecute('SELECT * from itemtable where profile=? && contentsId=?',[profile,contentsId]);
+    }else{
+        data = await queryExecute('SELECT * from itemtable where profile=?',[profile]);
+    }
     return Response.json(data);
 }
 

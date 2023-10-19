@@ -11,6 +11,7 @@ import { Autoplay } from 'swiper/modules';
 import ListItem from '../list/ListItem';
 import axios from 'axios';
 import Loading from '../loading/Loading';
+import Heart from '../Heart';
 
 function Mainswiper() {
 	const [data, setData] = useState();
@@ -21,7 +22,7 @@ function Mainswiper() {
 		const result = await axios.get('/api/visit');
 		const newData = result.data
 		const filteredData = newData.filter(item => item.region2cd.label === '애월');
-		setData(filteredData);
+		
 		// setData(newData);
 		setLoading(false);
 
@@ -43,7 +44,7 @@ function Mainswiper() {
 
 	const height = () => {
 		const totalItems = document.getElementsByClassName(`${style.contents_2_bestplacelist}`);
-		console.log(totalItems);
+		
 
 		for (let i = 0; i < totalItems.length; i++) {
 			const item = totalItems[i];
@@ -60,6 +61,8 @@ function Mainswiper() {
 	}
 	// console.log(dataFilt);
 
+	
+
 
 	if (loading) {
 		return <div><Loading /></div>;
@@ -68,14 +71,15 @@ function Mainswiper() {
 	return (
 		<>
 			<div className={style.contents_2_bestplacelist}>
+			
 				<Swiper
 					spaceBetween={20}
 					slidesPerView={2.3}
 					loop={true}
-					autoplay={{
-						delay: 2500,
-						disableOnInteraction: false,
-					}}
+					// autoplay={{
+					// 	delay: 2500,
+					// 	disableOnInteraction: false,
+					// }}
 					modules={[Autoplay]}
 					className="mySwiper"
 				>

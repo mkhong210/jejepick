@@ -13,6 +13,7 @@ function ListItem({ data }) {
 		setNewData(data);
 	}, [data])
 
+
 	return (
 		<>
 			{/* <p>{data['title']}</p> */}

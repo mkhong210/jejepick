@@ -1,4 +1,7 @@
 "use client"
+
+import axios from "axios";
+
 const { createContext, useState, useEffect } = require("react");
 
 export const MyContext = createContext(null);
@@ -7,6 +10,11 @@ function Context({ children }) {
 	const [headStatus, setHeadStatus] = useState(true);
 	const [btmStatus, setBtmStatus] = useState(true);
 	const [testResultValue, setTestResultValue] = useState([]);
+
+	const [jim, setJim] = useState([]);
+	const [isStatus,setIsStatus] =useState(false);
+
+
 
 	// if(window.localStorage){
 	// 	const loginID = window.localStorage.getItem('loginId');
@@ -31,14 +39,23 @@ function Context({ children }) {
 		// 	main.classList.add('on')
 		// }
 	}
+
+	const favorite = async ()=>{
+		const loginID = window.localStorage.getItem('loginId'); 
+		const  response =await axios.get(`/server_api/item?profile=${loginID}`);
+		setJim(response.data);
+	}
 	useEffect(() => {
+		favorite();
 		// setHeadStatus(false)
-	}, [])
+	}, [isStatus])
 
 	const value ={ 
     status, headStatus,setHeadStatus,
     btmStatus, setBtmStatus,
-    testResultValue,setTestResultValue
+    testResultValue,setTestResultValue,
+	jim,setJim,
+	isStatus,setIsStatus
 	}
 
 
