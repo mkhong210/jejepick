@@ -44,7 +44,7 @@ let [ddd,setDdd] = useState([]);
 							</div>
 							<div className='text_wrap'>
 								<p>{item.title}</p>
-								<Heart/>
+								<Heart dataId={data.contentsid}/>
 							</div>
 						</Link>
 					</li>

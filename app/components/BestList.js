@@ -7,10 +7,9 @@ import { useRouter } from "next/navigation";
 import { MyContext } from "./Context";
 
 export default function BestList () {
-
   const router = useRouter();
     const listmove = (e) => {
-        router.push("/pages/list");
+      router.push("/pages/list");
     }
 
   const loginID = window.localStorage.getItem('loginId');
@@ -24,7 +23,6 @@ export default function BestList () {
   async function getData() {
       const result = await axios.get('/api/visit2');
       const newData = result.data;
-     
       setData(newData);
       setLoading(false);
   }
@@ -73,7 +71,6 @@ export default function BestList () {
     
     if (aaa.data1 && aaa.data1.length > 0) {
       myName = aaa.data1[0].name;
-      
     }
     
     if (aaa.data2 && aaa.data2.length > 0) {
@@ -82,14 +79,12 @@ export default function BestList () {
       tendency = parsedProfileData.tendency;
       image = parsedProfileData.image;
       
-      
       //빈배열바꾸기
       for (let i = 0; i < bestlist.length; i++) {
         if (bestlist[i].includes("X")) {
           bestlist[i] = "";
         }
       }
-      
       // console.log(bestlist);
 
       if (Array.isArray(parsedProfileData.tag)) {
@@ -102,9 +97,7 @@ export default function BestList () {
       
       
     }
-    
-  
-    
+
     if (loading) {
         return <div>로딩 중...</div>;
     }

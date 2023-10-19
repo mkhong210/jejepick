@@ -5,7 +5,7 @@ import { MyContext } from "@/app/components/Context";
 import Weather from "@/app/components/weather/Weather";
 import CourseList from "@/app/components/course/CourseList";
 import Mainswiper from "@/app/components/mainswiper/Mainswiper";
-import commonstatus from "@/app/components/common/commonstatus";
+import commonfalse from "@/app/components/common/commonfalse";
 
 function page() {
 	const { status, setHeadStatus, setBtmStatus } = useContext(MyContext);
@@ -13,7 +13,7 @@ function page() {
 	useEffect(() => {
 		setHeadStatus(false);
 		setBtmStatus(false);
-		commonstatus();
+		commonfalse();
 		status();
 		height();
 	}, []);
