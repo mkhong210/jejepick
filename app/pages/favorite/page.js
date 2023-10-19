@@ -64,9 +64,6 @@ function page() {
 	}, [])
 	/* --지도 요청 및 로딩 요청-- */
 	useEffect(() => {
-		
-		
-
 		if(!loading){
 			const kakaoMapScript = document.createElement('script')
 			kakaoMapScript.async = false
