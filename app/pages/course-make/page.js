@@ -23,7 +23,8 @@ function page() {
 	const [selectedItemContent, setSelectedItemContent] = useState(''); //클릭한 아이템 내용들
 	const router = useRouter();
 	const [modalTitle, setModalTitle] = useState('');
-	
+
+
 	function openModal() {
 		setIsModalOpen(true);
 	  }
@@ -34,19 +35,27 @@ function page() {
 
 	 
 
-	 const insertFn = (e)=>{
-		
-        e.preventDefault();
+	const insertFn = (e) => {
+		e.preventDefault();
 		const loginID = window.localStorage.getItem('loginId');
 		const contentIds = selectedItems.map((item) => item.contentsid);
-        const formdata =new FormData(e.target);
-        const values=Object.fromEntries(formdata);
-		axios.post(`/server_api/course`,{...values,profile:loginID,item_id:contentIds})
-		.then((response)=>{(response.data);})
-		console.log('sdfsdf')
-		router.push('/pages/course-list')
-    }
-	 
+		const formdata = new FormData(e.target);
+		const values = Object.fromEntries(formdata);
+	
+		// 코스 이름이 비어 있는지 확인
+		if (!values.coursename) {
+			alert('코스 이름을 입력하세요.');
+		} else {
+			axios.post(`/server_api/course`, { ...values, profile: loginID, item_id: contentIds })
+				.then((response) => {
+					console.log(response.data);
+					router.push('/pages/course-list');
+				})
+				.catch((error) => {
+					console.error('에러 발생:', error);
+				});
+		}
+	}
 
 
 
