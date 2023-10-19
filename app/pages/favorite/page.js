@@ -25,8 +25,6 @@ function page() {
 	const [localx,setLocalx] =useState(null);
 	const loginID = window.localStorage.getItem('loginId'); 
 	const [JejuData,setJejuData]=useState([]);
-
-	const [a,setA]=useState([]);
 	/* -------------------------------------------- */
 	
 
@@ -37,8 +35,6 @@ function page() {
 		setData(filteredData1);
 		setData2(filteredData2);
 		setData3(filteredData3);
-
-		
 	};
 	
 	/* const filterData = (data) => {
@@ -149,11 +145,12 @@ function page() {
 		if(JejuData && localx){ //전체데이터와 찜한데이터가 있다면
 			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
 			const filtercontentsid=JejuData.filter((item)=>localxContentsIds.includes(item.contentsid))
+			console.log(filtercontentsid);
 			// filterData(filtercontentsid);
 			// return filtercontentsid;
 			// setA(filtercontentsid)
 
-			console.log(filtercontentsid); //
+			// console.log(filtercontentsid); 
 			filterData(filtercontentsid); 
 			setApiData(filtercontentsid);
 		}
