@@ -8,12 +8,18 @@ export async function POST(req){
 }
 
 export async function GET(req){
-
     const profile = req.nextUrl.searchParams.get('profile');
-
+    
     const [data] = await queryExecute('SELECT * from tendency_table WHERE profile=?' , [profile])
     
-    return Response.json(data);
+    console.log(data);
+    if (!data){
+        return Response.json(100);
+    }else{
+        return Response.json(data);
+    }
+    
+    
 }
 
 export async function DELETE(req){

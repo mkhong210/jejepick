@@ -9,7 +9,11 @@
     },
     {
         "questions" : "내가 머물 숙소 근처는...",
+<<<<<<< Updated upstream
         "options" : [["/asset/image/test/IMG_question3petno.jpg","편의시설이 많을수록 좋아!","편의점"],["/asset/image/test/IMG_question3petyes.jpg","한적했으면 좋겠어!","편의점X"]]
+=======
+        "options" : [["/asset/image/test/question3_2.jpg","편의시설이 많을수록 좋아!","편의점"],["/asset/image/test/question3_1.jpg","조용한게 좋아","편의점X"]]
+>>>>>>> Stashed changes
     },
     {
         "questions" : "여행중 음식점을 가게 된다면?",
