@@ -1,16 +1,75 @@
 "use client";
 
 import axios from "axios";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import style from './courseList_id.module.scss'
+import { useSearchParams } from "next/navigation";
 
 export default function Home() {
 
-  
-  const map = useRef();
-  const REST_API_KEY = '6ded06fd9b620e77bf2e95a12ec6f927';
-  
-  const url = `/api/map?origin=126.49956,33.236835&destination=126.8499471,33.4242279&waypoints=126.5867411,33.5255346&priority=RECOMMEND&car_fuel=GASOLINE&car_hipass=false&alternatives=false&road_details=false`;
+//======================전 페이지에서 코스 가져오기==================
+    // course-list에서 데이터 가져오기
+    const param = useSearchParams()
+    const idString = param.get('id')
+    const idArray = JSON.parse(idString);
+    
+    const [apiData, setApiData ] = useState();
+
+
+     // 제주 리스트 api에서 데이터 가져오기
+    useEffect(()=>{
+        axios.get('/api/visit')
+        .then((response) => {
+            setApiData(response.data);
+        })
+    },[])
+    
+    /* let finaldata = null; */
+
+    useEffect(()=> {
+        if(apiData && idString){
+            const finaldata = apiData.filter((item) => idArray.includes(item.contentsid));
+        }
+        /* finaldata(); */
+    },[apiData,idString])
+
+
+//===================전 페이지에서 코스 가져오기===========
+
+
+
+
+
+
+//======================경유지 관련 코드 =========================    
+    
+    const loadMap = {
+        "origin": {
+            "x": "127.11024293202674",
+            "y": " 37.394348634049784"
+        },
+        "destination": {
+            "x": "127.10860518470294",
+            "y": "37.401999820065534"
+        },
+        "waypoints": [
+            {
+                "name": "name0",
+                "x": 127.11341936045922,
+                "y": 37.39639094915999
+            }
+        ],
+        "priority": "RECOMMEND",
+        "car_fuel": "GASOLINE",
+        "car_hipass": false,
+        "alternatives": false,
+        "road_details": false
+    }
+    
+    const map = useRef();
+    const REST_API_KEY = '6ded06fd9b620e77bf2e95a12ec6f927';
+    
+    const url = `/api/map?origin=${loadMap.origin.toString()}&destination=${loadMap.destination}&waypoints=${loadMap.waypoints.join('#')}&priority=RECOMMEND&car_fuel=GASOLINE&car_hipass=false&alternatives=false&road_details=false`;
 
   //지도 API
   useEffect(() => {
@@ -34,9 +93,12 @@ export default function Home() {
     }
     
     kakaoMapScript.addEventListener('load', onLoadKakaoAPI)
+ 
+    
     
 
-    axios.get(url)
+
+    axios.post('/api/map',{loadMap})
     .then(arg => {
         setTimeout(()=>{
             let {sections} = arg?.data?.routes[0];
@@ -45,10 +107,6 @@ export default function Home() {
                 /* 최단거리 찾아주는 함수 */
                 let {guides : arrays, roads} = sections[0];  
                 let detailRoads = [];
-
-                /* let waypointMarkers = []; */
-
-
                 for(let i=0;i < roads.length;i++){
                     let arg = roads[i];
                     let mini = arg.vertexes;
@@ -68,33 +126,25 @@ export default function Home() {
                     return arg;
                 });
 
-
-                // 웨이포인트를 처리하고 표시합니다.
-           /*  if (sections[0]?.waypoint) {
-                sections[0].waypoint.forEach(waypoint => {
-                    const { x, y, title } = waypoint;
-                    if (x && y) {
-                        const waypointPosition = new window.kakao.maps.LatLng(y, x);
-                        waypointMarkers.push({
-                            position: waypointPosition,
-                            title: title,
-                            image: new window.kakao.maps.MarkerImage('/asset/image/map/ICON_way_pin.svg', imageSize),
-                        });
-                    }
-                });
-
-                // 지도에 웨이포인트 마커를 추가합니다.
-                waypointMarkers.forEach(waypointMarker => {
-                    new window.kakao.maps.Marker({
-                        map: _map,
-                        position: waypointMarker.position,
-                        title: waypointMarker.title,
-                        image: waypointMarker.image,
-                    });
-                });
-            }
-                 */
                 
+
+                //경유지 가지고 오기
+                /* const waypointCoordinates = waypoints.split(',').map(coord => coord.trim());
+                const waypointLatLng = waypointCoordinates.map(coord => {
+                    const [lng, lat] = coord.split(',').map(c => c.trim());
+                    return new kakao.maps.LatLng(lat, lng);
+                  });               
+                 */
+
+                // 경유지 마커 추가
+                /* waypointLatLng.forEach((waypoint, index) => {
+                    const waypointMarker = new kakao.maps.Marker({
+                    position: waypoint,
+                    map: _map,
+                    title: `경유지 ${index + 1}`
+                    });
+                }); */
+
                 
                     /* 출발지 마커 */
                 let { title, position} = arrays[0];
@@ -122,7 +172,22 @@ export default function Home() {
                     position : position2,
                     title: title2? title2 : '', // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                     image : image2 // 마커 이미지 
-                });                   
+                });          
+                
+                
+                /* 도착지 마커 */
+                let {title : title3, position : position3} = arrays[arrays.length-1];
+                // 마커 이미지의 이미지 크기 입니다
+                // 마커 이미지를 생성합니다    
+                let image3 = new kakao.maps.MarkerImage('/asset/image/map/ICON_final_pin.svg', imageSize);
+                // 마커를 생성합니다
+                let marker3 = new kakao.maps.Marker({
+                    map: _map, // 마커를 표시할 지도
+                    position : position2,
+                    title: title2? title2 : '', // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                    image : image2 // 마커 이미지 
+                });          
+                
                     
                 // 지도에 표시할 선을 생성합니다
                 let polyline = new kakao.maps.Polyline({
@@ -149,7 +214,10 @@ export default function Home() {
     }).catch(err => {
         console.log(err)
     });
+
 },[])
+
+//======================경유지 관련 코드 =========================
 
   return (
     <div className={style.main}>

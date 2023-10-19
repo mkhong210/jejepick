@@ -17,6 +17,9 @@ function page() {
 	return (
 		<>
 			<Detail />
+
+
+			
 		</>
 	);
 }
