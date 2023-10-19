@@ -32,7 +32,7 @@ function Heart({dataId}) {
 	},[loginID])
 
 	const heartclick = (e) => {
-		// e.preventDefault();
+		e.preventDefault();
 		const loginID = window.localStorage.getItem('loginId');
 		if (loginID) {
 			if (!isSelected) {
