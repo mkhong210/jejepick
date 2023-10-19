@@ -185,7 +185,15 @@
 	}
 
 	.mypagecon2 {
-		height: 170px;
+		// height: 170px;
+		.cont2_wrap {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 20px;
+		}
+		.con2_item {
+			width: calc((100% - 40px) / 3);
+		}
 
 		.heartlistnone {
 			cursor: pointer;
@@ -218,6 +226,7 @@
 
 	.mypagecon3 {
 		.corselistnone {
+			cursor: pointer;
 			margin: 28px 0 40px 0;
 			display: flex;
 			align-items: center;
