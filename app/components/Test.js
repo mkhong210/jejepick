@@ -40,6 +40,8 @@ export default function Test() {
         keyword.currentTarget.classList.toggle(`${style.active}`);
     }
     
+    console.log(option);
+    console.log(testResultValue);
     
     return (
         <>
@@ -59,9 +61,9 @@ export default function Test() {
                         </div>
                         <div className={style.ing}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="602" height="14" viewBox="0 0 602 14" fill="none">
-                                <path d="M7 7L595 7.00005" stroke="#FFF8D9" stroke-width="13" stroke-linecap="round"/>
+                                <path d="M7 7L595 7.00005" stroke="#FFF8D9" strokeWidth="13" strokeLinecap="round"/>
                                 <svg xmlns="http://www.w3.org/2000/svg" width={124 + (120*num)} height="14" viewBox={`0 0 ${134 + (120*num)} 14`} fill="none">
-                                    <path d={`M7 7L${125 + (120*num)} 7.00001`} stroke="#FFE668" stroke-width="13" stroke-linecap="round"/>
+                                    <path d={`M7 7L${125 + (120*num)} 7.00001`} stroke="#FFE668" strokeWidth="13" strokeLinecap="round"/>
                                 </svg>
                             </svg>
                         </div>

@@ -39,6 +39,11 @@ function page() {
         })
     }
 
+	const logOut = ()=>{
+		localStorage.removeItem('loginId');
+		router.push("/pages/login");
+	}
+
 	const moveResult = ()=>{
 		router.push("/pages/personal-result");
 	}
@@ -127,7 +132,7 @@ console.log(data);
 					</div> */}
 				</div>
 			</div>
-			<div className={style.logout}>로그아웃</div>
+			<div onClick={logOut} className={style.logout}>로그아웃</div>
 		</>
 	)
 }

@@ -6,6 +6,7 @@ import style from '../pages/personal-result/result.module.scss'
 import { MyContext } from "./Context";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Loading from "./loading/Loading";
 
 export default function Result() {
   
@@ -31,7 +32,7 @@ export default function Result() {
   }
   
   if (loading) {
-    return <div>로딩 중...</div>;
+    return <div><Loading /></div>;
   }
 
   return (

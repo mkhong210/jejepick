@@ -15,13 +15,13 @@ function page() {
     const id = localStorage.getItem('loginId');
 	const [jsondata, setJsondata] = useState(resultdb);
 
-	const keywords1 = ["체험", "휴식"]
-	const keywords2 = ["체험", "휴식X"]
-	const keywords3 = ["힐링", "휴식"]
-	const keywords4 = ["힐링", "휴식X"]
-	const keywords5 = ["맑음", "휴식"]
-	const keywords6 = ["맑음", "휴식X"]
-	const keywords7 = ["문화유적지", "휴식"]
+	const keywords1 = ["체험", "휴식"];
+	const keywords2 = ["체험", "휴식X"];
+	const keywords3 = ["힐링", "휴식"];
+	const keywords4 = ["힐링", "휴식X"];
+	const keywords5 = ["맑음", "휴식"];
+	const keywords6 = ["맑음", "휴식X"];
+	const keywords7 = ["문화유적지", "휴식"];
 	const keywords8 = ["문화유적지", "휴식X"]
 
 	//키워드 5개중에 위의 각각 키워드 2개가 포함되면 true(나머지7개는 false)
@@ -81,6 +81,8 @@ function page() {
 
 	//2초 딜레이 후 페이지 이동
 	setTimeout(() => router.push('./personal-result/result01'), 2500);
+
+	console.log(num);
 	
 	return (
 		<>
