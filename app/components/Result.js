@@ -12,17 +12,44 @@ export default function Result() {
   
   const router = useRouter();
   const [data, setData] = useState([]);
-  const loginID = localStorage.getItem('loginId');
   const [loading, setLoading] = useState(true);
 
-  async function getData() {
-    if (loginID) {
-      const result = await axios.get(`/server_api/personal_result?profile=${loginID}`)
-      const newData = JSON.parse(result.data.contents);
-      setData(newData);
-      setLoading(false);
+  //로컬아이디
+	const loginID = window.localStorage.getItem('loginId');
+	//성향,이름 데이터
+	const [aaa, setAaa] = useState({ data1: null, data2: null });
+  
+  let myName = null;
+
+  // 첫 번째 요청 (로그인내용)
+	useEffect(() => {
+	  if (loginID) {
+		axios.get(`/server_api/ja?id=${loginID}`)
+		.then((response) => {
+			setAaa((prevData) => ({
+			  ...prevData,
+			  data1: response.data,
+			}));
+		  })
+		  .catch((error) => {
+			console.log('Error:', error);
+		  });
+		}
+	  }, [loginID]);
+	  
+	  if (aaa.data1 && aaa.data1.length > 0) {
+		    myName = aaa.data1[0].name;
+	  }
+
+    async function getData() {
+      if (loginID) {
+        const result = await axios.get(`/server_api/personal_result?profile=${loginID}`)
+        const newData = JSON.parse(result.data.contents);
+        setData(newData);
+        setLoading(false);
+      }
     }
-  }
+
   useEffect(() => {
     getData();
   }, [])
@@ -42,7 +69,7 @@ export default function Result() {
 				<div className={style.test + ` inner`}></div>
 				<div className={style.result}>
 					<div className={style.resulttop}>
-						<div>퉁퉁이님의 여행타입은?</div>
+						<div>{myName}님의 여행타입은?</div>
 						<div className={style.resultprofile}>
 							<div className={style.propen}>{data.tendency}</div>
 							<div className={style.resultimg}>

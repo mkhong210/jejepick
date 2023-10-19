@@ -94,7 +94,7 @@ function page() {
 					<div className={style.lodingjeje}></div>
 					<div className={style.lodingimg}></div>
 					<div className={style.lodingcon}>
-					퉁퉁이님의 성향에 맞는<br/>제주도의 제일 좋은 여행지를<br/>찾고 있어요!
+						제주도에서 제일 좋은 여행지를<br/>맞춤 여행지를 찾고 있어요!
 					</div>
 				</div>
 			</div>

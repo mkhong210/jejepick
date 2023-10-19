@@ -7,7 +7,7 @@ import axios from 'axios';
 function page() {
 
   const [data, setData] = useState([]);
-  const loginID = localStorage.getItem('loginId');
+  const loginID =localStorage.getItem('loginId');
 
 
   useEffect(() => {
@@ -52,7 +52,9 @@ function page() {
               </div>
             </div>
             <div className={style.contentbox_img}>
-              <img src="/asset/image/IMG_jejudo_bg.png" />
+              <div>
+                <img src="/asset/image/IMG_jejudo_bg.png" />
+              </div>
             </div>
           </div>
           <div className={style.startbtn} onClick={next}>

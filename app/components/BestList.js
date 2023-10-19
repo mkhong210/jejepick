@@ -110,7 +110,7 @@ export default function BestList () {
         <div className={style.contents_profile + ` inner`}>
           <div className={style.contents_profile_img}>
             <div>
-              <img src={image} />
+              <img src={image}/>
             </div>
           </div>
           <ul className={style.contents_profile_txt}>

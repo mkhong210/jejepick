@@ -1,11 +1,12 @@
 "use client"
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import style from "./main.module.scss";
 import { MyContext } from "@/app/components/Context";
 import Weather from "@/app/components/weather/Weather";
 import CourseList from "@/app/components/course/CourseList";
 import Mainswiper from "@/app/components/mainswiper/Mainswiper";
 import commonfalse from "@/app/components/common/commonfalse";
+import axios from "axios";
 
 function page() {
 	const { status, setHeadStatus, setBtmStatus } = useContext(MyContext);
@@ -36,6 +37,55 @@ function page() {
 		}
 	}
 
+	//로컬아이디
+	const loginID = window.localStorage.getItem('loginId');
+	//성향,이름 데이터
+	const [aaa, setAaa] = useState({ data1: null, data2: null });
+
+	// 첫 번째 요청 (로그인내용)
+	useEffect(() => {
+		if (loginID) {
+		  axios.get(`/server_api/ja?id=${loginID}`)
+		  .then((response) => {
+			  setAaa((prevData) => ({
+				...prevData,
+				data1: response.data,
+			  }));
+			})
+			.catch((error) => {
+			  console.log('Error:', error);
+			});
+		  }
+		}, [loginID]);
+	
+	  // 두 번째 요청(성향테스트결과)
+	  useEffect(() => {
+		if (loginID) {
+		  axios.get(`/server_api/jaresult?profile=${loginID}`)
+		  .then((response) => {
+			  setAaa((prevData) => ({
+				...prevData,
+				data2: response.data,
+			  }));
+		  })
+			.catch((error) => {
+			  console.log('Error:', error);
+			});
+		  }
+		}, [loginID]);
+		
+		let myName = null;
+		let tendency = null;
+		
+		if (aaa.data1 && aaa.data1.length > 0) {
+		  myName = aaa.data1[0].name;
+		}
+		
+		if (aaa.data2 && aaa.data2.length > 0) {
+		  const parsedProfileData = JSON.parse(aaa.data2[0].contents);
+		  tendency = parsedProfileData.tendency;
+		}
+
 	return (
 		<>
 			<div className={style.back}>
@@ -43,9 +93,9 @@ function page() {
 					<div>
 						<div className={style.contents_1_text_1}>
 							<div className={style.contents_1_text_div}>
-								'계획대로 되고있어' 천혜향
+								{tendency}
 							</div>
-							<p>김혜수님을 위한 제주도 여행정보</p>
+							<p>{myName}님을 위한 제주도 여행정보</p>
 						</div>
 						<div className={style.weather}>
 							<div>
@@ -54,7 +104,7 @@ function page() {
 								</div>
 								<div className={style.weather_text_wrap}>
 									<p>제주특별자치도</p>
-									<p className={style.weather_text}><Weather /></p>
+									<p className={style.weather_text}><Weather/></p>
 								</div>
 							</div>
 						</div>
