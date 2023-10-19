@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
 				<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" rel="stylesheet" type="text/css" />
 			</head>
 			<body>
+				
 				<div className='jejepick'>
 					<Context>
 						<Header />
