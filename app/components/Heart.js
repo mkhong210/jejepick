@@ -70,11 +70,7 @@ function Heart({dataId}) {
 		<>
 			{/* <p>{isSelected?'true':'false'}</p> */}
 			<button className='like' onClick={heartclick}>
-				
-				<img 
-					src={imageSrc}
-				>
-				</img>
+				<img src={imageSrc} className='like_img'/>
 			</button>
 		</>
 	)

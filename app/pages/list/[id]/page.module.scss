@@ -1,104 +1,115 @@
 @font-face {
-  font-family: "BMJUA";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
+	font-family: "BMJUA";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
 }
 
 .contents_1 {
-  width: 100%;
-  .contents_1_text {
-    li:nth-of-type(1) {
-      font-family: "BMJUA";
-      font-size: 2.4rem;
-      font-weight: 400;
-    }
-    li:nth-of-type(1)::before {
-      content: "#";
-    }
-    li:nth-of-type(2) {
-      display: flex;
-      justify-content: space-between;
-      p:nth-of-type(1) {
-        width: 80%;
-        font-size: 2.4rem;
-        font-weight: 600;
-        margin: 10px 0 20px 0;
-        > span {
-          font-size: 2.4rem;
-          font-weight: 400;
-          color: #979797;
-        }
-      }
-      p:nth-of-type(2) {
-        width: 20%;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        font-size: 2rem;
-        font-weight: 500;
-        img {
-          width: 25px;
-          height: 22px;
-          margin-left: 6%;
-        }
-      }
-    }
-  }
-  .contents_1_detail_img {
-    width: 100%;
-    margin-bottom: 5%;
-    img {
-      width: 100%;
-      border-radius: 30px;
-    }
-  }
+	width: 100%;
+
+	.contents_1_text {
+		li:nth-of-type(1) {
+			font-family: "BMJUA";
+			font-size: 2.4rem;
+			font-weight: 400;
+		}
+
+		li:nth-of-type(1)::before {
+			content: "#";
+		}
+
+		li:nth-of-type(2) {
+			display: flex;
+			justify-content: space-between;
+
+			p:nth-of-type(1) {
+				width: 80%;
+				font-size: 2.4rem;
+				font-weight: 600;
+				margin: 10px 0 20px 0;
+
+				>span {
+					font-size: 2.4rem;
+					font-weight: 400;
+					color: #979797;
+				}
+			}
+
+			p:nth-of-type(2) {
+				width: 20%;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				font-size: 2rem;
+				font-weight: 500;
+				> button {
+					width: 30px;
+				}
+			}
+		}
+	}
+
+	.contents_1_detail_img {
+		width: 100%;
+		margin-bottom: 5%;
+
+		img {
+			width: 100%;
+			border-radius: 30px;
+		}
+	}
 }
 
 .contents_1_address_back {
-/*   background-image: url("/asset/image/list/detail_back.png");
+	/*   background-image: url("/asset/image/list/detail_back.png");
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center; */
-  position: relative;
-  width: 100%;
-  .contents_1_address {
-    li {
-      display: flex;
-      font-size: 2rem;
-      font-weight: 400;
-      margin-bottom: 2%;
-      p:nth-of-type(1) {
-        width: 15%;
-        margin-left: 5%;
-      }
-    }
-    li:nth-of-type(4) {
-      span {
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.6);
-        margin-right: 2%;
-        padding: 1% 2%;
-      }
-      span::before {
-        content: "#";
-        width: 100%;
-      }
-      span:nth-of-type(1) {
-        padding-left: 0;
-      }
-    }
-  }
+	position: relative;
+	width: 100%;
+
+	.contents_1_address {
+		li {
+			display: flex;
+			font-size: 2rem;
+			font-weight: 400;
+			margin-bottom: 2%;
+
+			p:nth-of-type(1) {
+				width: 15%;
+				margin-left: 5%;
+			}
+		}
+
+		li:nth-of-type(4) {
+			span {
+				border-radius: 20px;
+				background: rgba(255, 255, 255, 0.6);
+				margin-right: 2%;
+				padding: 1% 2%;
+			}
+
+			span::before {
+				content: "#";
+				width: 100%;
+			}
+
+			span:nth-of-type(1) {
+				padding-left: 0;
+			}
+		}
+	}
 }
 
-.contents_1_address_back::after{
-    content: url("/asset/image/list/detail_back.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
-    position: absolute;
-    bottom: 0; left: 0;
-    z-index: -10;
-    width: 100%;
+.contents_1_address_back::after {
+	content: url("/asset/image/list/detail_back.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: -10;
+	width: 100%;
 }
