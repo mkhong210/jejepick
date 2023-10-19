@@ -21,8 +21,8 @@ function Mainswiper() {
 	async function getData() {
 		const result = await axios.get('/api/visit');
 		const newData = result.data
-		const filteredData = newData.filter(item => item.region2cd.label === '애월');
-		
+		const filteredData = newData.filter(item => item.region2cd.label === '제주시내');
+		console.log(filteredData);
 		// setData(newData);
 		setLoading(false);
 

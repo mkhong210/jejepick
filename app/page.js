@@ -13,9 +13,9 @@ export default function Home() {
 		setHeadStatus(true);
 		setBtmStatus(true);
 		// common();
-	}, []);
+	}, []); */
 
-	setTimeout(() => router.push('/pages/main'), 2000); */
+	// setTimeout(() => router.push('/pages/main'), 2000);
 
 	return (
 		<>
