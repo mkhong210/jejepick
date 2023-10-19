@@ -104,3 +104,17 @@
 		// }
 	}
 }
+
+
+@media screen and (max-width: 460px) {
+
+	.list {
+		display: flex;
+		gap: 10px;
+		.list_item {
+			width: calc((100% - 20px) / 3);
+		}
+	}
+
+
+}
