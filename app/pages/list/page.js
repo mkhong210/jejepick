@@ -4,10 +4,10 @@ import style from './list.module.scss'
 import List from '@/app/components/list/List';
 import TotalList from '@/app/components/list/TotalList';
 import { MyContext } from '@/app/components/Context';
-import commonstatus from '@/app/components/common/commonstatus';
+import commonfalse from '@/app/components/common/commonfalse';
 
 function Page() {
-	const { status, setHeadStatus, setBtmStatus } = useContext(MyContext);
+	const { setHeadStatus, setBtmStatus } = useContext(MyContext);
 	const [tabTxt, setTabTxt] = useState("숙소");
 	
 	// 검색 창
@@ -58,10 +58,7 @@ function Page() {
 	useEffect(() => {
 		setHeadStatus(false);
 		setBtmStatus(false);
-		commonstatus();
-		// main.classList.remove('no')
-		// main.classList.add('on')
-		status();
+		commonfalse();
 		tab_click();
 		height();
 		setTabTxt("숙소");

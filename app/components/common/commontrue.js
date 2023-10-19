@@ -1,4 +1,4 @@
-function commonstatus() {
+function commontrue() {
 	// const header = document.getElementsByClassName('header')[0];
 	// const hideSataus = header.classList.contains('no');
 	// const hide = header.classList.contains('hidden');
@@ -16,8 +16,8 @@ function commonstatus() {
 	// 	main.classList.add('on')
 	// }
 
-	main.classList.remove('no')
-	main.classList.add('on')
+	main.classList.remove('on')
+	main.classList.add('no')
 }
 
-export default commonstatus
+export default commontrue

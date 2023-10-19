@@ -5,9 +5,9 @@ import style from './common.module.scss'
 import Link from 'next/link'
 
 function BtmNavi() {
-	const {btmStatus,setBtmStatus} = useContext(MyContext);
+	const {btmStatus, setBtmStatus} = useContext(MyContext);
 	useEffect(() => {
-		setBtmStatus(true);
+		// setBtmStatus(true);
 	}, []);
 
 	return (
