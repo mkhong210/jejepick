@@ -25,5 +25,6 @@ export async function GET(req){
 export async function DELETE(req){
     const {contentsid,profile} = await req.json();
     const data = await queryExecute('DELETE FROM itemtable where contentsid = ? AND profile = ?',[contentsid,profile]);
+   
     return Response.json([]);
 }
