@@ -10,13 +10,12 @@ import 'swiper/css';
 import { Autoplay } from 'swiper/modules';
 import ListItem from '../list/ListItem';
 import axios from 'axios';
-import Loading from '../loading/Loading';
 import Heart from '../Heart';
 import { MyContext } from '../Context';
+import LoadingComp from '../loading/LoadingComp';
 
 function Mainswiper() {
 	const {isStatus} = useContext(MyContext);
-	const [data, setData] = useState();
 	const [dataFilt, setDataFilt] = useState();
 	const [loading, setLoading] = useState(true);
 
@@ -24,19 +23,15 @@ function Mainswiper() {
 		const result = await axios.get('/api/visit');
 		const newData = result.data
 		const filteredData = newData.filter(item => item.region2cd.label === '제주시내');
-		console.log(filteredData);
-		// setData(newData);
-		setLoading(false);
-
+		
 		const randomItem = [];
-		const selectItem = [];
-		// console.log(filteredData.length)
 		for(let i=0; i<8; i++){
 			let randomIndex = Math.floor(Math.random() * filteredData.length);
 			const selectItem = filteredData[randomIndex];
 			randomItem.push(selectItem);
 		}
 		setDataFilt(randomItem);
+		setLoading(false);
 	}
 
 	useEffect(() => {
@@ -46,7 +41,6 @@ function Mainswiper() {
 
 	const height = () => {
 		const totalItems = document.getElementsByClassName(`${style.contents_2_bestplacelist}`);
-		
 
 		for (let i = 0; i < totalItems.length; i++) {
 			const item = totalItems[i];
@@ -61,27 +55,22 @@ function Mainswiper() {
 			}
 		}
 	}
-	// console.log(dataFilt);
-
-	
-
 
 	if (loading) {
-		return <div><Loading /></div>;
+		return <div><LoadingComp/></div>;
 	}
 
 	return (
 		<>
 			<div className={style.contents_2_bestplacelist}>
-			
 				<Swiper
 					spaceBetween={20}
 					slidesPerView={2.3}
 					loop={true}
-					// autoplay={{
-					// 	delay: 2500,
-					// 	disableOnInteraction: false,
-					// }}
+					autoplay={{
+						delay: 2500,
+						disableOnInteraction: false,
+					}}
 					modules={[Autoplay]}
 					className="mySwiper"
 				>

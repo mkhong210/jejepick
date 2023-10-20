@@ -184,8 +184,8 @@ function page() {
 					</div>
 					<div onClick={moveResult} className={style.myevent}>
 						<div className={style.recom}>
-							<h4>제제픽이 말아주는 추천 리스트 다시보기</h4>
-							<p>추천 리스트 보기</p>
+							<h4>제제픽이 말아주는 성향 테스트 결과</h4>
+							<p>결과 다시보기</p>
 						</div>
 						<div className={style.jejeimg}></div>
 					</div>

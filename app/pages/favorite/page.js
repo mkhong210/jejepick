@@ -10,7 +10,9 @@ import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
 import ListItem from "@/app/components/list/ListItem";
 import Loading from "@/app/components/loading/Loading";
+import { useRouter } from "next/navigation";
 import { Router } from "next/router";
+import Loading from "@/app/components/loading/Loading";
 import { MyContext } from "@/app/components/Context";
 
 function page() {
@@ -142,9 +144,7 @@ function page() {
 		if(JejuData.length && localx){ //전체데이터와 찜한데이터가 있다면
 			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
 			const filtercontentsid=JejuData.filter((item)=>localxContentsIds.includes(item.contentsid))
-			// console.log(worldofwarcraft);
-			// filterData(filtercontentsid);
-			// setA(filtercontentsid)
+			
 			console.log(localx);
 			
 			filterData(filtercontentsid); 
@@ -158,7 +158,7 @@ function page() {
 		router.push("/pages/list");
 	}
 	if (loading) {
-		return <div><Loading /></div>;
+		return <div><Loading/></div>;
 	}
 	return (
 		<>
@@ -193,25 +193,6 @@ function page() {
 						data.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
 								<ListItem data={item} />
-								{/* {
-									localx?.map((item,index)=>(
-										
-										<div key={index}>
-											<p>{item.contentsid}</p>
-										</div>
-										
-									)
-									)
-								} */}
-								{/* <a className={style.api_pic_list}>
-									<div className={style.api_explain}>
-										<p className={style.api_explain_title}>{item.title}</p>
-										<Heart itemId={item.contentsid}/>
-									</div>
-									<p className={style.api_pic_grad}>
-									</p>
-										<img className={style.api_pic} src={item?.repPhoto?.photoid?.thumbnailpath} alt=""/>
-								</a> 여기는 API 불러온 데이터 부분 */}
 							</SwiperSlide>
 						)):
 						(

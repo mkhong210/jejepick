@@ -259,4 +259,3 @@ axios.post('/api/map',{loadMap})
     </div>
   );
 }
-

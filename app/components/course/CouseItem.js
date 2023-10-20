@@ -14,7 +14,6 @@ function CouseItem({ item,setData }) {
 		}
 	};
 
-
 	return (
 		<div className={style.whole}>
 			<button className={style.item_wrap} onClick={()=>{

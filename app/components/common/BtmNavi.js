@@ -12,7 +12,7 @@ function BtmNavi() {
 
 	return (
 		<footer className={`${style.footer} ${btmStatus ? 'hidden':''}`+` bottom`}>
-			<ul className={style.footer_wrap + ' inner'}>
+			<ul className={style.footer_wrap}>
 				<li className={style.footer_item}>
 					<Link href='/pages/favorite'>
 						<img src='/asset/common/Icon_favorite.svg' />

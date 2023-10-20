@@ -111,6 +111,7 @@
 
 .contents_2_bestplacelist {
 	padding: 15px 0;
+	width: calc(100% + 10px );
 }
 
 // contents_3
@@ -134,13 +135,38 @@
 			line-height: normal;
 		}
 	}
+	.course_wrap{
+		padding-bottom: 10px;
+		.corselistnone {
+			cursor: pointer;
+			margin: 28px 0 40px 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #F88561;
+			font-size: 1.6rem;
+			font-style: normal;
+			font-weight: 500;
+			line-height: normal;
+			width: 100%;
+			height: 69px;
+			border-radius: 30px;
+			background: #FFF;
+			box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.10);
+		}
+
+		.corselist{
+			.corsename{}
+			.corsedel{}
+		}
+	}
 }
 
 // --------------------------------------------------
 
 @media screen and (max-width: 480px) {
 	.back{
-		margin-top: 140px;
+		margin-top: 60px;
 		width: 100%;
 		height: 0;
 		padding-top: calc(440 / 680 * 100%);

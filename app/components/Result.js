@@ -8,7 +8,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Loading from "./loading/Loading";
 
-
 export default function Result() {
 	const [state, setState] = useState(false);
 	const router = useRouter();

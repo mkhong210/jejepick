@@ -11,7 +11,9 @@
   padding: 0 20px;
   margin: 0 auto;
 }
-
+#main{
+  padding-bottom: .1px;
+}
 .on {
   margin: 0px 0 100px 0;
   padding-top: 80px;
@@ -19,6 +21,8 @@
 .no {
   margin: 0;
 }
+
+
 
 .hidden {
   display: none !important;
@@ -37,7 +41,7 @@ h3 {
 
 body {
 	position: relative;
-	background-color: ivory;
+  background-color: #ecf8fe;
 }
 body::after {
 	transform: rotate(4deg);
@@ -74,4 +78,14 @@ body::before {
 	0%{ transform: translateY(0%);}
 	50%{ transform: translateY(10%) }
 	100%{ transform: translateY(-10%)}
+}
+
+
+@media screen and (max-width: 480px) {
+  body::after {
+    display: none;
+  }
+  body::before {
+    display: none;
+  }
 }
