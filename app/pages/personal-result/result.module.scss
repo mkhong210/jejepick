@@ -55,24 +55,20 @@
                 .tag{
                     margin: 0 auto;
                     width: 306px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
                     >span{
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 92px; height: 41px;
-                        color: #AC6638;
-                        border-radius: 10px;
-                        background: #FFD167;
-                        font-size: 1.8rem;
+                        padding: 7px 13px;
+                        font-size: 1.6rem;
                         font-style: normal;
                         font-weight: 500;
                         line-height: normal;
+                        border-radius: 10px;
+                        background: #FFD167;
+                        box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                        margin-right: 15px;
+                        color: #AC6638;
                     }
-                    >span::before{
-                        content: '#';
+                    span::before{
+                        content:'#';
                     }
                 }
             }
@@ -225,25 +221,21 @@
                     .tag{
                         margin: 0 auto;
                         width: 306px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        >span{
-                            display: inline-flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: 92px; height: 41px;
-                            color: #AC6638;
-                            border-radius: 10px;
-                            background: #FFD167;
-                            font-size: 1.8rem;
+                            >span{
+                            padding: 7px 13px;
+                            font-size: 1.6rem;
                             font-style: normal;
                             font-weight: 500;
                             line-height: normal;
-                        }
-                        >span::before{
-                            content: '#';
-                        }
+                            border-radius: 10px;
+                            background: #FFD167;
+                            box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                            margin-right: 15px;
+                            color: #AC6638;
+                            }
+                            span::before{
+                                content:'#';
+                            }
                     }
                 }
             }

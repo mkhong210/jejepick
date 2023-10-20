@@ -1,13 +1,4 @@
-@media screen and (max-width: 480px) {
-	.jejeimg {
-		display: none;
-		width: 50%;
-		height: 53.127px;
-		background: url('/asset/image/mypage/Group402.svg') no-repeat;
-		background-position-x: right;
-		margin-right: 25px;
-	}
-}
+
 
 
 .profile {
@@ -70,7 +61,7 @@
 				}
 			  }
 			>div {
-				>p {
+				>p{
 					margin-top: 22px;
 					font-size: 1.8rem;
 					font-style: normal;
@@ -78,9 +69,9 @@
 					line-height: normal;
 				}
 
-				>h3 {
+				>h3{
 					margin-top: 7px;
-					font-size: 1.6rem;
+					font-size: 1.8rem;
 					font-style: normal;
 					font-weight: 700;
 					line-height: normal;
@@ -216,10 +207,8 @@
 			.heartlist {
 				width: 188px;
 				height: 170px;
-
-				>h3 {}
-
-				>div {}
+				>h3{}
+				>div{}
 			}
 		}
 	}
@@ -243,10 +232,9 @@
 			box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.10);
 		}
 
-		.corselist {
-			.corsename {}
-
-			.corsedel {}
+		.corselist{
+			.corsename{}
+			.corsedel{}
 		}
 	}
 }
@@ -266,6 +254,17 @@
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+}
+
+@media screen and (max-width: 480px) {
+	.jejeimg {
+		display: none;
+		width: 50%;
+		height: 53.127px;
+		background: url('/asset/image/mypage/Group402.svg') no-repeat;
+		background-position-x: right;
+		margin-right: 25px;
+	}
 }
 
 
