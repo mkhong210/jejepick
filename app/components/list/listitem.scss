@@ -68,17 +68,17 @@
 			color: #fff;
 		}
 
-		.like {
-			width: 20px;
-			padding: 0;
-			margin: 0;
-			display: flex;
-			align-items: center;
-			cursor: pointer;
-			>.like_img {
-				width: 100%;
-			}
-		}
+	}
+}
+.like {
+	width: 20px;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	>.like_img {
+		width: 100%;
 	}
 }
 

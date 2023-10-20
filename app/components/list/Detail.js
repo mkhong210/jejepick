@@ -48,10 +48,10 @@ function Detail() {
               <p>
                 {data.title} <span>| {data.contentscd.label}</span>
               </p>
-              <p>
-                찜하기
+              <div>
+                <p>찜하기</p>
                 <Heart dataId={data.contentsid} />
-              </p>
+              </div>
             </li>
           </ul>
           <div className={style.contents_1_detail_img}>
@@ -95,9 +95,12 @@ function Detail() {
           </ul>
         </div>
       </div>
-      <div className={style.contents_2 + ` inner`}>
-        <div id="maps" style={{ width: "100%", height: "370px" }}></div>
-        <div className={style.contents_2_map + ` inner`}></div>
+      <div className={style.contents_2}>
+        <div className={style.contents_2_map + ` inner`}>
+          <div id="maps" style={{ width: "100%", height: "370px" }}>
+
+          </div>
+        </div>
       </div>
     </>
   );
