@@ -19,8 +19,16 @@
     .contents_1_text {
       li:nth-of-type(1) {
         font-family: "BMJUA";
-        font-size: 2.4rem;
+        font-size: 2rem;
         font-weight: 400;
+
+        span {
+          margin-left: 10px;
+          color: rgb(181 181 181 / 80%);
+        }
+        span::before {
+          content: "#";
+        }
       }
 
       li:nth-of-type(1)::before {
@@ -31,18 +39,13 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-		align-items: baseline;
-		margin-bottom: 10px;
+        align-items: baseline;
+        margin-bottom: 10px;
 
         > p {
           width: 65%;
           font-size: 2.4rem;
           font-weight: 600;
-          > span {
-            font-size: 2.4rem;
-            font-weight: 400;
-            color: #979797;
-          }
         }
         > div {
           width: 35%;
@@ -150,8 +153,15 @@
       .contents_1_text {
         li:nth-of-type(1) {
           font-family: "BMJUA";
-          font-size: 2.4rem;
+          font-size: 1.8rem;
           font-weight: 400;
+           span {
+          margin-left: 10px;
+          color: rgb(181 181 181 / 80%);
+        }
+        span::before {
+          content: "#";
+        }
         }
 
         li:nth-of-type(1)::before {
@@ -162,17 +172,12 @@
           display: flex;
           justify-content: space-between;
           width: 100%;
-		  align-items: baseline;
-		  margin-bottom: 10px;
+          align-items: flex-end;
+          margin-bottom: 10px;
           > p {
             width: 65%;
             font-size: 2rem;
             font-weight: 600;
-            > span {
-              font-size: 2rem;
-              font-weight: 400;
-              color: #979797;
-            }
           }
           > div {
             width: 35%;
