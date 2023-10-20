@@ -8,6 +8,7 @@ import Mainswiper from "@/app/components/mainswiper/Mainswiper";
 import commonfalse from "@/app/components/common/commonfalse";
 import axios from "axios";
 import { Router } from "next/navigation";
+import CourseBtn from "@/app/components/course/CourseBtn";
 
 function page() {
 	const { status, setHeadStatus, setBtmStatus } = useContext(MyContext);
@@ -164,9 +165,7 @@ function page() {
 					</div>
 					<div className={style.course_wrap}>
 						<CourseList />
-						<div onClick={moveCourseMake} className={style.corselistnone}>
-							추가+
-						</div>
+						<CourseBtn />
 					</div>
 				</div>
 			</div>

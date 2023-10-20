@@ -26,17 +26,12 @@ function CourseList() {
 			<ul className={style.list_wrap}>
 				{
 					data.map((item, k) => (
-
 						<li key={k}>
-
 							<CouseItem item={item} setData={setData} />
-
-
 						</li>
 					))
 				}
 			</ul>
-
 		</>
 	)
 }
