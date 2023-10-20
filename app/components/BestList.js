@@ -13,21 +13,25 @@ export default function BestList () {
       router.push("/pages/list");
     }
 
-  const loginID = window.localStorage.getItem('loginId');
+  const [loginID,setloginID]=useState('');
   const [aaa, setAaa] = useState({ data1: null, data2: null });
   const {testResultValue} = useContext(MyContext);
-
+  
   //api 데이터
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   
   async function getData() {
-      const result = await axios.get('/api/visit2');
-      const newData = result.data;
-      setData(newData);
-      setLoading(false);
+    const result = await axios.get('/api/visit2');
+    const newData = result.data;
+    setData(newData);
+    setLoading(false);
   }
   
+  useEffect(()=>{
+    const loginID = window.localStorage.getItem('loginId');
+    setloginID(loginID)
+  },[loginID])
   useEffect(() => {
     getData();
   }, [])

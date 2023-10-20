@@ -7,14 +7,18 @@ import axios from 'axios';
 function CourseList() {
 	
 	const [data, setData] = useState([]);
-	const loginID = window.localStorage.getItem('loginId');
+	const [loginID,setloginID]=useState('');
 	async function getCourse() {
 		
 		const result = await axios.get(`/server_api/course?profile=${loginID}`)
 		.then(res=>{
 			setData(res.data)})
-	}
-
+		}
+		
+	useEffect(()=>{
+		const loginID = window.localStorage.getItem('loginId');
+		setloginID(loginID)
+	},[loginID])
 	useEffect(()=>{
 		getCourse();
 	},[])

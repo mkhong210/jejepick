@@ -15,12 +15,16 @@ export default function Result() {
   const [loading, setLoading] = useState(true);
 
   //로컬아이디
-	const loginID = window.localStorage.getItem('loginId');
-	//성향,이름 데이터
-	const [aaa, setAaa] = useState({ data1: null, data2: null });
+  const [loginID,setloginID]=useState('');
+  //성향,이름 데이터
+  const [aaa, setAaa] = useState({ data1: null, data2: null });
   
   let myName = null;
-
+  
+	useEffect(()=>{
+		const loginID = window.localStorage.getItem('loginId');
+		setloginID(loginID)
+	},[loginID])
   // 첫 번째 요청 (로그인내용)
 	useEffect(() => {
 	  if (loginID) {

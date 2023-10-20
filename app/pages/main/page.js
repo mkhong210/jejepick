@@ -10,7 +10,12 @@ import axios from "axios";
 
 function page() {
 	const { status, setHeadStatus, setBtmStatus } = useContext(MyContext);
-
+	const [loginID,setloginID]=useState('');
+	useEffect(()=>{
+		const loginID = window.localStorage.getItem('loginId');
+		setloginID(loginID)
+	},[loginID])
+	
 	useEffect(() => {
 		setHeadStatus(false);
 		setBtmStatus(false);
@@ -38,7 +43,7 @@ function page() {
 	}
 
 	//로컬아이디
-	const loginID = window.localStorage.getItem('loginId');
+	
 	//성향,이름 데이터
 	const [aaa, setAaa] = useState({ data1: null, data2: null });
 

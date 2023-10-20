@@ -12,8 +12,12 @@ function page() {
 	const [state,setState] = useState(false);
 	const router = useRouter();
 	const {testResultValue} = useContext(MyContext);
-    const id = localStorage.getItem('loginId');
 	const [jsondata, setJsondata] = useState(resultdb);
+	const [id,setloginID]=useState('');
+	useEffect(()=>{
+		const id = window.localStorage.getItem('loginId');
+		setloginID(id)
+	},[id])
 
 	const keywords1 = ["체험", "휴식"];
 	const keywords2 = ["체험", "휴식X"];
@@ -23,6 +27,7 @@ function page() {
 	const keywords6 = ["맑음", "휴식X"];
 	const keywords7 = ["문화유적지", "휴식"];
 	const keywords8 = ["문화유적지", "휴식X"]
+
 
 	//키워드 5개중에 위의 각각 키워드 2개가 포함되면 true(나머지7개는 false)
 	const include1 = keywords1.every(keyword => testResultValue.includes(keyword));

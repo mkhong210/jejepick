@@ -12,16 +12,17 @@ function page() {
 	const router = useRouter();
 	const [localx, setLocalx] = useState(null);
 	const [JejuData, setJejuData] = useState([]);
-
+	const [loginID,setloginID]=useState('');
 	const [wow, setWOW] = useState([]);
 	//로컬아이디
-	const loginID = window.localStorage.getItem('loginId');
 	//성향,이름 데이터
 	const [aaa, setAaa] = useState({ data1: null, data2: null });
-
+	
 	// console.log(aaa);
-
+	
 	useEffect(() => {
+		const loginID = window.localStorage.getItem('loginId');
+		setloginID(loginID)
 		setHeadStatus(true);
 		setBtmStatus(false);
 		status();
@@ -36,7 +37,7 @@ function page() {
 		// 	main.classList.add('no')
 		// }
 
-	}, []);
+	}, [loginID]);
 
 	const logOut = () => {
 		localStorage.removeItem('loginId');
@@ -225,10 +226,6 @@ function page() {
 					<div onClick={moveCourseMake} className={style.corselistnone}>
 						추가+
 					</div>
-					{/* <div className={style.corselist}>
-						<div className={style.corsename}>뚜벅이 1일차 제주도 코스</div>
-						<div className={style.corsedel}>삭제</div>
-					</div> */}
 				</div>
 			</div>
 			<div onClick={logOut} className={style.logout}>로그아웃</div>
