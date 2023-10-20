@@ -10,8 +10,8 @@ import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
 import ListItem from "@/app/components/list/ListItem";
 import Loading from "@/app/components/loading/Loading";
+import { useRouter } from "next/navigation";
 import { Router } from "next/router";
-
 
 function page() {
 
@@ -151,7 +151,7 @@ function page() {
 	/* ------------------------------- */
 
 	const moveList = () => {
-		router.push("/pages/list");
+		Router.push("/pages/list");
 	}
 
 	if (loading) {
