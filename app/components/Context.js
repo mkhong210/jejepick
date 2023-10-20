@@ -18,7 +18,7 @@ function Context({ children }) {
 	// 	const loginID = window.localStorage.getItem('loginId');
 	// 	console.log(loginID);
 	// }
-		console.log(headStatus, btmStatus);
+		// console.log(headStatus, btmStatus);
 
 	const status = () => {
 		// const header = document.getElementsByClassName('header')[0];

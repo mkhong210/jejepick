@@ -13,11 +13,11 @@ function page() {
 	const router = useRouter();
 	const {testResultValue} = useContext(MyContext);
 	const [jsondata, setJsondata] = useState(resultdb);
-	const [id,setloginID]=useState('');
-	useEffect(()=>{
-		const id = window.localStorage.getItem('loginId');
-		setloginID(id)
-	},[id])
+	let loginID;
+
+	if(window){
+		loginID = localStorage.getItem('loginId')
+	}
 
 	const keywords1 = ["체험", "휴식"];
 	const keywords2 = ["체험", "휴식X"];
@@ -74,7 +74,7 @@ function page() {
 		const testData = jsondata[num];
 		const json = JSON.stringify(testData);
 		const value =  JSON.stringify(testResultValue);
-		axios.post('/server_api/personal_result', {profile:id,contents:json, keywords:value})
+		axios.post('/server_api/personal_result', {profile:loginID,contents:json, keywords:value})
 	}
 
 	//state가 true인 경우에만(num이 들어온경우) DB입력
@@ -85,7 +85,7 @@ function page() {
 	},[state])
 
 	//2초 딜레이 후 페이지 이동
-	// setTimeout(() => router.push('./personal-result/result01'), 2500);
+	setTimeout(() => router.push('./personal-result/result01'), 2500);
 
 	console.log(num);
 	
