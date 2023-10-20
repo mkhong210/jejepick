@@ -6,21 +6,18 @@ import axios from 'axios';
 
 function CourseList() {
 	const [data, setData] = useState([]);
-	
 	let loginID;
-
 	if(typeof window !== 'undefined'){
-		loginID = localStorage.getItem('loginId')
+		loginID=localStorage.getItem('loginId')
 	}
-
 	async function getCourse() {
 		const result = await axios.get(`/server_api/course?profile=${loginID}`)
-			.then(res => {
-				setData(res.data)
-			})
+		.then(res=>{
+			console.log(res);
+			setData(res.data)})
 	}
-
-	useEffect(() => {
+		
+	useEffect(()=>{
 		getCourse();
 	}, [])
 
@@ -39,10 +36,6 @@ function CourseList() {
 					))
 				}
 			</ul>
-			{/* 			
-				<button className={style.course_btn}>
-					<p>코스 다시 만들기</p>
-				</button> */}
 
 		</>
 	)

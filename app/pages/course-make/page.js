@@ -291,11 +291,11 @@ function page() {
 								name="coursename"
 								placeholder="제목을 입력하세요"
 								className={style.search}
-							>
-							</input>
-
-
-							<div>
+								>
+								</input>
+							
+							
+							<div className={style.modal_allign}>
 								{selectedItems.map((item, index) => (
 
 									<React.Fragment key={item.contentsid}>
@@ -306,20 +306,17 @@ function page() {
 									</React.Fragment>
 
 								))}
-								<button>
-
-									코스 저장
-
-								</button>
-
+									<button className={style.modal_btn}>
+										
+										코스 저장
+										
+									</button>
+								
 							</div>
 						</form>
 					</div>
 				</div>
 			)}
-
-
-
 		</div>
 	)
 }

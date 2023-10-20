@@ -17,7 +17,6 @@ export async function GET(req){
    return Response.json(map.data);
 }
 
-
 export async function POST(req){   
     const d = await req.json();
     
