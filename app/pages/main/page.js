@@ -7,6 +7,7 @@ import CourseList from "@/app/components/course/CourseList";
 import Mainswiper from "@/app/components/mainswiper/Mainswiper";
 import commonfalse from "@/app/components/common/commonfalse";
 import axios from "axios";
+import { Router } from "next/navigation";
 
 function page() {
 	const { status, setHeadStatus, setBtmStatus } = useContext(MyContext);
@@ -92,6 +93,10 @@ function page() {
 		  tendency = parsedProfileData.tendency;
 		}
 
+		const moveCourseMake = () => {
+			Router.push("/pages/course-make");
+		}
+
 	return (
 		<>
 			<div className={style.back}>
@@ -158,7 +163,10 @@ function page() {
 						<p>더보기</p>
 					</div>
 					<div className={style.course_wrap}>
-						{/* <CourseList /> */}
+						<CourseList />
+						<div onClick={moveCourseMake} className={style.corselistnone}>
+							추가+
+						</div>
 					</div>
 				</div>
 			</div>
