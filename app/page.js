@@ -15,7 +15,7 @@ export default function Home() {
 		// common();
 	}, []); */
 
-	setTimeout(() => router.push('/pages/main'), 2000);
+	setTimeout(() => router.push('/pages/login'), 2000);
 
 	return (
 		<>

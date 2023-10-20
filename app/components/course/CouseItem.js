@@ -17,7 +17,6 @@ function CouseItem({ item,setData }) {
 
 	return (
 		<>
-
 			<button className={style.item_wrap} onClick={()=>{
 				router.push(`../../pages/course-list/detail?name=${item.coursename}&id=${item.item_id}`)
 			}}>

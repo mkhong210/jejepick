@@ -101,10 +101,10 @@ function Page() {
 						</li>
 					</ul>
 				</div>
-				<div className={style.list_wrap}>
+				{/* <div className={style.list_wrap}>
 					<h2>제제픽의 추천 리스트</h2>
 					<List />
-				</div>
+				</div> */}
 				<div className={style.totallist_wrap}>
 					<h2>전체 여행 정보</h2>
 					<TotalList tabTxt={tabTxt}/>

@@ -12,8 +12,6 @@ import { useRouter } from "next/navigation";
 
 
 function page() {
-	
-
 	const [data, setData] = useState(); // 숙박 관련 
 	const [data2, setData2] = useState(); // 관광지 관련
 	const [data3, setData3] = useState(); // 음식점 관련
@@ -21,16 +19,16 @@ function page() {
 	const [selectedItems, setSelectedItems] = useState([]); // 선택 함수
 	const [isModalOpen, setIsModalOpen] = useState(false); // 모달 
 	const [selectedItemContent, setSelectedItemContent] = useState(''); //클릭한 아이템 내용들
-	const [loginID,setloginID]=useState('');
 	const router = useRouter();
 	const [modalTitle, setModalTitle] = useState('');
 	const [JejuData,setJejuData]=useState([]);
 	const [localx,setLocalx] =useState(null);
-	useEffect(()=>{
-		const loginID = window.localStorage.getItem('loginId');
-		setloginID(loginID)
-	},[loginID])
+	
+	let loginID;
 
+	if(typeof window !== 'undefined'){
+		loginID = localStorage.getItem('loginId')
+	}
 
 	function openModal() {
 		setIsModalOpen(true);
@@ -39,8 +37,6 @@ function page() {
 	  function closeModal() {
 		setIsModalOpen(false);
 	  }
-
-	 
 
 	const insertFn = (e) => {
 		e.preventDefault();

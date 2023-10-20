@@ -5,44 +5,45 @@ import CouseItem from './CouseItem'
 import axios from 'axios';
 
 function CourseList() {
-	
 	const [data, setData] = useState([]);
-	const [loginID,setloginID]=useState('');
+	
+	let loginID;
+
+	if(typeof window !== 'undefined'){
+		loginID = localStorage.getItem('loginId')
+	}
+
 	async function getCourse() {
-		
 		const result = await axios.get(`/server_api/course?profile=${loginID}`)
-		.then(res=>{
-			setData(res.data)})
-		}
-		
-	useEffect(()=>{
-		const loginID = window.localStorage.getItem('loginId');
-		setloginID(loginID)
-	},[loginID])
-	useEffect(()=>{
+			.then(res => {
+				setData(res.data)
+			})
+	}
+
+	useEffect(() => {
 		getCourse();
-	},[])
+	}, [])
 
 	return (
 		<>
 			<ul className={style.list_wrap}>
-			{
-					data.map((item,k)=>(
+				{
+					data.map((item, k) => (
 
-					<li key={k}>
-						
+						<li key={k}>
+
 							<CouseItem item={item} setData={setData} />
-						
-						
-					</li>
+
+
+						</li>
 					))
-				}			
+				}
 			</ul>
-			
+			{/* 			
 				<button className={style.course_btn}>
 					<p>코스 다시 만들기</p>
-				</button>
-			
+				</button> */}
+
 		</>
 	)
 }

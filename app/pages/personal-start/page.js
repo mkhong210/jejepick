@@ -5,18 +5,15 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { MyContext } from "../../components/Context";
 
-
 function page() {
-
   const [data, setData] = useState([]);
-  const [loginID,setloginID]=useState('');
   const {setTestResultValue} = useContext(MyContext);
   
-	useEffect(()=>{
-		const loginID = window.localStorage.getItem('loginId');
-		setloginID(loginID)
-	},[loginID])
+	let loginID;
 
+	if(typeof window !== 'undefined'){
+		loginID = localStorage.getItem('loginId')
+	}
 
   useEffect(() => {
     const head = document.getElementsByClassName(`header`);

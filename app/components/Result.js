@@ -10,7 +10,6 @@ import Loading from "./loading/Loading";
 
 
 export default function Result() {
-	
 	const [state, setState] = useState(false);
 	const router = useRouter();
 	const [data, setData] = useState([]);
@@ -18,9 +17,10 @@ export default function Result() {
 	//성향,이름 데이터
 	const [aaa, setAaa] = useState({ data1: null });
 	const [myName, setMyName] = useState('')
+	
 	let loginID;
 
-	if(window){
+	if(typeof window !== 'undefined'){
 		loginID = localStorage.getItem('loginId')
 	}
 	

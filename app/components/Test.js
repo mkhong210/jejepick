@@ -67,8 +67,8 @@ export default function Test() {
 						<ul className={style.test_wrap}>
 							{
 								jsondata[num].options.map((info, k) => (
-									<li className={style.test_option}>
-										<figure key={k}
+									<li className={style.test_option} key={k}>
+										<figure 
 											onClick={word} data-keyword={info[2]} className={option === info[2] ? style.active : ""}>
 											<div className={style.option_img_wrap}>
 												<img src={info[0]} />
