@@ -1,8 +1,8 @@
 import React from "react";
-import style from "./loading.module.scss";
-function Loading() {
+import style from "./loadingComp.module.scss";
+function LoadingComp() {
 	return (
-		// <>
+		<>
 			<div className={style.bg}>
 				<div className={style.logo}>
 					<div>
@@ -14,8 +14,8 @@ function Loading() {
 					<img src="/asset/image/test/loding.gif" />
 				</div>
 			</div>
-		// </>
+		</>
 	);
 }
 
-export default Loading;
+export default LoadingComp;

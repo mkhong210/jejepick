@@ -10,9 +10,9 @@ import 'swiper/css';
 import { Autoplay } from 'swiper/modules';
 import ListItem from '../list/ListItem';
 import axios from 'axios';
-import Loading from '../loading/Loading';
 import Heart from '../Heart';
 import { MyContext } from '../Context';
+import LoadingComp from '../loading/LoadingComp';
 
 function Mainswiper() {
 	const {isStatus} = useContext(MyContext);
@@ -67,7 +67,7 @@ function Mainswiper() {
 
 
 	if (loading) {
-		return <div><Loading /></div>;
+		return <div><LoadingComp/></div>;
 	}
 
 	return (

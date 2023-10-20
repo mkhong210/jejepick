@@ -3,7 +3,7 @@ import style from "../../pages/list/[id]/page.module.scss";
 import { useParams } from "next/navigation";
 import axios from "axios";
 import Heart from "@/app/components/Heart";
-import Loading from "../loading/Loading";
+import LoadingComp from "../loading/LoadingComp";
 
 function Detail() {
   const [data, setData] = useState();
@@ -32,7 +32,7 @@ function Detail() {
     return (
       <>
         <div>
-          <Loading />
+          <LoadingComp />
         </div>
       </>
     );
