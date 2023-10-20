@@ -6,7 +6,7 @@ import React from 'react'
 import style from './favorite.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import 'swiper/css/free-mode';
+// import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
 import ListItem from "@/app/components/list/ListItem";
 import Loading from "@/app/components/loading/Loading";
