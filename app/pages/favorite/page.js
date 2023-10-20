@@ -22,14 +22,20 @@ function page() {
 	const [apiData, setApiData] = useState([]); // 마커 관련
 	/* -------------------------------------------- */
 	const [localx,setLocalx] =useState(null);
-	const [loginID,setloginID]=useState('');
+	const [loginID,setloginID]=useState(null);
 	const [JejuData,setJejuData]=useState([]);
 	/* -------------------------------------------- */
-	useEffect(()=>{
-		const loginID = window.localStorage.getItem('loginId');
-		setloginID(loginID)
-	},[loginID])
 	
+	/* useEffect(() => {
+		if(typeof window !== 'undefined') {
+			setloginID(loginID);
+		}
+	}, [loginID]) */
+	const Login1 =()=>{
+		const a = localStorage.getItem('loginId');
+		console.log(a);
+		setloginID(a)
+	}
 
 	const filterData = (data) => {
 		const filteredData1 = data.filter(item => item.contentscd.label === '숙박');
@@ -43,7 +49,8 @@ function page() {
 	async function getData() {
 		const result = await axios.get('/api/visit');
 		const newData = result.data
-		filterData(newData);
+		setJejuData(newData);
+		//filterData(newData);
 		setApiData(newData);
 		setLoading(false);
 	}
@@ -51,6 +58,7 @@ function page() {
 	/* --데이터 필터링 요청-- */
 	useEffect(() => {
 		getData();
+		Login1();
 	}, [])
 	/* --지도 요청 및 로딩 요청-- */
 	useEffect(() => {
@@ -120,40 +128,34 @@ function page() {
 /* ------------------------------- */
 
 	/* --비짓제주 api데이터 요청-- */
-	useEffect(()=>{
-		axios.get('/api/visit')
-		.then((response) => {
-			// 비짓제주에서 가져온 데이터를 setJejuData에 저장
-			setJejuData(response.data);
-		})
-	},[])
 	
 	/* --서버 데이터 요청-- */
 	useEffect(()=>{
+		loginID &&
 		axios.get(`/server_api/item?profile=${loginID}`)
-		.then((response)=>{setLocalx(response.data);})
+		.then((response)=>{console.log(response);setLocalx(response.data);})
 		.catch((error)=>{console.log('Error:'.error)});
 	},[loginID])
 
 	useEffect(()=>{
-		if(JejuData && localx){ //전체데이터와 찜한데이터가 있다면
+		if(JejuData.length && localx){ //전체데이터와 찜한데이터가 있다면
 			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
 			const filtercontentsid=JejuData.filter((item)=>localxContentsIds.includes(item.contentsid))
 			// console.log(worldofwarcraft);
 			// filterData(filtercontentsid);
 			// setA(filtercontentsid)
+			console.log(localx);
 			
 			filterData(filtercontentsid); 
 			setApiData(filtercontentsid);
-
+			
 		}
 	},[JejuData,localx])
 	/* ------------------------------- */
-
+	const router = useRouter();
 	const moveList = () => {
-		Router.push("/pages/list");
+		router.push("/pages/list");
 	}
-
 	if (loading) {
 		return <div><Loading /></div>;
 	}

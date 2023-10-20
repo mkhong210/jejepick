@@ -8,7 +8,6 @@ import { MyContext } from './Context';
 function Heart({dataId}) {
 	const [select, setSelct] = useState([]);
 	const [itemId, setItemId] = useState();
-	
 	const [imageSrc, setImageSrc] = useState("/asset/common/Icon_favorite.svg");
 	const [isSelected,setIsSelected] = useState(false);
 	const {jim,setJim,isStatus,setIsStatus} = useContext(MyContext);
