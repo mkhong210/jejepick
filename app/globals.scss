@@ -78,3 +78,13 @@ body::before {
 	50%{ transform: translateY(10%) }
 	100%{ transform: translateY(-10%)}
 }
+
+
+@media screen and (max-width: 480px) {
+  body::after {
+    display: none;
+  }
+  body::before {
+    display: none;
+  }
+}
