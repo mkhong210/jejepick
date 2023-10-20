@@ -143,9 +143,7 @@ function page() {
 		if(JejuData.length && localx){ //전체데이터와 찜한데이터가 있다면
 			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
 			const filtercontentsid=JejuData.filter((item)=>localxContentsIds.includes(item.contentsid))
-			// console.log(worldofwarcraft);
-			// filterData(filtercontentsid);
-			// setA(filtercontentsid)
+			
 			console.log(localx);
 			
 			filterData(filtercontentsid); 
