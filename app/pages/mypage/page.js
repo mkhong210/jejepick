@@ -6,9 +6,11 @@ import { useRouter } from 'next/navigation';
 import { MyContext } from '@/app/components/Context';
 import ListItem from '@/app/components/list/ListItem';
 import CourseList from '@/app/components/course/CourseList';
+import CourseBtn from '@/app/components/course/CourseBtn';
+import commontrue from '@/app/components/common/commontrue';
 
 function page() {
-	const { status, headStatus, setHeadStatus, btmStatus, setBtmStatus } = useContext(MyContext);
+	const { setHeadStatus, setBtmStatus } = useContext(MyContext);
 	const [data, setData] = useState([]);
 	const router = useRouter();
 	const [localx, setLocalx] = useState(null);
@@ -27,7 +29,7 @@ function page() {
 	useEffect(() => {
 		setHeadStatus(true);
 		setBtmStatus(false);
-		status();
+		commontrue();
 	}, []);
 
 	const logOut = () => {
@@ -214,9 +216,7 @@ function page() {
 				</div>
 				<div className={style.mypagecon3}>
 					<CourseList />
-					<div onClick={moveCourseMake} className={style.corselistnone}>
-						추가+
-					</div>
+					<CourseBtn />
 				</div>
 			</div>
 			<div onClick={logOut} className={style.logout}>로그아웃</div>

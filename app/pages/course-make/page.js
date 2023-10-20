@@ -11,6 +11,8 @@ import { FreeMode, Pagination } from 'swiper/modules';
 import { useRouter } from "next/navigation";
 import commonfalse from "@/app/components/common/commonfalse";
 import { MyContext } from "@/app/components/Context";
+import Loading from "@/app/components/loading/Loading";
+import '../../components/list/listitem.scss'
 
 
 function page() {
@@ -135,18 +137,18 @@ function page() {
 	}
 
 	if (loading) {
-		return <div>로딩 중...</div>;
+		return <div><Loading /></div>;
 	}
 
 	return (
-		<div className={style.course_make+ ` inner`}>
+		<div className={style.course_make + ` inner`}>
 			<div className={style.mid_title}>
 				<h2>내가 만든 여행코스로 더욱 즐겁게 여행해요!</h2>
 				<a></a>
 			</div>
 
 			<div className={style.whole}>
-				<div>
+				<div className={style.choose_wrap}>
 					<div className={style.label}>
 						<img src="/asset/image/map/ICON_sleep_pin.svg" />
 						<p>숙소 중 한곳을 선택해주세요</p>
@@ -155,11 +157,10 @@ function page() {
 					<Swiper
 						slidesPerView={3}
 						spaceBetween={10}
-						freeMode={false}
 						pagination={{
 							clickable: true,
 						}}
-						modules={[FreeMode, Pagination]}
+						modules={[Pagination]}
 
 						className={style.api_pic_list}>
 
@@ -167,22 +168,15 @@ function page() {
 						{data.length ?
 							data.map((item) => (
 								<SwiperSlide className={`${style.api_pic_whole} 
-							${selectedItems.some((selectedItem) => selectedItem.contentsid === item.contentsid) ? style.selectedItem : ''}`}
-									key={item.contentsid}>
-
-									<a className={style.api_pic_list} onClick={() => ItemClick(item)}>
-										<div className={style.api_explain}>
-											<p className={style.api_explain_order}>{item.order}</p>
-											<div className={style.api_explain_title}>
-												{item.title}
-											</div>
-											<img className={style.api_explain_heart} src="../asset/common/icon_favorite_full.svg">{/* 하트, 클릭 이벤트 데이터 저장 */}</img>
+							${selectedItems.some((selectedItem) => selectedItem.contentsid === item.contentsid) ? style.selectedItem : ''}`} key={item.contentsid}>
+									<div className={style.item_wrap+' item_wrap'} onClick={() => ItemClick(item)}>
+										<div className='img_wrap'>
+											<img src={item?.repPhoto?.photoid?.thumbnailpath} alt="" />
 										</div>
-										<p className={style.api_pic_grad}>
-										</p>
-										<img className={style.api_pic} src={item?.repPhoto?.photoid?.thumbnailpath} alt="" />
-									</a> {/* 여기는 API 불러온 데이터 부분 */}
-
+										<div className='text_wrap'>
+											<p>{item.title}</p>
+										</div>
+									</div> {/* 여기는 API 불러온 데이터 부분 */}
 								</SwiperSlide>
 							)) :
 							(
@@ -192,7 +186,7 @@ function page() {
 					</Swiper>
 				</div>
 
-				<div>
+				<div className={style.choose_wrap}>
 					<div className={style.label}>
 						<img src="/asset/image/map/ICON_food_pin.svg" />
 						<p>가고 싶은 맛집을 두 곳을 선택해 주세요</p>
@@ -200,36 +194,35 @@ function page() {
 					<Swiper
 						slidesPerView={3}
 						spaceBetween={10}
-						freeMode={true}
 						pagination={{
 							clickable: true,
 						}}
-						modules={[FreeMode, Pagination]}
+						modules={[Pagination]}
 
 						className={style.api_pic_list}>
 
 
-						{data3.map((item) => (
-							<SwiperSlide className={`${style.api_pic_whole} 
-							${selectedItems.some((selectedItem) => selectedItem.contentsid === item.contentsid) ? style.selectedItem : ''}`}
-								key={item.contentsid}>
-
-								<a className={style.api_pic_list} onClick={() => ItemClick(item)}>
-									<div className={style.api_explain}>
-										<p className={style.api_explain_title}>{item.title}</p>
-										<img className={style.api_explain_heart} src="../asset/common/icon_favorite_full.svg">{/* 하트, 클릭 이벤트 데이터 저장 */}</img>
-									</div>
-									<p className={style.api_pic_grad}>
-									</p>
-									<img className={style.api_pic} src={item?.repPhoto?.photoid?.thumbnailpath} alt="" />
-								</a> {/* 여기는 API 불러온 데이터 부분 */}
-
-							</SwiperSlide>
-						))}
+						{data.length ?
+							data3.map((item) => (
+								<SwiperSlide className={`${style.api_pic_whole} 
+							${selectedItems.some((selectedItem) => selectedItem.contentsid === item.contentsid) ? style.selectedItem : ''}`} key={item.contentsid}>
+									<div className={style.item_wrap+' item_wrap'} onClick={() => ItemClick(item)}>
+										<div className='img_wrap'>
+											<img src={item?.repPhoto?.photoid?.thumbnailpath} alt="" />
+										</div>
+										<div className='text_wrap'>
+											<p>{item.title}</p>
+										</div>
+									</div> {/* 여기는 API 불러온 데이터 부분 */}
+								</SwiperSlide>
+							)) :
+							(
+								<p onClick={moveList} className={style.heartlistnone}>찜하러 가기</p>
+							)}
 					</Swiper>
 				</div>
 
-				<div>
+				<div className={style.choose_wrap}>
 					<div className={style.label}>
 						<img src="/asset/image/map/ICON_tour_pin.svg" />
 						<p>가고 싶은 명소를 두곳 선택해주세요</p>
@@ -238,35 +231,29 @@ function page() {
 					<Swiper
 						slidesPerView={3}
 						spaceBetween={10}
-						freeMode={true}
 						pagination={{
 							clickable: true,
 						}}
-						modules={[FreeMode, Pagination]}
-
+						modules={[Pagination]}
 						className={style.api_pic_list}>
-
-
-						{data2.map((item) => (
-							<SwiperSlide className={`${style.api_pic_whole} 
-							${selectedItems.some((selectedItem) => selectedItem.contentsid === item.contentsid) ? style.selectedItem : ''}`}
-								key={item.contentsid}>
-
-								<a className={style.api_pic_list} onClick={() => ItemClick(item)}>
-									<div className={style.api_explain}>
-										<p className={style.api_explain_title}>{item.title}</p>
-										<img className={style.api_explain_heart} src="../asset/common/icon_favorite_full.svg">{/* 하트, 클릭 이벤트 데이터 저장 */}</img>
-									</div>
-									<p className={style.api_pic_grad}>
-									</p>
-									<img className={style.api_pic} src={item?.repPhoto?.photoid?.thumbnailpath} alt="" />
-								</a> {/* 여기는 API 불러온 데이터 부분 */}
-
-							</SwiperSlide>
-						))}
+						{data.length ?
+							data2.map((item) => (
+								<SwiperSlide className={`${style.api_pic_whole} 
+							${selectedItems.some((selectedItem) => selectedItem.contentsid === item.contentsid) ? style.selectedItem : ''}`} key={item.contentsid}>
+									<div className={style.item_wrap+' item_wrap'} onClick={() => ItemClick(item)}>
+										<div className='img_wrap'>
+											<img src={item?.repPhoto?.photoid?.thumbnailpath} alt="" />
+										</div>
+										<div className='text_wrap'>
+											<p>{item.title}</p>
+										</div>
+									</div> {/* 여기는 API 불러온 데이터 부분 */}
+								</SwiperSlide>
+							)) :
+							(
+								<p onClick={moveList} className={style.heartlistnone}>찜하러 가기</p>
+							)}
 					</Swiper>
-
-
 				</div>
 			</div>
 			<div className={style.course_navi}>
@@ -293,18 +280,15 @@ function page() {
 								className={style.search}
 								>
 								</input>
-							
-							
+														
 							<div className={style.modal_allign}>
 								{selectedItems.map((item, index) => (
-
 									<React.Fragment key={item.contentsid}>
 										<div className={style.modal_itemlist}>
 											{item.title}
 											{index !== selectedItems.length - 1 && <br />} {/* 마지막 항목이 아닌 경우에만 줄 바꿈 추가 */}
 										</div>
 									</React.Fragment>
-
 								))}
 									<button className={style.modal_btn}>
 										

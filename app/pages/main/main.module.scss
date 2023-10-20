@@ -180,22 +180,13 @@
 			position: absolute;
 			top: -40px;
 			left: 0;
-	
 			>div {
 				.contents_1_text_1 {
 					.contents_1_text_div {
-						display: inline;
-						padding: 1% 2.5%;
-						background-color: #ffd167;
-						border-radius: 5px;
 						font-size: 1.8rem;
 					}
-	
 					>p{
-						margin-top: 2.5%;
 						font-size: 2rem;
-						font-weight: 600;
-						color: #181818;
 					}
 				}
 	
@@ -220,18 +211,7 @@
 						}
 	
 						.weather_text_wrap {
-							line-height: 1;
-							font-family: "BMJUA";
 							font-size:1.9rem;
-	
-							.weather_text {
-								.tmp{
-									font-family: "yg-jalnan";
-								}
-								:last-child {
-									padding-left: 12px;
-								}
-							}
 						}
 					}
 				}

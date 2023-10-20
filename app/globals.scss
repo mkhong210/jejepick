@@ -81,7 +81,10 @@ body::before {
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 640px) {
+  body {
+    background-color: #fff;
+  }
   body::after {
     display: none;
   }
