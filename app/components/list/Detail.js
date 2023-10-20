@@ -43,10 +43,10 @@ function Detail() {
       <div className={style.back_bottom}>
         <div className={style.contents_1 + ` inner`}>
           <ul className={style.contents_1_text}>
-            <li>{data.region1cd.label}</li>
+            <li>{data.region1cd.label}<span>{data.contentscd.label}</span></li>
             <li>
               <p>
-                {data.title} <span>| {data.contentscd.label}</span>
+                {data.title} 
               </p>
               <div>
                 <p>찜하기</p>
