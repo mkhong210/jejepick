@@ -8,20 +8,12 @@ import Heart from '../Heart';
 function List({bestlist,data}) {
 
 let [ddd,setDdd] = useState([]);
-	
-	if (!bestlist || !data) {
-		return <div>Loading...</div>;
-	}
-	
-	// console.log(bestlist);
-	// console.log(data);
-
 	function filter(e) {
-		
 		let filteredData = data ? data.filter(obj => obj.alltag && obj.alltag.includes(bestlist[0]) && obj.alltag.includes(bestlist[1])) : [];
 		// console.log(filteredData);
 		setDdd(filteredData)
 	}
+
 	useEffect(()=>{
 		filter();
 	},[])
@@ -33,13 +25,17 @@ let [ddd,setDdd] = useState([]);
 	}
 	
 	const randomItems = getRandomItems(ddd, 3);
+
+	if (!bestlist || !data) {
+		return <div>Loading...</div>;
+	}
 	
 	return (
 		<>
 			<ul className={style.list}>
 				{randomItems.map((item, k) => (
 					<li className={style.list_item} key={k}>
-						<Link href='#' className='item_wrap'>
+						<Link href={`/pages/list/${item.contentsid}`} className='item_wrap'>
 							<div className='img_wrap'>
 								<img src={item.repPhoto.photoid.imgpath}></img>
 							</div>

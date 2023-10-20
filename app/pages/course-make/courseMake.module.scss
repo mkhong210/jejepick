@@ -1,212 +1,233 @@
-.main{
-    height: 100vh;
-    margin: 8rem 0;
+.course_make {
+	.mid_title{
+		h2{
+			margin-left: 10px;
+			font-size: 1.6rem;
+			color: #979797;
+			font-weight: 400;
+		}
+	}
 }
-
 .whole {
-    margin-bottom: 50px;
+	margin-bottom: 50px;
 }
 
 .api_explain {
-    display:flex;
-    justify-content: space-between;
-    position: absolute;
-    width:100%;
-    padding: 10px;
-    bottom: 0;
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+	width: 100%;
+	padding: 10px;
+	bottom: 0;
 }
 
 .api_pic_list {
-    display: flex;
-    justify-content: space-around;
-    position: relative;
+	display: flex;
+	justify-content: space-around;
+	position: relative;
 }
 
 .api_pic_whole {
-    height: 215px;
-    width: 100%;
-}
-.api_pic_list {
-    height: 100%;
-    width: 100%;
-}
-.api_pic_grad{
-    width:100%;
-    height: 100%;
-    background: linear-gradient(to top, #545454, rgba(240, 240, 240, 0));
-    border-radius : 10%; 
-    position:relative;
-    z-index: 2;
-}
-.api_explain{
-    position:absolute;
-    z-index: 3;
-    margin-bottom: 5px;
-}
-.api_explain_title{
-    font-size: 13px;
-    color: white;
-}
-.api_explain_order{
-    font-size: 13px;
-    border-color: rgb(255,163,102);
-    color: white;
-    position: absolute;
-    top:0;
-    width:100%;
-    border-radius: 50%;
-}
-.api_explain_heart{
-    width: 10%;
-    height: 100%;
+	height: 215px;
+	width: 100%;
 }
 
-.api_pic{
-    width: 100%;
-    height: 100%;
-    border-radius : 10%; 
-    position:absolute;
-    z-index: 1;
+.api_pic_list {
+	height: 100%;
+	width: 100%;
 }
-.label{
-    display: flex;
-    width: 100%;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+
+.api_pic_grad {
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to top, #545454, rgba(240, 240, 240, 0));
+	border-radius: 10%;
+	position: relative;
+	z-index: 2;
 }
-.label > p {
-    font-size: 16px;
-    width: 100%;
+
+.api_explain {
+	position: absolute;
+	z-index: 3;
+	margin-bottom: 5px;
 }
-.label > img {
-    margin-right: 20px;
-    width: 50%;
+
+.api_explain_title {
+	font-size: 13px;
+	color: white;
 }
-.pic{
-    width: 100px;   
+
+.api_explain_order {
+	font-size: 13px;
+	border-color: rgb(255, 163, 102);
+	color: white;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	border-radius: 50%;
 }
-.label > img{
-    width: 30px;
-    height: 100%;
+
+.api_explain_heart {
+	width: 10%;
+	height: 100%;
+}
+
+.api_pic {
+	width: 100%;
+	height: 100%;
+	border-radius: 10%;
+	position: absolute;
+	z-index: 1;
+}
+
+.label {
+	display: flex;
+	width: 100%;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.label>p {
+	font-size: 16px;
+	width: 100%;
+}
+
+.label>img {
+	margin-right: 20px;
+	width: 50%;
+}
+
+.pic {
+	width: 100px;
+}
+
+.label>img {
+	width: 30px;
+	height: 100%;
 }
 
 .pic_icon {
-    width: 100%;
-    height: 100%;
- }
-
- .pic_icon > img {
-    width: 100%;
-    height: 100%;
- }
-
- .mid_title{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
- }
- .mid_title > p{
-    font-size: 16px;
- }
- .mid_title_p{
-    font-size: 16px;
- }
-
-.course_navi{
-    width:100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
+	width: 100%;
+	height: 100%;
 }
-.course_btn{
-    width: 20%;   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 0px, solid transparent;
-    border-radius: 30px;
-    height: 30px;
-    background-color: rgb(255,235,134);
-    pointer-events: cursor;
+
+.pic_icon>img {
+	width: 100%;
+	height: 100%;
+}
+
+.mid_title {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.mid_title>p {
+	font-size: 16px;
+}
+
+.mid_title_p {
+	font-size: 16px;
+}
+
+.course_navi {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 50px;
+}
+
+.course_btn {
+	width: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 0px, solid transparent;
+	border-radius: 30px;
+	height: 30px;
+	background-color: rgb(255, 235, 134);
+	pointer-events: cursor;
 }
 
 
 .selectedItem {
-    border: 5px solid rgb(255,163,102);
-    border-radius: 25px;
+	border: 5px solid rgb(255, 163, 102);
+	border-radius: 25px;
 }
 
-.modal{
-    width:100%;
-    height:100%;
-    position: absolute;
-    top:25%;
-    z-index:10;
-    left: 15%;
+.modal {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 25%;
+	z-index: 10;
+	left: 15%;
 
 }
-.modal_content{
-    width: 457px;
-    height: 318px;
-    background-color: white;
-    border-radius : 30px;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-    position: relative;
+
+.modal_content {
+	width: 457px;
+	height: 318px;
+	background-color: white;
+	border-radius: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+	position: relative;
 }
 
-.modal_content > input {
-    margin-top: 10px;
-}
-.modal_content > div {
-    font-size: 16px;
-    margin-top:10px;
-    
-}
-.modal_content > button{
-    border-radius: 30px;
-    height: 30px;
-    background-color: rgb(255,235,134);
-    margin-top: 10px;
+.modal_content>input {
+	margin-top: 10px;
 }
 
-.modal_title{
-    display: flex;
-    
-}
-.modal_title > h2{
-    font-size: 20px;
-}
-.modal_title > button{
-    font-size: 20px;
-    background-color: rgb(255,235,134);
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50;
-    border: 0px solid transparent;
-    position: absolute;
-    right: 8%;
-}
-.search{
-    background-color: rgb(244, 244, 244);
-    border-radius: 30px;
-    padding: 10px;
-    width: 400px;
+.modal_content>div {
+	font-size: 16px;
+	margin-top: 10px;
+
 }
 
-.modal_itemlist{
-    margin-top: 10px;
-    margin-right: 100px;
+.modal_content>button {
+	border-radius: 30px;
+	height: 30px;
+	background-color: rgb(255, 235, 134);
+	margin-top: 10px;
 }
 
+.modal_title {
+	display: flex;
 
+}
 
+.modal_title>h2 {
+	font-size: 20px;
+}
 
+.modal_title>button {
+	font-size: 20px;
+	background-color: rgb(255, 235, 134);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50;
+	border: 0px solid transparent;
+	position: absolute;
+	right: 8%;
+}
+
+.search {
+	background-color: rgb(244, 244, 244);
+	border-radius: 30px;
+	padding: 10px;
+	width: 400px;
+}
+
+.modal_itemlist {
+	margin-top: 10px;
+	margin-right: 100px;
+}

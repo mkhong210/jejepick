@@ -19,7 +19,6 @@ export default function RootLayout({ children }) {
 				<link rel="icon" type="image/png" href="/asset/common/favicon-16x16.png" sizes="16x16" />
 			</head>
 			<body>
-				
 				<div className='jejepick'>
 					<Context>
 						<Header />
