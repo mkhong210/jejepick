@@ -6,47 +6,24 @@ import ListItem from './ListItem';
 import axios from 'axios';
 import Loading from '../loading/Loading';
 
-function TotalList({ tabTxt }) {
+function TotalList({ tabTxt, totalData, searchedData}) {
 	// console.log(tabTxt);
 	// 데이터 불러오기
 	const [data, setData] = useState(); // 숙박/숙소
 	const [data2, setData2] = useState(); // 음식점/맛집
 	const [data3, setData3] = useState(); // 관광지/관광
 	const [loading, setLoading] = useState(true);
+	const [newData, setNewData] = useState(totalData);
 
-	const filterData = (data) => {
-		const filteredData1 = data.filter(item => item.contentscd.label === '숙박');
-		const filteredData2 = data.filter(item => item.contentscd.label === '음식점');
-		const filteredData3 = data.filter(item => item.contentscd.label === '관광지');
-
+	const filterData = (newData) => {
+		const filteredData1 = newData.filter(item => item.contentscd.label === '숙박');
+		const filteredData2 = newData.filter(item => item.contentscd.label === '음식점');
+		const filteredData3 = newData.filter(item => item.contentscd.label === '관광지');
 		setData(filteredData1); // 숙박/숙소 데이터 저장
 		setData2(filteredData2); // 음식점/맛집 데이터 저장
 		setData3(filteredData3); // 관광지/관광 데이터 저장
 	};
-
-	async function getData() {
-		const result = await axios.get('/api/visit');
-		const newData = result.data
-		filterData(newData);
-		// setData(newData);
-		setLoading(false);
-	}
-
-	// switch (tabTxt) {
-	// 	case "숙박":
-	// 		// select = "";
-	// 		console.log("숙");
-	// 		break;
-	// 	case "맛집":
-	// 		// select = "/com";
-	// 		console.log("맛");
-	// 		break;
-	// 	case "관광":
-	// 		// select = "/com";
-	// 		console.log("관");
-	// 		break;
-	// }
-
+	
 	const height = () => {
 		const totalItems = document.getElementsByClassName(`${style.total_item}`);
 
@@ -58,21 +35,18 @@ function TotalList({ tabTxt }) {
 			}
 		}
 	}
-
-	useEffect(() => {
-		getData();
-		height();
-		// tabText = "숙소"
-	}, [])
 	
-
-	// useEffect(() => {
-	// 	getData();
-	// },[getData])
-
+	useEffect(() => {
+		if(newData.length){
+			filterData(newData);
+			setLoading(false);
+		}
+		height();
+		setNewData(totalData)
+	}, [totalData])
+	
 	if (loading) {
 		return <div><Loading /></div>;
-		// return <div>로딩 중...</div>;
 	}
 	return (
 		<>
@@ -81,31 +55,23 @@ function TotalList({ tabTxt }) {
 					tabTxt === "숙소"
 						? data.map((item, k) => (
 							<li className={style.total_item} key={k}>
-								<ListItem data={item} />
+								<ListItem data={item} searchedData={searchedData}/>
 							</li>
 						))
 						: (tabTxt === "맛집"
 							? data2.map((item, k) => (
 								<li className={style.total_item} key={k}>
-									<ListItem data={item} />
+									<ListItem data={item} searchedData={searchedData}/>
 								</li>
 							))
 							: data3.map((item, k) => (
 								<li className={style.total_item} key={k}>
-									<ListItem data={item} />
+									<ListItem data={item} searchedData={searchedData}/>
 								</li>
 							))
 						)
 				}
-				{/* <li className={style.total_item}>
-					<ListItem />
-				</li>
-				<li className={style.total_item}>
-					<ListItem />
-				</li>
-				<li className={style.total_item}>
-					<ListItem />
-				</li> */}
+				
 			</ul>
 
 			
