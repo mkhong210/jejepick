@@ -107,6 +107,8 @@ function TotalList({ tabTxt }) {
 					<ListItem />
 				</li> */}
 			</ul>
+
+			
 		</>
 	)
 }

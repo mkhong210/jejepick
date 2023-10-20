@@ -8,11 +8,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
-import CourseMake from '../course-make/page.js';
-import Heart from "@/app/components/Heart";
 import ListItem from "@/app/components/list/ListItem";
 import Loading from "@/app/components/loading/Loading";
-
+import { useRouter } from "next/navigation";
+import { Router } from "next/router";
 
 function page() {
 
@@ -23,9 +22,13 @@ function page() {
 	const [apiData, setApiData] = useState([]); // 마커 관련
 	/* -------------------------------------------- */
 	const [localx,setLocalx] =useState(null);
-	const loginID = window.localStorage.getItem('loginId'); 
+	const [loginID,setloginID]=useState('');
 	const [JejuData,setJejuData]=useState([]);
 	/* -------------------------------------------- */
+	useEffect(()=>{
+		const loginID = window.localStorage.getItem('loginId');
+		setloginID(loginID)
+	},[loginID])
 	
 
 	const filterData = (data) => {
@@ -36,22 +39,13 @@ function page() {
 		setData2(filteredData2);
 		setData3(filteredData3);
 	};
-	
-	/* const filterData = (data) => {
-		const filteredData1 = data.filter(item => item.contentscd.label === '숙박');
-		const filteredData2 = data.filter(item => item.contentscd.label === '관광지');
-		const filteredData3 = data.filter(item => item.contentscd.label === '음식점');
-		
-		setData(filteredData1); // 숙박 관련 데이터 저장
-		setData2(filteredData2); // 관광지 관련 데이터 저장
-		setData3(filteredData3); // 음식점 관련 데이터 저장
-	}; */
+
 	async function getData() {
-		//const result = await axios.get('/api/visit');
-		//const newData = result.data	
-		//filterData(newData); 		//3가지로 필터링 하기 위한 데이터
-		//setApiData(newData);		//지도 위치 데이터
-		setLoading(false);			//그냥 로딩
+		const result = await axios.get('/api/visit');
+		const newData = result.data
+		filterData(newData);
+		setApiData(newData);
+		setLoading(false);
 	}
 
 	/* --데이터 필터링 요청-- */
@@ -87,7 +81,7 @@ function page() {
 					function createMarkerImage(imageUrl) {
 						return new window.kakao.maps.MarkerImage(
 								imageUrl,
-								new window.kakao.maps.Size(20, 20), // 마커 이미지 크기
+								new window.kakao.maps.Size(30, 30), // 마커 이미지 크기
 							{ offset: new window.kakao.maps.Point(15, 30) } // 마커 이미지의 중심 좌표 설정
 						);
 					}
@@ -145,21 +139,23 @@ function page() {
 		if(JejuData && localx){ //전체데이터와 찜한데이터가 있다면
 			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
 			const filtercontentsid=JejuData.filter((item)=>localxContentsIds.includes(item.contentsid))
-			console.log(filtercontentsid);
+			// console.log(worldofwarcraft);
 			// filterData(filtercontentsid);
-			// return filtercontentsid;
 			// setA(filtercontentsid)
-
-			// console.log(filtercontentsid); 
+			
 			filterData(filtercontentsid); 
 			setApiData(filtercontentsid);
+
 		}
 	},[JejuData,localx])
-/* ------------------------------- */
+	/* ------------------------------- */
+
+	const moveList = () => {
+		Router.push("/pages/list");
+	}
 
 	if (loading) {
 		return <div><Loading /></div>;
-		// return <div>로딩중</div>;
 	}
 	return (
 		<>
@@ -190,7 +186,8 @@ function page() {
 						className={style.api_pic_list}>
 						
 						
-						{data.map((item) => (
+						{data.length?
+						data.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
 								<ListItem data={item} />
 								{/* {
@@ -213,7 +210,10 @@ function page() {
 										<img className={style.api_pic} src={item?.repPhoto?.photoid?.thumbnailpath} alt=""/>
 								</a> 여기는 API 불러온 데이터 부분 */}
 							</SwiperSlide>
-						))}
+						)):
+						(
+							<p onClick={moveList} className={style.heartlistnone}>찜하러 가기</p>
+						)}
 					</Swiper>
 
 				</div>
@@ -232,11 +232,15 @@ function page() {
 						}}
 						modules={[FreeMode, Pagination]}
 						className={style.api_pic_list}>
-						{data3.map((item) => (
+						{data3.length?
+						data3.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
 								<ListItem data={item} />
 							</SwiperSlide>
-						))}
+						)):(
+							<p onClick={moveList} className={style.heartlistnone}>찜하러 가기</p>
+						)
+						}
 					</Swiper>
 				</div>
 
@@ -256,11 +260,15 @@ function page() {
 						modules={[FreeMode, Pagination]}
 						className={style.api_pic_list}>
 						
-						{data2.map((item) => (
+						{
+						data2.length?
+						data2.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
 								<ListItem data={item} />
 							</SwiperSlide>
-						))}
+						)):(
+							<p onClick={moveList} className={style.heartlistnone}>찜하러 가기</p>
+						)}
 					</Swiper>
 				</div>
 			</div>

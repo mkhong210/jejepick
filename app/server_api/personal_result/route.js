@@ -12,7 +12,6 @@ export async function GET(req){
     
     const [data] = await queryExecute('SELECT * from tendency_table WHERE profile=?' , [profile])
     
-    console.log(data);
     if (!data){
         return Response.json(100);
     }else{

@@ -17,6 +17,29 @@
 .list_wrap {
 }
 
+// 코스 만들기 버튼
+
+.course_btn{
+    width: 100%;   
+    display: flex;
+    justify-content: center;
+	align-items: center;
+    pointer-events: cursor;
+	margin-top: 50px;
+}
+.course_btn > p {
+	width: 30%; 
+	display: flex;
+    justify-content: center;
+	align-items: center;
+	border: 0px, solid transparent;
+    border-radius: 30px;
+    height: 30px;
+    background-color: rgb(255,235,134);
+}
+
+
+
 // comp courseitem
 .item_wrap {
 	background-color: #fff;
@@ -27,6 +50,7 @@
 	align-items: center;
 	position: relative;
 	margin: 20px auto;
+	width:100%;
 	.txt {
 		font-size: 1.6rem;
 		margin-left: 20px;
@@ -38,7 +62,7 @@
 		margin-left: 20px;
 		font-weight: 500;
 		position: absolute;
-		top: 50%;
+		top: 0;
 		right: 20px;
 		transform: translateY(-50%);
 	}
