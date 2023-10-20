@@ -14,8 +14,6 @@ function Context({ children }) {
 	const [jim, setJim] = useState([]);
 	const [isStatus,setIsStatus] =useState(false);
 
-
-
 	// if(window.localStorage){
 	// 	const loginID = window.localStorage.getItem('loginId');
 	// 	console.log(loginID);
