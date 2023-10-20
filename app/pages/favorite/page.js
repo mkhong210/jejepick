@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import React from 'react'
 import style from './favorite.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,6 +12,7 @@ import ListItem from "@/app/components/list/ListItem";
 import Loading from "@/app/components/loading/Loading";
 import { useRouter } from "next/navigation";
 import { Router } from "next/router";
+import { MyContext } from "@/app/components/Context";
 
 function page() {
 
@@ -24,6 +25,7 @@ function page() {
 	const [localx,setLocalx] =useState(null);
 	const [loginID,setloginID]=useState(null);
 	const [JejuData,setJejuData]=useState([]);
+	const {isStatus,setIsStatus} = useContext(MyContext);
 	/* -------------------------------------------- */
 	
 	/* useEffect(() => {
@@ -135,7 +137,7 @@ function page() {
 		axios.get(`/server_api/item?profile=${loginID}`)
 		.then((response)=>{console.log(response);setLocalx(response.data);})
 		.catch((error)=>{console.log('Error:'.error)});
-	},[loginID])
+	},[loginID,isStatus])
 
 	useEffect(()=>{
 		if(JejuData.length && localx){ //전체데이터와 찜한데이터가 있다면
@@ -192,25 +194,6 @@ function page() {
 						data.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
 								<ListItem data={item} />
-								{/* {
-									localx?.map((item,index)=>(
-										
-										<div key={index}>
-											<p>{item.contentsid}</p>
-										</div>
-										
-									)
-									)
-								} */}
-								{/* <a className={style.api_pic_list}>
-									<div className={style.api_explain}>
-										<p className={style.api_explain_title}>{item.title}</p>
-										<Heart itemId={item.contentsid}/>
-									</div>
-									<p className={style.api_pic_grad}>
-									</p>
-										<img className={style.api_pic} src={item?.repPhoto?.photoid?.thumbnailpath} alt=""/>
-								</a> 여기는 API 불러온 데이터 부분 */}
 							</SwiperSlide>
 						)):
 						(

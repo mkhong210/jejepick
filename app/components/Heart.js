@@ -36,6 +36,8 @@ function Heart({dataId}) {
 
 	
 
+	
+
 	const heartclick = (e) => {
 		e.preventDefault();
 		const loginID = window.localStorage.getItem('loginId');
@@ -52,17 +54,16 @@ function Heart({dataId}) {
 			}
 			else {
 				axios.delete(`/server_api/item`, { data: { profile: loginID, contentsid: itemId } })
-					.then((response) => {
-						
-						alert("찜목록에서 제거되었습니다.")
-						setIsSelected(false);
-						setImageSrc("/asset/common/Icon_favorite.svg");
-					})
-					.catch((error) => { console.log('Error:'.error) });
+				.then((response) => {
+					
+					alert("찜목록에서 제거되었습니다.")
+					setIsSelected(false);
+					setImageSrc("/asset/common/Icon_favorite.svg");
+					setIsStatus(!isStatus);
+				})
+				.catch((error) => { console.log('Error:'.error) });
 			}
-			
 		}
-		setIsStatus(!isStatus);
 	}
 
 	return (
