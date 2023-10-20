@@ -9,9 +9,9 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
 import ListItem from "@/app/components/list/ListItem";
-import Loading from "@/app/components/loading/Loading";
 import { useRouter } from "next/navigation";
 import { Router } from "next/router";
+import Loading from "@/app/components/loading/Loading";
 import { MyContext } from "@/app/components/Context";
 
 function page() {
@@ -159,7 +159,7 @@ function page() {
 		router.push("/pages/list");
 	}
 	if (loading) {
-		return <div><Loading /></div>;
+		return <div><Loading/></div>;
 	}
 	return (
 		<>

@@ -4,6 +4,9 @@
   width: 100%;
   margin: 0 auto;
   background-color: white;
+  main{
+    height: 100vh;
+  }
 }
 .inner {
   max-width: 640px;
@@ -37,7 +40,7 @@ h3 {
 
 body {
 	position: relative;
-	background-color: ivory;
+  background-color: #ecf8fe;
 }
 body::after {
 	transform: rotate(4deg);

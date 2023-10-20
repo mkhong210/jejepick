@@ -5,7 +5,7 @@ import List from "@/app/components/list/List";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { MyContext } from "./Context";
-import Loading from "./loading/Loading";
+import LoadingComp from "./loading/LoadingComp";
 
 export default function BestList () {
   const router = useRouter();
@@ -106,7 +106,7 @@ export default function BestList () {
     }
     
     if (loading) {
-      return <div><Loading /></div>;
+      return <div><LoadingComp /></div>;
     }
     
     return (
