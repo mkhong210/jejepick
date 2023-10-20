@@ -300,7 +300,7 @@ function page() {
 								</input>
 							
 							
-							<div>
+							<div className={style.modal_allign}>
 								{selectedItems.map((item, index) => (
 									
 									<React.Fragment key={item.contentsid}>
@@ -311,7 +311,7 @@ function page() {
 									</React.Fragment>
 									
 								))}
-									<button>
+									<button className={style.modal_btn}>
 										
 										코스 저장
 										

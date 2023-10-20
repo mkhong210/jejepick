@@ -16,20 +16,19 @@ function CouseItem({ item,setData }) {
 
 
 	return (
-		<>
+		<div className={style.whole}>
 			<button className={style.item_wrap} onClick={()=>{
 				router.push(`../../pages/course-list/detail?name=${item.coursename}&id=${item.item_id}`)
 			}}>
 				<img src='/asset/image/map/ICON_yellow_pin.svg' alt='yellow pin' />
 				<p className={style.txt}>{item.coursename}</p>
 			</button>
-			
 
 			<button className={style.del_btn} onClick={()=>{handleDelete(item.num)}}>
 				삭제
 			</button>
 		
-		</>
+		</div>
 		
 	);
 	}

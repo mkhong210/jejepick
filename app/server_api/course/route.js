@@ -13,7 +13,6 @@ export async function GET(req){
     console.log(profile);
     
     const data = await queryExecute('SELECT * from coursetable where profile=?',[profile]);
-    //데이터를 가져옴 , 스키마이름 ,테이블이름(jejumembership) 꼭확인!!! 제발!!!!
     return Response.json(data);
 }
 
@@ -21,7 +20,8 @@ export async function GET(req){
 export async function DELETE(req){
     
     const num=req.nextUrl.searchParams.get('num');
+    const profile=req.nextUrl.searchParams.get('profile');
     const data = await queryExecute('DELETE from coursetable where  num=? ',[num]);
-    const getData = await queryExecute('select * from coursetable');
+    const getData = await queryExecute('select * from coursetable where num=? && profile=?',[num, profile]);
     return Response.json(getData);
 }

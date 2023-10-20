@@ -10,7 +10,6 @@ import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
 import ListItem from "@/app/components/list/ListItem";
 import Loading from "@/app/components/loading/Loading";
-import { useRouter } from "next/navigation";
 import { Router } from "next/router";
 import { MyContext } from "@/app/components/Context";
 
@@ -23,16 +22,16 @@ function page() {
 	const [apiData, setApiData] = useState([]); // 마커 관련
 	/* -------------------------------------------- */
 	const [localx,setLocalx] =useState(null);
-	const [loginID,setloginID]=useState(null);
+	const [loginID,setloginID]=useState('');
 	const [JejuData,setJejuData]=useState([]);
 	const {isStatus,setIsStatus} = useContext(MyContext);
 	/* -------------------------------------------- */
 	
-	/* useEffect(() => {
-		if(typeof window !== 'undefined') {
-			setloginID(loginID);
-		}
-	}, [loginID]) */
+	//  useEffect(() => {
+	// 	if(typeof window !== 'undefined') {
+	// 		setloginID(loginID);
+	// 	}
+	// }, [loginID]) 
 	const Login1 =()=>{
 		const a = localStorage.getItem('loginId');
 		console.log(a);
@@ -154,7 +153,7 @@ function page() {
 		}
 	},[JejuData,localx])
 	/* ------------------------------- */
-	const router = useRouter();
+	/* const router = useRouter(); */
 	const moveList = () => {
 		router.push("/pages/list");
 	}

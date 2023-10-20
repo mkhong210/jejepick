@@ -75,14 +75,17 @@
 		margin-left: 20px;
 		font-weight: 600;
 	}
-	.del_btn {
-		color: #F88561;
-		font-size: 1.6rem;
-		margin-left: 20px;
-		font-weight: 500;
-		position: absolute;
-		top: 0;
-		right: 20px;
-		transform: translateY(-50%);
-	}
+}
+.whole{
+	position:relative;
+}
+
+.del_btn {
+	color: #F88561;
+	font-size: 1.6rem;
+	font-weight: 500;
+	position: absolute;
+	top: 35px;
+	right: 30px;
+	transform: translateY(-50%);
 }

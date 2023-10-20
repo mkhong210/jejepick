@@ -179,6 +179,7 @@
 
 .modal_title{
     display: flex;
+    margin-bottom: 20px;
     
 }
 .modal_title > h2{
@@ -186,12 +187,13 @@
 }
 .modal_title > button{
     font-size: 20px;
+    width:25px;
     background-color: rgb(255,235,134);
     display:flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50;
-    border: 0px solid transparent;
+    border-radius: 50%;
+    border: 1px solid transparent;
     position: absolute;
     right: 8%;
 }
@@ -203,8 +205,26 @@
 }
 
 .modal_itemlist{
-    margin-top: 10px;
-    margin-right: 100px;
+    font-size: 16px;
+    padding-top:10px;
+}
+.modal_allign{
+    display: flex;
+    justify-content: center;
+	align-items: center;
+    flex-direction: column;
+}
+.modal_btn{
+    margin-top: 20px;
+    width: 30%; 
+	display: flex;
+    justify-content: center;
+	align-items: center;
+	border: 0px, solid transparent;
+    border-radius: 30px;
+    height: 30px;
+    background-color: rgb(255,235,134);
+
 }
 
 
