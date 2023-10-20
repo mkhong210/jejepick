@@ -9,9 +9,13 @@ import { MyContext } from "../../components/Context";
 function page() {
 
   const [data, setData] = useState([]);
-  const loginID =localStorage.getItem('loginId');
+  const [loginID,setloginID]=useState('');
   const {setTestResultValue} = useContext(MyContext);
   
+	useEffect(()=>{
+		const loginID = window.localStorage.getItem('loginId');
+		setloginID(loginID)
+	},[loginID])
 
 
   useEffect(() => {

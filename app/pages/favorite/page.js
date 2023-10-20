@@ -1,18 +1,16 @@
 "use client";
 
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import React from 'react'
 import style from './favorite.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
-import CourseMake from '../course-make/page.js';
-import Heart from "@/app/components/Heart";
 import ListItem from "@/app/components/list/ListItem";
 import Loading from "@/app/components/loading/Loading";
-import { MyContext } from "@/app/components/Context";
+import { Router } from "next/router";
 
 
 function page() {
@@ -24,9 +22,13 @@ function page() {
 	const [apiData, setApiData] = useState([]); // 마커 관련
 	/* -------------------------------------------- */
 	const [localx,setLocalx] =useState(null);
-	const loginID = window.localStorage.getItem('loginId'); 
+	const [loginID,setloginID]=useState('');
 	const [JejuData,setJejuData]=useState([]);
 	/* -------------------------------------------- */
+	useEffect(()=>{
+		const loginID = window.localStorage.getItem('loginId');
+		setloginID(loginID)
+	},[loginID])
 	
 
 	const filterData = (data) => {
@@ -37,16 +39,7 @@ function page() {
 		setData2(filteredData2);
 		setData3(filteredData3);
 	};
-	
-	/* const filterData = (data) => {
-		const filteredData1 = data.filter(item => item.contentscd.label === '숙박');
-		const filteredData2 = data.filter(item => item.contentscd.label === '관광지');
-		const filteredData3 = data.filter(item => item.contentscd.label === '음식점');
-		
-		setData(filteredData1); // 숙박 관련 데이터 저장
-		setData2(filteredData2); // 관광지 관련 데이터 저장
-		setData3(filteredData3); // 음식점 관련 데이터 저장
-	}; */
+
 	async function getData() {
 		const result = await axios.get('/api/visit');
 		const newData = result.data
@@ -88,7 +81,7 @@ function page() {
 					function createMarkerImage(imageUrl) {
 						return new window.kakao.maps.MarkerImage(
 								imageUrl,
-								new window.kakao.maps.Size(20, 20), // 마커 이미지 크기
+								new window.kakao.maps.Size(30, 30), // 마커 이미지 크기
 							{ offset: new window.kakao.maps.Point(15, 30) } // 마커 이미지의 중심 좌표 설정
 						);
 					}
@@ -157,11 +150,12 @@ function page() {
 	},[JejuData,localx])
 	/* ------------------------------- */
 
-	
+	const moveList = () => {
+		router.push("/pages/list");
+	}
 
 	if (loading) {
 		return <div><Loading /></div>;
-		// return <div>로딩중</div>;
 	}
 	return (
 		<>
@@ -192,7 +186,8 @@ function page() {
 						className={style.api_pic_list}>
 						
 						
-						{data.map((item) => (
+						{data.length?
+						data.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
 								<ListItem data={item} />
 								{/* {
@@ -215,7 +210,10 @@ function page() {
 										<img className={style.api_pic} src={item?.repPhoto?.photoid?.thumbnailpath} alt=""/>
 								</a> 여기는 API 불러온 데이터 부분 */}
 							</SwiperSlide>
-						))}
+						)):
+						(
+							<p onClick={moveList} className={style.heartlistnone}>찜하러 가기</p>
+						)}
 					</Swiper>
 
 				</div>
@@ -234,11 +232,15 @@ function page() {
 						}}
 						modules={[FreeMode, Pagination]}
 						className={style.api_pic_list}>
-						{data3.map((item) => (
+						{data3.length?
+						data3.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
 								<ListItem data={item} />
 							</SwiperSlide>
-						))}
+						)):(
+							<p onClick={moveList} className={style.heartlistnone}>찜하러 가기</p>
+						)
+						}
 					</Swiper>
 				</div>
 
@@ -258,11 +260,15 @@ function page() {
 						modules={[FreeMode, Pagination]}
 						className={style.api_pic_list}>
 						
-						{data2.map((item) => (
+						{
+						data2.length?
+						data2.map((item) => (
 							<SwiperSlide className={style.api_pic_whole} key={item.contentsid}>
 								<ListItem data={item} />
 							</SwiperSlide>
-						))}
+						)):(
+							<p onClick={moveList} className={style.heartlistnone}>찜하러 가기</p>
+						)}
 					</Swiper>
 				</div>
 			</div>
