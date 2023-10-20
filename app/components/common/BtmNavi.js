@@ -34,7 +34,7 @@ function BtmNavi() {
 				<li className={style.footer_item}>
 					<Link href='/pages/list'>
 						<img src='/asset/common/Icon_list.svg' />
-						<p>추천리스트</p>
+						<p>전체리스트</p>
 					</Link>
 				</li>
 				<li className={style.footer_item}>

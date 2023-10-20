@@ -9,11 +9,7 @@ import Loading from "./loading/Loading";
 
 export default function BestList () {
   const router = useRouter();
-    const listmove = (e) => {
-      router.push("/pages/list");
-    }
-
-  const [loginID,setloginID]=useState('');
+  
   const [aaa, setAaa] = useState({ data1: null, data2: null });
   const {testResultValue} = useContext(MyContext);
   
@@ -28,10 +24,12 @@ export default function BestList () {
     setLoading(false);
   }
   
-  useEffect(()=>{
-    const loginID = window.localStorage.getItem('loginId');
-    setloginID(loginID)
-  },[loginID])
+  let loginID;
+  
+	if(typeof window !== 'undefined'){
+    loginID = localStorage.getItem('loginId')
+	}
+  
   useEffect(() => {
     getData();
   }, [])
@@ -41,7 +39,7 @@ export default function BestList () {
     if (loginID) {
       axios.get(`/server_api/ja?id=${loginID}`)
       .then((response) => {
-          setAaa((prevData) => ({
+        setAaa((prevData) => ({
             ...prevData,
             data1: response.data,
           }));
@@ -51,12 +49,12 @@ export default function BestList () {
         });
       }
     }, [loginID]);
-
-  // 두 번째 요청(성향테스트결과)
-  useEffect(() => {
-    if (loginID) {
-      axios.get(`/server_api/jaresult?profile=${loginID}`)
-      .then((response) => {
+    
+    // 두 번째 요청(성향테스트결과)
+    useEffect(() => {
+      if (loginID) {
+        axios.get(`/server_api/jaresult?profile=${loginID}`)
+        .then((response) => {
           setAaa((prevData) => ({
             ...prevData,
             data2: response.data,
@@ -91,7 +89,7 @@ export default function BestList () {
         }
       }
       // console.log(bestlist);
-
+      
       if (Array.isArray(parsedProfileData.tag)) {
         tags = parsedProfileData.tag.map(tag => tag.trim());
       } else if (typeof parsedProfileData.tag === 'string') {
@@ -102,9 +100,13 @@ export default function BestList () {
       
       
     }
-
+    
+    const listmove = (e) => {
+      router.push("/pages/list");
+    }
+    
     if (loading) {
-        return <div><Loading /></div>;
+      return <div><Loading /></div>;
     }
     
     return (

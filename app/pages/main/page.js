@@ -10,11 +10,12 @@ import axios from "axios";
 
 function page() {
 	const { status, setHeadStatus, setBtmStatus } = useContext(MyContext);
-	const [loginID,setloginID]=useState('');
-	useEffect(()=>{
-		const loginID = window.localStorage.getItem('loginId');
-		setloginID(loginID)
-	},[loginID])
+	
+	let loginID;
+
+	if(typeof window !== 'undefined'){
+		loginID = localStorage.getItem('loginId')
+	}
 	
 	useEffect(() => {
 		setHeadStatus(false);

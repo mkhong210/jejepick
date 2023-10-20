@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { MyContext } from '@/app/components/Context';
 import ListItem from '@/app/components/list/ListItem';
+import CourseList from '@/app/components/course/CourseList';
 
 function page() {
 	const { status, headStatus, setHeadStatus, btmStatus, setBtmStatus } = useContext(MyContext);
@@ -12,32 +13,22 @@ function page() {
 	const router = useRouter();
 	const [localx, setLocalx] = useState(null);
 	const [JejuData, setJejuData] = useState([]);
-	const [loginID,setloginID]=useState('');
 	const [wow, setWOW] = useState([]);
 	//로컬아이디
 	//성향,이름 데이터
 	const [aaa, setAaa] = useState({ data1: null, data2: null });
 	
-	// console.log(aaa);
+	let loginID;
+
+	if(typeof window !== 'undefined'){
+		loginID = localStorage.getItem('loginId')
+	}
 	
 	useEffect(() => {
-		const loginID = window.localStorage.getItem('loginId');
-		setloginID(loginID)
 		setHeadStatus(true);
 		setBtmStatus(false);
 		status();
-		// const header = document.getElementsByClassName('hidden');
-		// const status = header[0];
-		// if(status){
-		// 	console.log(main)
-		// 	main.classList.remove('no')
-		// 	main.classList.add('on')
-		// } else {
-		// 	main.classList.remove('on')
-		// 	main.classList.add('no')
-		// }
-
-	}, [loginID]);
+	}, []);
 
 	const logOut = () => {
 		localStorage.removeItem('loginId');
@@ -55,6 +46,7 @@ function page() {
 	// 첫 번째 요청 (로그인내용)
 	useEffect(() => {
 		if (loginID) {
+			loginID&&
 			axios.get(`/server_api/ja?id=${loginID}`)
 				.then((response) => {
 					setAaa((prevData) => ({
@@ -71,6 +63,7 @@ function page() {
 	// 두 번째 요청(성향테스트결과)
 	useEffect(() => {
 		if (loginID) {
+			loginID&&
 			axios.get(`/server_api/jaresult?profile=${loginID}`)
 				.then((response) => {
 					setAaa((prevData) => ({
@@ -121,6 +114,7 @@ function page() {
 
 	/* --서버 데이터 요청-- */
 	useEffect(() => {
+		loginID&&
 		axios.get(`/server_api/item?profile=${loginID}`)
 			.then((response) => { setLocalx(response.data); })
 			.catch((error) => { console.log('Error:'.error) });
@@ -202,7 +196,7 @@ function page() {
 				</div>
 				<div className={style.mypagecon2}>
 					<ul className={style.cont2_wrap}>
-						{wow ? 
+						{wow.length ? 
 							limitWow.map((item) => (
 								<li className={style.con2_item}>
 									<ListItem data={item}  />
@@ -219,6 +213,7 @@ function page() {
 					<p onClick={moveCourseList}>더보기</p>
 				</div>
 				<div className={style.mypagecon3}>
+					<CourseList />
 					<div onClick={moveCourseMake} className={style.corselistnone}>
 						추가+
 					</div>

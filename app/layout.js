@@ -15,6 +15,8 @@ export default function RootLayout({ children }) {
 			<head>
 				<title>JEJEPICK</title>
 				<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" rel="stylesheet" type="text/css" />
+				<link rel="icon" type="image/png" href="/asset/common/favicon-32x32.png" sizes="32x32" />
+				<link rel="icon" type="image/png" href="/asset/common/favicon-16x16.png" sizes="16x16" />
 			</head>
 			<body>
 				

@@ -7,15 +7,15 @@ import resultdb from "../../../testdb/result.json"
 import axios from 'axios';
 
 function page() {
-
 	const [num, setNum] = useState(0);
 	const [state,setState] = useState(false);
 	const router = useRouter();
 	const {testResultValue} = useContext(MyContext);
 	const [jsondata, setJsondata] = useState(resultdb);
+	
 	let loginID;
 
-	if(window){
+	if(typeof window !== 'undefined'){
 		loginID = localStorage.getItem('loginId')
 	}
 
