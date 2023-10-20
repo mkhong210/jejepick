@@ -5,23 +5,44 @@ import List from '@/app/components/list/List';
 import TotalList from '@/app/components/list/TotalList';
 import { MyContext } from '@/app/components/Context';
 import commonfalse from '@/app/components/common/commonfalse';
+import axios from 'axios';
+import SearchList from '@/app/components/list/SearchList';
+
 
 function Page() {
 	const { setHeadStatus, setBtmStatus } = useContext(MyContext);
 	const [tabTxt, setTabTxt] = useState("숙소");
-	
-	// 검색 창
-	function searchBox(e) {
-		e.preventDefault();
-		let sText = e.target.children[0].value;
-		// console.log(sText);
-		e.target.children[0].value = '';
+	const [totalData, setTotalData] = useState([]);
+	const [searchedData, setSearchedlData] = useState([]);
+	const [state, setState] = useState(true);
 
-		const tab = document.getElementById('tabMenu');
-		// console.log(tab)
-		tab.classList.add('hidden')
+	async function getData() {
+		const result = await axios.get('/api/visit');
+		const newData = result.data;
+		setTotalData(newData);
+		
 	}
+	// 검색 창
+	async function searchBox(e) {
+		if (searchedData.length){
+			e.preventDefault();
+			setState(false);
+			let sText = e.target.children[0].value;
+			e.target.children[0].value = '';
+			console.log(sText);
+			let searchData = totalData.filter(data=>data.title.includes(sText));
+			console.log(searchData);
 
+			setSearchedlData(searchData);
+
+			const tab = document.getElementById('tabMenu');
+			tab.classList.add('hidden')
+		
+		}else{
+			alert('검색결과가 없습니다.')
+		}
+	}
+	console.log(searchedData);
 	// 탭 메뉴
 	function tab_click() {
 		// const tabItem = document.querySelectorAll('.tab_list .tab_item')
@@ -43,7 +64,6 @@ function Page() {
 
 	const height = () => {
 		const totalItems = document.getElementsByClassName(`${style.list_item}`);
-		// console.log(totalItems)
 		
 		for (let i = 0; i < totalItems.length; i++) {
 			const item = totalItems[i];
@@ -62,8 +82,9 @@ function Page() {
 		tab_click();
 		height();
 		setTabTxt("숙소");
+		getData();
 	}, []);
-	// console.log(tabTxt) 
+	console.log(state);
 
 	return (
 		<>
@@ -78,14 +99,6 @@ function Page() {
 				</form>
 				<div className={style.tab_wrap} id='tabMenu'>
 					<ul className={style.tab_list}>
-						{/* {
-							tabList.map((v, k) => (
-								<li className={`${style.tab_item} ${style.active}`} onClick={tab_click} key={k}>
-									<img src='/asset/image/map/ICON_yellow_pin.svg' />
-									<p>{v}</p>
-								</li>
-							))
-						} */}
 						
 						<li className={`${style.tab_item} ${style.active}`}>
 							<img src='/asset/image/map/ICON_yellow_pin.svg' />
@@ -101,13 +114,14 @@ function Page() {
 						</li>
 					</ul>
 				</div>
-				{/* <div className={style.list_wrap}>
-					<h2>제제픽의 추천 리스트</h2>
-					<List />
-				</div> */}
+				
 				<div className={style.totallist_wrap}>
 					<h2>전체 여행 정보</h2>
-					<TotalList tabTxt={tabTxt}/>
+					{ state ? 
+						<TotalList tabTxt={tabTxt} totalData={totalData} searchedData={searchedData}/> 
+						:  
+						<SearchList searchedData={searchedData}/>
+					}
 				</div>
 			</div>
 		</>
