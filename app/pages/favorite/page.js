@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import React from 'react'
 import style from './favorite.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,6 +12,7 @@ import ListItem from "@/app/components/list/ListItem";
 import Loading from "@/app/components/loading/Loading";
 import { useRouter } from "next/navigation";
 import { Router } from "next/router";
+import { MyContext } from "@/app/components/Context";
 
 function page() {
 
@@ -24,6 +25,7 @@ function page() {
 	const [localx,setLocalx] =useState(null);
 	const [loginID,setloginID]=useState(null);
 	const [JejuData,setJejuData]=useState([]);
+	const {isStatus,setIsStatus} = useContext(MyContext);
 	/* -------------------------------------------- */
 	
 	/* useEffect(() => {
@@ -135,7 +137,7 @@ function page() {
 		axios.get(`/server_api/item?profile=${loginID}`)
 		.then((response)=>{console.log(response);setLocalx(response.data);})
 		.catch((error)=>{console.log('Error:'.error)});
-	},[loginID])
+	},[loginID,isStatus])
 
 	useEffect(()=>{
 		if(JejuData.length && localx){ //전체데이터와 찜한데이터가 있다면
