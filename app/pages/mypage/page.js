@@ -52,8 +52,6 @@ function page() {
 		router.push("/pages/personal-start");
 	}
 
-	console.log(data);
-
 	// 첫 번째 요청 (로그인내용)
 	useEffect(() => {
 		if (loginID) {
@@ -133,14 +131,12 @@ function page() {
 			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
 			const filtercontentsid = JejuData.filter((item) => localxContentsIds.includes(item.contentsid))
 
-			console.log(filtercontentsid);
 			setWOW(filtercontentsid);
 		}
 	}, [JejuData, localx])
 	/* ------------------------------- */
 
 	const limitWow = wow.slice(0, 3);
-	console.log(wow);
 
 	const moveFavorite = () => {
 		router.push("/pages/favorite");

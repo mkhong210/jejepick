@@ -8,72 +8,77 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Loading from "./loading/Loading";
 
+
 export default function Result() {
-  
-  const router = useRouter();
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+	
+	const [state, setState] = useState(false);
+	const router = useRouter();
+	const [data, setData] = useState([]);
+	const [loading, setLoading] = useState(true);
+	//성향,이름 데이터
+	const [aaa, setAaa] = useState({ data1: null });
+	const [myName, setMyName] = useState('')
+	let loginID;
 
-  //로컬아이디
-  const [loginID,setloginID]=useState('');
-  //성향,이름 데이터
-  const [aaa, setAaa] = useState({ data1: null, data2: null });
-  
-  let myName = null;
-  
-	useEffect(()=>{
-		const loginID = window.localStorage.getItem('loginId');
-		setloginID(loginID)
-	},[loginID])
-  // 첫 번째 요청 (로그인내용)
-	useEffect(() => {
-	  if (loginID) {
-		axios.get(`/server_api/ja?id=${loginID}`)
-		.then((response) => {
-			setAaa((prevData) => ({
-			  ...prevData,
-			  data1: response.data,
-			}));
-		  })
-		  .catch((error) => {
-			console.log('Error:', error);
-		  });
+	if(window){
+		loginID = localStorage.getItem('loginId')
+	}
+	
+	//성향테스트 결과테이블 불러와서 data에 넣기	
+	async function getData() {
+		if (loginID) {
+			const result = await axios.get(`/server_api/personal_result?profile=${loginID}`)
+			const newData = JSON.parse(result.data.contents);
+			setData(newData);
+			setLoading(false);
 		}
-	  }, [loginID]);
-	  
-	  if (aaa.data1 && aaa.data1.length > 0) {
-		    myName = aaa.data1[0].name;
-	  }
+	}
+	//제주멤버쉽 테이블 불러와서 aaa변수에 넣기
+	async function getData2() {
+		if (loginID) {
+			axios.get(`/server_api/ja?id=${loginID}`)
+				.then((response) => {
+					setAaa((prevData) => ({
+						...prevData,
+						data1: response.data,
+					}));
+					setState(true);
+				})
+				.catch((error) => {
+					console.log('Error:', error);
+				});
+			}
+	}
+	//위 두 함수 실행
+	useEffect(() => {
+		if (loginID) {
+			getData();
+			getData2();
+		}
+	}, [loginID])
+	//aaa에서 이름만 가져와서 myName에 넣기
+	useEffect(() => {
+		if (state) {
+			setMyName(aaa.data1[0].name) 
+		}
+	}, [state]);
 
-    async function getData() {
-      if (loginID) {
-        const result = await axios.get(`/server_api/personal_result?profile=${loginID}`)
-        const newData = JSON.parse(result.data.contents);
-        setData(newData);
-        setLoading(false);
-      }
-    }
+	const movePage = () => {
+		router.push('/pages/best-list')
+	}
 
-  useEffect(() => {
-    getData();
-  }, [])
-  
-  const movePage = ()=>{
-    router.push('/pages/best-list')
-  }
-  
-  if (loading) {
-    return <div><Loading /></div>;
-  }
+	if (loading) {
+		return <div><Loading /></div>;
+	}
 
-  return (
-    <>
-      <div className={style.testbefore}>
+	return (
+		<>
+			<div className={style.testbefore}>
 				<div className={style.testbeforeback}></div>
 				<div className={style.test + ` inner`}></div>
 				<div className={style.result}>
 					<div className={style.resulttop}>
-						<div>{myName}님의 여행타입은?</div>
+						<div>{myName} 님의 여행타입은?</div>
 						<div className={style.resultprofile}>
 							<div className={style.propen}>{data.tendency}</div>
 							<div className={style.resultimg}>
@@ -81,10 +86,10 @@ export default function Result() {
 							</div>
 							<div className={style.tag}>
 								{
-                  data.tag.map((v,k)=>(
-                    <span key={k}>{v}</span>
-                ))
-                }
+									data.tag.map((v, k) => (
+										<span key={k}>{v}</span>
+									))
+								}
 							</div>
 						</div>
 					</div>
@@ -92,13 +97,13 @@ export default function Result() {
 						<div className={style.resultcon}>
 							<div className={style.propencon}>
 								{
-                  data.contents.map((v,k)=>(
-                    <div key={k}>
-                      <img src='/asset/image/test/resultmarker.svg' />
-                      {v}
-                    </div>
-                ))
-                }
+									data.contents.map((v, k) => (
+										<div key={k}>
+											<img src='/asset/image/test/resultmarker.svg' />
+											{v}
+										</div>
+									))
+								}
 							</div>
 							<div className={style.mate}>
 								<div className={style.bestmate}>
@@ -117,6 +122,6 @@ export default function Result() {
 					</div>
 				</div>
 			</div>
-    </>
-  )
+		</>
+	)
 }

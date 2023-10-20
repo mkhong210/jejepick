@@ -1,10 +1,14 @@
+
+
+
+
 .LoginContents{
     max-width: 640px;
-    height: 100%;
+    height: 100vh;
     margin: 0 auto;
     .mainimage{
         text-align: center;
-        margin: 190px 0 10% 0;
+        padding: 190px 0 10% 0;
     }
     .loginform{
         .loginInput{
@@ -94,7 +98,7 @@
         margin: 0 auto;
         .mainimage{
             text-align: center;
-            margin: 190px 0 17% 0;
+            padding: 190px 0 17% 0;
         }
         .loginform{
             .loginInput{

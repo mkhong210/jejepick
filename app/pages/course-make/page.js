@@ -21,8 +21,15 @@ function page() {
 	const [selectedItems, setSelectedItems] = useState([]); // 선택 함수
 	const [isModalOpen, setIsModalOpen] = useState(false); // 모달 
 	const [selectedItemContent, setSelectedItemContent] = useState(''); //클릭한 아이템 내용들
+	const [loginID,setloginID]=useState('');
 	const router = useRouter();
 	const [modalTitle, setModalTitle] = useState('');
+	const [JejuData,setJejuData]=useState([]);
+	const [localx,setLocalx] =useState(null);
+	useEffect(()=>{
+		const loginID = window.localStorage.getItem('loginId');
+		setloginID(loginID)
+	},[loginID])
 
 
 	function openModal() {
@@ -99,7 +106,39 @@ function page() {
 	useEffect(() => {
 		getData();
 	}, [])
+	/* --비짓제주 api데이터 요청-- */
+	useEffect(()=>{
+		axios.get('/api/visit')
+		.then((response) => {
+			// 비짓제주에서 가져온 데이터를 setJejuData에 저장
+			setJejuData(response.data);
+		})
+	},[])
 
+	/* --서버 데이터 요청-- */
+	useEffect(()=>{
+		axios.get(`/server_api/item?profile=${loginID}`)
+		.then((response)=>{setLocalx(response.data);})
+		.catch((error)=>{console.log('Error:'.error)});
+	},[loginID])
+
+	useEffect(()=>{
+		if(JejuData && localx){ //전체데이터와 찜한데이터가 있다면
+			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
+			const filtercontentsid=JejuData.filter((item)=>localxContentsIds.includes(item.contentsid))
+			// console.log(worldofwarcraft);
+			// filterData(filtercontentsid);
+			// setA(filtercontentsid)
+			
+			filterData(filtercontentsid); 
+
+		}
+	},[JejuData,localx])
+	/* ------------------------------- */
+
+	const moveList = () => {
+		Router.push("/pages/list");
+	}
 	if (loading) {
 		return <div>로딩 중...</div>;
 	}
@@ -134,7 +173,8 @@ function page() {
 						className={style.api_pic_list}>
 
 							
-						{data.map((item) => (
+						{data.length?
+						data.map((item) => (
 							<SwiperSlide className={`${style.api_pic_whole} 
 							${selectedItems.some((selectedItem) => selectedItem.contentsid === item.contentsid) ? style.selectedItem : ''}`}
 							key={item.contentsid}>
@@ -153,7 +193,11 @@ function page() {
 								</a> {/* 여기는 API 불러온 데이터 부분 */}
 								
 							</SwiperSlide>
-						))}
+						)):
+						(
+							<p onClick={moveList} className={style.heartlistnone}>찜하러 가기</p>
+						)
+					}
 					</Swiper>
 
 				</div>
