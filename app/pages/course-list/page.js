@@ -1,10 +1,19 @@
 "use client"
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import style from './courseList.module.scss'
 import CourseList from '@/app/components/course/CourseList'
 import CourseBtn from '@/app/components/course/CourseBtn'
+import { MyContext } from '@/app/components/Context'
+import commonfalse from '@/app/components/common/commonfalse'
 
 function page() {
+	const { setHeadStatus, setBtmStatus } = useContext(MyContext);
+	
+	useEffect(() => {
+		setHeadStatus(false);
+		setBtmStatus(false);
+		commonfalse();
+	}, [])
 	
 	return (
 		<div className={style.main}>
