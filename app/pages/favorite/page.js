@@ -13,6 +13,8 @@ import Loading from "@/app/components/loading/Loading";
 import { useRouter } from "next/navigation";
 import { Router } from "next/router";
 import { MyContext } from "@/app/components/Context";
+import Link from "next/link";
+import commonfalse from "@/app/components/common/commonfalse";
 
 function page() {
 
@@ -25,17 +27,11 @@ function page() {
 	const [localx,setLocalx] =useState(null);
 	const [loginID,setloginID]=useState('');
 	const [JejuData,setJejuData]=useState([]);
-	const {isStatus,setIsStatus} = useContext(MyContext);
+	const {setHeadStatus, setBtmStatus, isStatus,setIsStatus} = useContext(MyContext);
 	/* -------------------------------------------- */
 	
-	//  useEffect(() => {
-	// 	if(typeof window !== 'undefined') {
-	// 		setloginID(loginID);
-	// 	}
-	// }, [loginID]) 
 	const Login1 =()=>{
 		const a = localStorage.getItem('loginId');
-		console.log(a);
 		setloginID(a)
 	}
 
@@ -59,6 +55,9 @@ function page() {
 
 	/* --데이터 필터링 요청-- */
 	useEffect(() => {
+		setHeadStatus(false);
+		setBtmStatus(false);
+		commonfalse();
 		getData();
 		Login1();
 	}, [])
@@ -144,8 +143,6 @@ function page() {
 			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
 			const filtercontentsid=JejuData.filter((item)=>localxContentsIds.includes(item.contentsid))
 			
-			console.log(localx);
-			
 			filterData(filtercontentsid); 
 			setApiData(filtercontentsid);
 			
@@ -195,7 +192,7 @@ function page() {
 							</SwiperSlide>
 						)):
 						(
-							<p onClick={moveList} className={style.heartlistnone}>찜하러 가기</p>
+							<Link href='/pages/list'  onClick={moveList} className={style.heartlistnone}>찜하러 가기</Link>
 						)}
 					</Swiper>
 
@@ -221,7 +218,7 @@ function page() {
 								<ListItem data={item} />
 							</SwiperSlide>
 						)):(
-							<p onClick={moveList} className={style.heartlistnone}>찜하러 가기</p>
+							<Link href='/pages/list' onClick={moveList} className={style.heartlistnone}>찜하러 가기</Link>
 						)
 						}
 					</Swiper>
@@ -250,7 +247,7 @@ function page() {
 								<ListItem data={item} />
 							</SwiperSlide>
 						)):(
-							<p onClick={moveList} className={style.heartlistnone}>찜하러 가기</p>
+							<Link href='/pages/list' onClick={moveList} className={style.heartlistnone}>찜하러 가기</Link>
 						)}
 					</Swiper>
 				</div>

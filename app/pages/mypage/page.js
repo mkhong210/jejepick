@@ -216,7 +216,7 @@ function page() {
 				</div>
 				<div className={style.mypagecon3}>
 					<CourseList />
-					<CourseBtn />
+					<CourseBtn route={"/pages/course-make"}/>
 				</div>
 			</div>
 			<div onClick={logOut} className={style.logout}>로그아웃</div>

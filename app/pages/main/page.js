@@ -29,6 +29,7 @@ function page() {
 
 	const height = () => {
 		const totalItems = document.getElementsByClassName(`${style.contents_2_bestplacelist}`);
+		console.log(totalItems)
 		
 
 		for (let i = 0; i < totalItems.length; i++) {
@@ -165,7 +166,7 @@ function page() {
 					</div>
 					<div className={style.course_wrap}>
 						<CourseList />
-						<CourseBtn />
+						<CourseBtn route={"/pages/course-make"}/>
 					</div>
 				</div>
 			</div>
