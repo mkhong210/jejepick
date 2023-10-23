@@ -17,10 +17,11 @@ function Memberform() {
         });
         const userData  = response.data;
         //존재하는 아이디들을 배열로 추출
-        const a = userData.map(item => item.id); 
-        if (a.includes(account)) {
+        const user_id = userData.map(item => item.id); 
+        if (user_id.includes(account)) {
             setAccountMessage('중복된 아이디 입니다.');
             setAccountMessageStyle({ color: 'red' }); 
+            return;
         } 
         else {
             setAccountMessage('사용 가능한 아이디입니다.');
@@ -90,7 +91,21 @@ function Memberform() {
         const formdata =new FormData(e.target);
         const values=Object.fromEntries(formdata);
         axios.post('/server_api',values)
-   
+        if (accountMessageStyle.color === 'red') {
+            alert('중복된 아이디입니다. 다른 아이디를 입력해주세요.');
+            return;
+        }
+         // 비밀번호 제한 조건 확인
+        if (!ispassword) {
+            alert('비밀번호가 유효성 조건을 충족하지 않습니다. 비밀번호를 다시 입력해주세요.');
+            return;
+        }
+
+        // 비밀번호 확인
+        if (!isPasswordConfirm) {
+            alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
+            return;
+        }
         nv.push('./login');
     }
   return (
