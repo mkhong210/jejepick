@@ -16,10 +16,6 @@ function Heart({dataId}) {
 		setItemId(dataId);
 	}, [dataId])
 
-	/* const isSelected = (itemId) => {
-		return select.includes(itemId);
-	} */
-
 	useEffect(()=>{
 		const imageChange=async()=>{
 			const selected = jim.filter(j=>j.contentsid == dataId)
