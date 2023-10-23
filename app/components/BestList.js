@@ -104,10 +104,13 @@ export default function BestList () {
     const listmove = (e) => {
       router.push("/pages/list");
     }
-    
-    console.log(aaa, loginID)
+    // console.log(aaa, loginID)
 
-    if (loading && aaa.data2) {
+    // if (loading && aaa.data2) {
+    //   return <div><LoadingComp /></div>;
+    // }
+    
+    if (loading) {
       return <div><LoadingComp /></div>;
     }
     
