@@ -97,9 +97,7 @@ function Detail() {
       </div>
       <div className={style.contents_2}>
         <div className={style.contents_2_map + ` inner`}>
-          <div id="maps" style={{ width: "100%", height: "370px" }}>
-
-          </div>
+          {/* <div id="maps" style={{ width: "100%", height: "370px" }}></div> */}
         </div>
       </div>
     </>
