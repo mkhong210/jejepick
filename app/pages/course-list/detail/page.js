@@ -73,7 +73,7 @@ useEffect(()=>{
     */
     const kakaoMapScript = document.createElement('script')
     kakaoMapScript.async = false
-    kakaoMapScript.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=700d399006256f95732f06b19c046ba5&autoload=false`
+    kakaoMapScript.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=c528248b7e7766216d83483fea8e2360&autoload=false`
     document.head.appendChild(kakaoMapScript)
     
     let loadMap, _map;

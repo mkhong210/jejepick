@@ -105,7 +105,9 @@ export default function BestList () {
       router.push("/pages/list");
     }
     
-    if (loading) {
+    console.log(aaa, loginID)
+
+    if (loading && aaa.data2) {
       return <div><LoadingComp /></div>;
     }
     
