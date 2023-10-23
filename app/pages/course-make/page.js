@@ -37,6 +37,10 @@ function page() {
 
 	function openModal() {
 		setIsModalOpen(true);
+		// main.classList.add(style.open)
+		// const body = document.
+		const bodyElement = document.body;
+		bodyElement.classList.add(style.open)
 	}
 
 	function closeModal() {
@@ -262,7 +266,7 @@ function page() {
 						setModalTitle('');
 						setSelectedItemContent(selectedItems.map(item => item.title).join(', ')); openModal();
 					}}>
-					<p>코스만들기</p>
+					<p>코스 저장하기</p>
 				</button>
 			</div>
 			{isModalOpen && (
@@ -279,21 +283,19 @@ function page() {
 								placeholder="제목을 입력하세요"
 								className={style.search}
 								>
-								</input>
-														
+							</input>
 							<div className={style.modal_allign}>
 								{selectedItems.map((item, index) => (
 									<React.Fragment key={item.contentsid}>
 										<div className={style.modal_itemlist}>
-											{item.title}
+											<p className="item_num">{index+1}</p>
+											<p>{item.title}</p>
 											{index !== selectedItems.length - 1 && <br />} {/* 마지막 항목이 아닌 경우에만 줄 바꿈 추가 */}
 										</div>
 									</React.Fragment>
 								))}
 									<button className={style.modal_btn}>
-										
-										코스 저장
-										
+										<p>저장</p>
 									</button>
 								
 							</div>
