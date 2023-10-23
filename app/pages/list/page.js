@@ -29,9 +29,9 @@ function Page() {
 			setState(false);
 			let sText = e.target.children[0].value;
 			e.target.children[0].value = '';
-			console.log(sText);
+			// console.log(sText);
 			let searchData = totalData.filter(data=>data.title.includes(sText));
-			console.log(searchData);
+			// console.log(searchData);
 
 			setSearchedlData(searchData);
 
@@ -42,7 +42,7 @@ function Page() {
 			alert('검색결과가 없습니다.')
 		}
 	}
-	console.log(searchedData);
+	// console.log(searchedData);
 	// 탭 메뉴
 	function tab_click() {
 		// const tabItem = document.querySelectorAll('.tab_list .tab_item')
@@ -84,7 +84,7 @@ function Page() {
 		setTabTxt("숙소");
 		getData();
 	}, []);
-	console.log(state);
+	console.log(totalData);
 
 	return (
 		<>
