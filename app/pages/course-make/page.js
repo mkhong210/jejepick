@@ -48,6 +48,13 @@ function page() {
 		bodyElement.classList.remove(style.open)
 		bodyElement.classList.add(style.close)
 	}
+	function closeModal2() {
+		setIsModalOpen(false);
+		const bodyElement = document.body;
+		bodyElement.classList.remove(style.open)
+		bodyElement.classList.add(style.close)
+		router.push("/pages/course-list");
+	}
 
 	const insertFn = (e) => {
 		e.preventDefault();
@@ -132,6 +139,7 @@ function page() {
 	const moveList = () => {
 		router.push("/pages/list");
 	}
+
 
 	if (loading && !data.length && !data2.length && !data3.length) {
 		return <div><Loading /></div>;
@@ -288,10 +296,11 @@ function page() {
 										</div>
 									</React.Fragment>
 								))}
-									<button className={style.modal_btn}>
+								<div className={style.modal_btn_wrap}>
+									<button className={style.modal_btn} onClick={closeModal2}>
 										<p>저장</p>
 									</button>
-								
+								</div>
 							</div>
 						</form>
 					</div>
