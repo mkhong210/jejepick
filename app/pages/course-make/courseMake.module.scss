@@ -59,8 +59,13 @@
 		}
 	}
 }
+
+// 모달 창
 .open{
 	overflow: hidden;
+}
+.open{
+	overflow: visible;
 }
 .modal {
 	max-width: 640px;
@@ -86,6 +91,7 @@
 		justify-content: center;
 		align-items: center;
 	}
+	
 }
 
 .modal_content>input {

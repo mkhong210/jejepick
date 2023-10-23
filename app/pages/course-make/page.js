@@ -37,14 +37,16 @@ function page() {
 
 	function openModal() {
 		setIsModalOpen(true);
-		// main.classList.add(style.open)
-		// const body = document.
 		const bodyElement = document.body;
+		bodyElement.classList.remove(style.close)
 		bodyElement.classList.add(style.open)
 	}
-
+	
 	function closeModal() {
 		setIsModalOpen(false);
+		const bodyElement = document.body;
+		bodyElement.classList.remove(style.open)
+		bodyElement.classList.add(style.close)
 	}
 
 	const insertFn = (e) => {
