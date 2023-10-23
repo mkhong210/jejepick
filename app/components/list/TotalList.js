@@ -9,11 +9,15 @@ import Loading from '../loading/Loading';
 function TotalList({ tabTxt, totalData, searchedData}) {
 	// console.log(tabTxt);
 	// 데이터 불러오기
-	const [data, setData] = useState(); // 숙박/숙소
-	const [data2, setData2] = useState(); // 음식점/맛집
-	const [data3, setData3] = useState(); // 관광지/관광
+	
+	const [data, setData] = useState([]); // 숙박/숙소
+	const [data2, setData2] = useState([]); // 음식점/맛집
+	const [data3, setData3] = useState([]); // 관광지/관광
 	const [loading, setLoading] = useState(true);
-	const [newData, setNewData] = useState(totalData);
+	const [newData, setNewData] = useState([]);
+	
+
+
 
 	const filterData = (newData) => {
 		const filteredData1 = newData.filter(item => item.contentscd.label === '숙박');
@@ -22,6 +26,7 @@ function TotalList({ tabTxt, totalData, searchedData}) {
 		setData(filteredData1); // 숙박/숙소 데이터 저장
 		setData2(filteredData2); // 음식점/맛집 데이터 저장
 		setData3(filteredData3); // 관광지/관광 데이터 저장
+		setLoading(false);
 	};
 	
 	const height = () => {
@@ -37,19 +42,22 @@ function TotalList({ tabTxt, totalData, searchedData}) {
 	}
 	
 	useEffect(() => {
-		if(newData.length){
-			filterData(newData);
-			setLoading(false);
-		}
-		height();
 		setNewData(totalData)
 	}, [totalData])
 
-	console.log(newData, newData.length)
+	useEffect(() => {
+		if(newData.length){
+			filterData(newData);			
+		}
+		height();		
+	}, [newData])
+
 	
 	if (loading) {
 		return <div><Loading /></div>;
 	}
+	console.log(tabTxt, data, data2, data3)
+	
 	return (
 		<>
 			<ul className={style.total_list}>
