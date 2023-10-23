@@ -10,8 +10,6 @@ import 'swiper/css/free-mode';
 import { FreeMode, Pagination } from 'swiper/modules';
 import ListItem from "@/app/components/list/ListItem";
 import Loading from "@/app/components/loading/Loading";
-import { useRouter } from "next/navigation";
-import { Router } from "next/router";
 import { MyContext } from "@/app/components/Context";
 import Link from "next/link";
 import commonfalse from "@/app/components/common/commonfalse";
@@ -31,8 +29,8 @@ function page() {
 	/* -------------------------------------------- */
 	
 	const Login1 =()=>{
-		const a = localStorage.getItem('loginId');
-		setloginID(a)
+		const localid = localStorage.getItem('loginId');
+		setloginID(localid)
 	}
 
 	const filterData = (data) => {
@@ -48,7 +46,6 @@ function page() {
 		const result = await axios.get('/api/visit');
 		const newData = result.data
 		setJejuData(newData);
-		//filterData(newData);
 		setApiData(newData);
 		setLoading(false);
 	}
@@ -129,8 +126,6 @@ function page() {
 	},[loading, apiData]);
 	
 /* ------------------------------- */
-
-	/* --비짓제주 api데이터 요청-- */
 	
 	/* --서버 데이터 요청-- */
 	useEffect(()=>{
@@ -144,7 +139,6 @@ function page() {
 		if(JejuData.length && localx){ //전체데이터와 찜한데이터가 있다면
 			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
 			const filtercontentsid=JejuData.filter((item)=>localxContentsIds.includes(item.contentsid))
-			
 			filterData(filtercontentsid); 
 			setApiData(filtercontentsid);
 			
