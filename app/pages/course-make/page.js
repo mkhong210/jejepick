@@ -212,7 +212,7 @@ function page() {
 						className={style.api_pic_list}>
 
 
-						{data.length ?
+						{data3.length ?
 							data3.map((item) => (
 								<SwiperSlide className={`${style.api_pic_whole} 
 							${selectedItems.some((selectedItem) => selectedItem.contentsid === item.contentsid) ? style.selectedItem : ''}`} key={item.contentsid}>
@@ -246,7 +246,7 @@ function page() {
 						}}
 						modules={[Pagination]}
 						className={style.api_pic_list}>
-						{data.length ?
+						{data2.length ?
 							data2.map((item) => (
 								<SwiperSlide className={`${style.api_pic_whole} 
 							${selectedItems.some((selectedItem) => selectedItem.contentsid === item.contentsid) ? style.selectedItem : ''}`} key={item.contentsid}>
