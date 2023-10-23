@@ -9,11 +9,11 @@ function CouseItem({ item,setData }) {
 	const handleDelete = async (num) => {
 		try {
 		const del = await axios.delete(`/server_api/course?num=${num}`);
+		
 		setData(del.data);
 		} catch (error) {
 		}
 	};
-
 	return (
 		<div className={style.whole}>
 			<button className={style.item_wrap} onClick={()=>{
