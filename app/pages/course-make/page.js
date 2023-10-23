@@ -51,8 +51,8 @@ function page() {
 	function closeModal2() {
 		setIsModalOpen(false);
 		const bodyElement = document.body;
-		bodyElement.classList.remove(style.open)
-		bodyElement.classList.add(style.close)
+		bodyElement.classList.remove(style.open);
+		bodyElement.classList.add(style.close);
 		router.push("/pages/course-list");
 	}
 
@@ -74,6 +74,10 @@ function page() {
 					console.error('에러 발생:', error);
 				});
 		}
+		const bodyElement = document.body;
+		bodyElement.classList.remove(style.open);
+		bodyElement.classList.add(style.close);
+		router.push("/pages/course-list");
 	}
 
 	function ItemClick(item) {
@@ -297,7 +301,7 @@ function page() {
 									</React.Fragment>
 								))}
 								<div className={style.modal_btn_wrap}>
-									<button className={style.modal_btn} onClick={closeModal2}>
+									<button className={style.modal_btn}>
 										<p>저장</p>
 									</button>
 								</div>
