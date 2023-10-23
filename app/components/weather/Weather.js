@@ -17,18 +17,13 @@ export default function Weather() {
 				.padStart(2, "0")}`;
 
 			const hours = today.getHours()-1;
-			console.log(hours);
 			
 			// const minutes = today.getMinutes();
-			// console.log(minutes);
 			
 			let ho;
 
-
-			
 			ho = `${hours.toString().padStart(2, "0")}30`;
 
-			console.log(ho);
 			const nx = 48;
 			const ny = 32;
 
@@ -42,7 +37,6 @@ export default function Weather() {
 			}
 			setLoading(false);
 		}
-		// console.log(weatherData);
 
 		fetchData();
 	}, []);
@@ -58,8 +52,6 @@ export default function Weather() {
 
 		const skyData = weatherData.find((item) => item.category === "SKY");
 		const ptyData = weatherData.find((item) => item.category === "PTY");
-
-		// console.log(skyData);
 
 		if (skyData && ptyData) {
 			if (skyData.fcstValue === "3") {
@@ -82,8 +74,6 @@ export default function Weather() {
 			}
 		}
 	}
-
-	console.log(tmpValue);
 
 	return (
 		<>
