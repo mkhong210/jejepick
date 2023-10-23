@@ -10,7 +10,7 @@
 }
 
 .choose_wrap {
-	padding: 20px 0;
+	padding-top: 20px;
 	.label {
 		display: flex;
 		align-items: center;
@@ -39,7 +39,7 @@
 	justify-content: space-around;
 	position: relative;
 	flex-wrap: wrap;
-	margin: 20px 0;
+	margin-top: 20px;
 	.heartlistnone{
 		margin: 0 auto;
 		cursor: pointer;
@@ -64,7 +64,7 @@
 .open{
 	overflow: hidden;
 }
-.open{
+.close{
 	overflow: visible;
 }
 .modal {
@@ -81,7 +81,8 @@
 	justify-content: center;
 	align-items: center;
 	.modal_content {
-		width: 60%;
+		width: 90%;
+		padding: 0 20px;
 		// width: 457px;
 		// height: 318px;
 		background-color: white;
@@ -90,88 +91,140 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		position: relative;
 	}
-	
+	.modal_title{
+		h2 {
+			font-size: 2rem;
+			padding: 30px 0 20px;
+			text-align: center;
+		}
+		.close_btn {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			font-weight: 900;
+		}
+	}
+	form {
+		width: 100%;
+	}
+	.search {
+		width: 100%;
+		box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+		padding: 10px 0;
+		font-size: 1.6rem;
+		text-align: center;
+		border-radius: 30px;
+	}
+	.modal_allign {
+		padding: 10px 20px 20px;
+		.modal_itemlist {
+			display: flex;
+			gap: 20px;
+			flex-direction: row;
+			align-items: center;
+			font-size: 1.6rem;
+			margin: 16px 0;
+			p:first-child {
+				// padding: 8px;
+				display: flex;
+				justify-content:center;
+				align-items: center;
+				color: #fff;
+				position: relative;
+				z-index: 1;
+				&::after {
+					content: '';
+					display: inline-block;
+					width: 24px;
+					height: 24px;
+					background-color: #FFA366;
+					border-radius: 20px;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					z-index: -1;
+				}
+			}
+		}
+	}
 }
 
-.modal_content>input {
-	margin-top: 10px;
-}
+// .modal_content>input {
+// 	margin-top: 10px;
+// }
 
-.modal_content>div {
-	font-size: 16px;
-}
+// .modal_content>div {
+// 	font-size: 16px;
+// }
 
-.modal_content>button {
-	border-radius: 30px;
-	height: 30px;
-	background-color: rgb(255, 235, 134);
-	margin-top: 10px;
-}
+// .modal_content>button {
+// 	border-radius: 30px;
+// 	height: 30px;
+// 	background-color: rgb(255, 235, 134);
+// 	margin-top: 10px;
+// }
 
-.modal_title {
-	display: flex;
-}
+// .modal_title>button {
+// 	font-size: 20px;
+// 	background-color: rgb(255, 235, 134);
+// 	display: flex;
+// 	align-items: center;
+// 	justify-content: center;
+// 	border-radius: 50;
+// 	border: 0px solid transparent;
+// 	position: absolute;
+// 	right: 8%;
+// }
 
-.modal_title>h2 {
-	font-size: 2rem;
-}
+// .search {
+// 	background-color: rgb(244, 244, 244);
+// 	border-radius: 30px;
+// 	padding: 10px;
+// 	width: 400px;
+// }
 
-.modal_title>button {
-	font-size: 20px;
-	background-color: rgb(255, 235, 134);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50;
-	border: 0px solid transparent;
-	position: absolute;
-	right: 8%;
-}
+// .modal_itemlist {
+// 	margin-top: 10px;
+// 	margin-right: 100px;
+// }
 
-.search {
-	background-color: rgb(244, 244, 244);
-	border-radius: 30px;
-	padding: 10px;
-	width: 400px;
-}
-
-.modal_itemlist {
-	margin-top: 10px;
-	margin-right: 100px;
-}
-
-.api_explain {
-	display: flex;
-	justify-content: space-between;
-	position: absolute;
-	width: 100%;
-	padding: 10px;
-	bottom: 0;
-}
+// .api_explain {
+// 	display: flex;
+// 	justify-content: space-between;
+// 	position: absolute;
+// 	width: 100%;
+// 	padding: 10px;
+// 	bottom: 0;
+// }
 
 .course_navi {
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	padding: 20px 0 40px;
-}
-
-.course_btn {
-	width: 25%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border: 0px, solid transparent;
-	border-radius: 30px;
-	background-color: rgb(255, 235, 134);
-	cursor: pointer;
-	padding: 10px 0;
-	>p{
-		font-size: 1.5rem;
-		font-weight: 600;
+	.course_btn {
+		width: 25%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 0px, solid transparent;
+		border-radius: 30px;
+		background-color: rgb(255, 235, 134);
+		cursor: pointer;
+		padding: 10px 0;
+		>p{
+			font-size: 1.5rem;
+			font-weight: 600;
+		}
 	}
 }
+
+
+
+
 
 // .modal_content {
 // 	width: 457px;

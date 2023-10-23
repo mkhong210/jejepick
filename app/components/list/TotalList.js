@@ -44,6 +44,8 @@ function TotalList({ tabTxt, totalData, searchedData}) {
 		height();
 		setNewData(totalData)
 	}, [totalData])
+
+	console.log(newData, newData.length)
 	
 	if (loading) {
 		return <div><Loading /></div>;

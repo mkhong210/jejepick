@@ -276,13 +276,13 @@ function page() {
 					<div className={style.modal_content}>
 						<div className={style.modal_title}>
 							<h2>코스 이름을 입력해 주세요!</h2>
-							<button onClick={closeModal}>x</button>
+							<button onClick={closeModal} className={style.close_btn}>X</button>
 						</div>
 						<form onSubmit={insertFn}>
 							<input
 								type="text"
 								name="coursename"
-								placeholder="제목을 입력하세요"
+								placeholder="이름을 입력하세요"
 								className={style.search}
 								>
 							</input>
