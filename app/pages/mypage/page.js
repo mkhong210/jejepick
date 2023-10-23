@@ -199,8 +199,8 @@ function page() {
 				<div className={style.mypagecon2}>
 					<ul className={style.cont2_wrap}>
 						{wow.length ? 
-							limitWow.map((item) => (
-								<li className={style.con2_item}>
+							limitWow.map((item,k) => (
+								<li className={style.con2_item} key={k}>
 									<ListItem data={item}  />
 								</li>
 							))
