@@ -9,17 +9,24 @@ import LoadingComp from "./loading/LoadingComp";
 
 export default function BestList () {
   const router = useRouter();
-  
-  const [aaa, setAaa] = useState({ data1: null, data2: null });
+  const [aaa, setAaa] = useState(null);
   const {testResultValue} = useContext(MyContext);
   
   //api 데이터
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [tags, setTags] = useState([]);
+
+  let [myName,setMyname] = useState(null);
+  let [tendency,setTendency] = useState(null);
+  let [image,setImage] = useState(null);
+  let [bestlist,setBestlist] = useState([]);
+
   
   async function getData() {
     const result = await axios.get('/api/visit2');
     const newData = result.data;
+
     setData(newData);
     setLoading(false);
   }
@@ -35,72 +42,49 @@ export default function BestList () {
   }, [])
   
   // 첫 번째 요청 (로그인내용)
-  useEffect(() => {
+  const aaaData = async ()=>{
     if (loginID) {
-      axios.get(`/server_api/ja?id=${loginID}`)
-      .then((response) => {
-        setAaa((prevData) => ({
-            ...prevData,
-            data1: response.data,
-          }));
-        })
-        .catch((error) => {
-          console.log('Error:', error);
-        });
-      }
-    }, [loginID]);
-    
-    // 두 번째 요청(성향테스트결과)
-    useEffect(() => {
-      if (loginID) {
-        axios.get(`/server_api/jaresult?profile=${loginID}`)
-        .then((response) => {
-          setAaa((prevData) => ({
-            ...prevData,
-            data2: response.data,
-          }));
-        })
-        .catch((error) => {
-          console.log('Error:', error);
-        });
-      }
-    }, [loginID]);
-    
-    let myName = null;
-    let tendency = null;
-    let image = null;
-    let tags = null;
-    let bestlist = null;
-    
-    if (aaa.data1 && aaa.data1.length > 0) {
-      myName = aaa.data1[0].name;
+      const ja = await axios.get(`/server_api/ja?id=${loginID}`)
+      const jaresult = await axios.get(`/server_api/jaresult?profile=${loginID}`)
+      
+      setAaa({data1: ja.data, data2:jaresult.data});
     }
+  }
+  useEffect(() => {
+    aaaData();    
+  }, [loginID]);
     
-    if (aaa.data2 && aaa.data2.length > 0) {
+    
+    
+  useEffect(()=>{
+    if (aaa) {
       const parsedProfileData = JSON.parse(aaa.data2[0].contents);
-      bestlist = JSON.parse(aaa.data2[0].keywords);
-      tendency = parsedProfileData.tendency;
-      image = parsedProfileData.image;
+      let parseBestList = JSON.parse(aaa.data2[0].keywords);
       
       //빈배열바꾸기
-      for (let i = 0; i < bestlist.length; i++) {
-        if (bestlist[i].includes("X")) {
-          bestlist[i] = "";
+      for (let i = 0; i < parseBestList.length; i++) {
+        if (parseBestList[i].includes("X")) {
+          parseBestList[i] = "";
         }
       }
-      // console.log(bestlist);
       
       if (Array.isArray(parsedProfileData.tag)) {
-        tags = parsedProfileData.tag.map(tag => tag.trim());
+        console.log(parsedProfileData.tag.map(tag => tag.trim()),'=======================')
+        setTags(parsedProfileData.tag.map(tag => tag.trim()));
       } else if (typeof parsedProfileData.tag === 'string') {
-        tags = parsedProfileData.tag.split(',').map(tag => tag.trim());
+        setTags(parsedProfileData.tag.split(',').map(tag => tag.trim()));
       } else {
         console.error('Unexpected format for tags:', parsedProfileData.tag);
       }
-      
-      
+
+      setBestlist(parseBestList);
+      setMyname(aaa.data1[0].name)
+      setTendency(parsedProfileData.tendency)
+      setImage(parsedProfileData.image)
     }
+  },[aaa])
     
+
     const listmove = (e) => {
       router.push("/pages/list");
     }
@@ -110,9 +94,12 @@ export default function BestList () {
     //   return <div><LoadingComp /></div>;
     // }
     
-    if (loading) {
+    if (!data.length && !tags.length) {
       return <div><LoadingComp /></div>;
     }
+    
+    
+    
     
     return (
       <>

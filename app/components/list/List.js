@@ -7,16 +7,15 @@ import Heart from '../Heart';
 
 function List({bestlist,data}) {
 
+const [randomItems,setRandomItems] = useState([]);
+
 let [ddd,setDdd] = useState([]);
+
 	function filter(e) {
 		let filteredData = data ? data.filter(obj => obj.alltag && obj.alltag.includes(bestlist[0]) && obj.alltag.includes(bestlist[1])) : [];
-		// console.log(filteredData);
+		
 		setDdd(filteredData)
 	}
-
-	useEffect(()=>{
-		filter();
-	},[])
 
 	// 무작위로 3개의 요소 선택
 	function getRandomItems(arr, numItems) {
@@ -24,11 +23,19 @@ let [ddd,setDdd] = useState([]);
 		return shuffled.slice(0, numItems);
 	}
 	
-	const randomItems = getRandomItems(ddd, 3);
+	
+	useEffect(()=>{
+		filter();
+	},[data,bestlist])
 
-	if (!bestlist || !data) {
+	useEffect(()=>{
+		setRandomItems(getRandomItems(ddd, 3));
+	},[ddd])
+
+	if (!randomItems.length) {
 		return <div>Loading...</div>;
 	}
+
 	
 	return (
 		<>

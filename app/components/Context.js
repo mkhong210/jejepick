@@ -42,8 +42,10 @@ function Context({ children }) {
 
 	const favorite = async ()=>{
 		const loginID = window.localStorage.getItem('loginId'); 
-		const  response =await axios.get(`/server_api/item?profile=${loginID}`);
-		setJim(response.data);
+		if(loginID){
+			const  response =await axios.get(`/server_api/item?profile=${loginID}`);
+			setJim(response.data);
+		}
 	}
 	useEffect(() => {
 		favorite();
