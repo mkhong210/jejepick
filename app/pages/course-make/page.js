@@ -16,9 +16,9 @@ import '../../components/list/listitem.scss'
 
 
 function page() {
-	const [data, setData] = useState(); // 숙박 관련 
-	const [data2, setData2] = useState(); // 관광지 관련
-	const [data3, setData3] = useState(); // 음식점 관련
+	const [data, setData] = useState([]); // 숙박 관련 
+	const [data2, setData2] = useState([]); // 관광지 관련
+	const [data3, setData3] = useState([]); // 음식점 관련
 	const [loading, setLoading] = useState(true); //api 불러올때
 	const [selectedItems, setSelectedItems] = useState([]); // 선택 함수
 	const [isModalOpen, setIsModalOpen] = useState(false); // 모달 
@@ -27,7 +27,7 @@ function page() {
 	const [modalTitle, setModalTitle] = useState('');
 	const [JejuData, setJejuData] = useState([]);
 	const [localx, setLocalx] = useState(null);
-	const { setHeadStatus, setBtmStatus } = useContext(MyContext);
+	const { setHeadStatus, setBtmStatus,isStatus,setIsStatus} = useContext(MyContext);
 
 	let loginID;
 
@@ -58,7 +58,6 @@ function page() {
 
 	const insertFn = (e) => {
 		e.preventDefault();
-		const loginID = window.localStorage.getItem('loginId');
 		const contentIds = selectedItems.map((item) => item.contentsid);
 		const formdata = new FormData(e.target);
 		const values = Object.fromEntries(formdata);
@@ -98,6 +97,7 @@ function page() {
 		const filteredData1 = data.filter(item => item.contentscd.label === '숙박');
 		const filteredData2 = data.filter(item => item.contentscd.label === '관광지');
 		const filteredData3 = data.filter(item => item.contentscd.label === '음식점');
+
 		setData(filteredData1); // 숙박 관련 데이터 저장
 		setData2(filteredData2); // 관광지 관련 데이터 저장
 		setData3(filteredData3); // 음식점 관련 데이터 저장
@@ -106,7 +106,9 @@ function page() {
 	async function getData() {
 		const result = await axios.get('/api/visit');
 		const newData = result.data
-		filterData(newData);
+		//filterData(newData);
+		//setData(newData);
+		setJejuData(newData);
 		setLoading(false);
 	}
 
@@ -117,40 +119,32 @@ function page() {
 		getData();
 	}, [])
 
-	/* --비짓제주 api데이터 요청-- */
-	useEffect(() => {
-		axios.get('/api/visit')
-			.then((response) => {
-				// 비짓제주에서 가져온 데이터를 setJejuData에 저장
-				setJejuData(response.data);
-			})
-	}, [])
-
+	
 	/* --서버 데이터 요청-- */
 	useEffect(() => {
-		axios.get(`/server_api/item?profile=${loginID}`)
-			.then((response) => { setLocalx(response.data); })
+		if (loginID && JejuData.length){
+			axios.get(`/server_api/item?profile=${loginID}`)
+			.then((response) => { 
+				let localx = response.data.map(item => item.contentsid)
+				const filtercontentsid = JejuData.filter((item) => localx.includes(item.contentsid))
+				filterData(filtercontentsid);
+			})
 			.catch((error) => { console.log('Error:'.error) });
-	}, [loginID])
-
-	useEffect(() => {
-		if (JejuData && localx) { //전체데이터와 찜한데이터가 있다면
-			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
-			const filtercontentsid = JejuData.filter((item) => localxContentsIds.includes(item.contentsid))
-			// filterData(filtercontentsid);
-			// setA(filtercontentsid)
-
-			filterData(filtercontentsid);
 		}
-	}, [JejuData, localx])
+	}, [loginID,isStatus,JejuData])
+
+
 	/* ------------------------------- */
 
 	const moveList = () => {
 		router.push("/pages/list");
 	}
-	if (loading) {
+
+
+	if (loading && !data.length && !data2.length && !data3.length) {
 		return <div><Loading /></div>;
 	}
+	console.log(data,'-===============')
 
 	return (
 		<div className={style.course_make + ` inner`}>
