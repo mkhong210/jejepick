@@ -24,17 +24,15 @@ function Page() {
 	}
 	// 검색 창
 	async function searchBox(e) {
-		if (searchedData.length){
-			e.preventDefault();
+		e.preventDefault();
 			setState(false);
 			let sText = e.target.children[0].value;
 			e.target.children[0].value = '';
-			// console.log(sText);
 			let searchData = totalData.filter(data=>data.title.includes(sText));
-			// console.log(searchData);
-
+			
+			if (searchData.length){
 			setSearchedlData(searchData);
-
+			
 			const tab = document.getElementById('tabMenu');
 			tab.classList.add('hidden')
 		
@@ -42,6 +40,7 @@ function Page() {
 			alert('검색결과가 없습니다.')
 		}
 	}
+
 	// console.log(searchedData);
 	// 탭 메뉴
 	function tab_click() {
