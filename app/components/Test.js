@@ -39,7 +39,6 @@ export default function Test() {
 		setOption(keyword.target.parentElement.getAttribute("data-keyword"));
 		keyword.currentTarget.classList.toggle(`${style.active}`);
 	}
-	console.log(testResultValue);
 
 	return (
 		<>
