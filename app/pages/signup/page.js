@@ -1,3 +1,4 @@
+"use client"
 import { MyContext } from '@/app/components/Context';
 import Memberform from '@/app/components/Memberform'
 import commontrue from '@/app/components/common/commontrue';
