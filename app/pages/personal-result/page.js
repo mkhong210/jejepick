@@ -12,10 +12,10 @@ function page() {
 	const router = useRouter();
 	const {testResultValue} = useContext(MyContext);
 	const [jsondata, setJsondata] = useState(resultdb);
-	
 	let loginID;
 
 	if(typeof window !== 'undefined'){
+	// if(window){
 		loginID = localStorage.getItem('loginId')
 	}
 
