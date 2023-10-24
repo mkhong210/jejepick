@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+"use client"
+import React, { useContext, useEffect } from 'react'
 import Login from '@/app/components/Login'
 import { MyContext } from '@/app/components/Context';
 import commontrue from '@/app/components/common/commontrue';
@@ -13,7 +14,7 @@ function page() {
 
   return (
     <main>
-        <Login/>
+      <Login/>
     </main>
   )
 }
