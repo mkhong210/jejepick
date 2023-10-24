@@ -84,7 +84,6 @@ function Page() {
 		setTabTxt("숙소");
 		getData();
 	}, []);
-	console.log(totalData);
 
 	return (
 		<>

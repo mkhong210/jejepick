@@ -8,6 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Loading from "./loading/Loading";
 
+
 export default function Result() {
 	const [state, setState] = useState(false);
 	const router = useRouter();
@@ -16,10 +17,10 @@ export default function Result() {
 	//성향,이름 데이터
 	const [aaa, setAaa] = useState({ data1: null });
 	const [myName, setMyName] = useState('')
-	
 	let loginID;
 
 	if(typeof window !== 'undefined'){
+	// if(window){
 		loginID = localStorage.getItem('loginId')
 	}
 	
