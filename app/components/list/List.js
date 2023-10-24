@@ -50,7 +50,7 @@ let [ddd,setDdd] = useState([]);
 							</div>
 							<div className='text_wrap'>
 								<p id='overflow'>{item.title}</p>
-								<Heart dataId={data.contentsid}/>
+								<Heart dataId={item.contentsid}/>
 							</div>
 						</Link>
 					</li>
