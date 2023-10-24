@@ -4,7 +4,6 @@ import style from '../../pages/main/main.module.scss'
 
 export default function Weather() {
 	const [weatherData, setWeatherData] = useState({});
-	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		async function fetchData() {
@@ -35,7 +34,6 @@ export default function Weather() {
 				const jsonData = await response.json();
 				setWeatherData(jsonData.response.body.items.item);
 			}
-			setLoading(false);
 		}
 
 		fetchData();

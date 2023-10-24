@@ -1,18 +1,9 @@
-"use client"
-import React, { useEffect, useState } from 'react'
-// import style from './listitem.module.scss'
+import React from 'react'
 import './listitem.scss'
 import Link from 'next/link'
 import Heart from '../Heart';
 
-function ListItem({ data, searchedData }) {
-	const [imageSrc, setImageSrc] = useState("/asset/common/Icon_favorite.svg");
-	const [newData, setNewData] = useState();
-
-	useEffect(() => {
-		setNewData(data);
-	}, [data])
-
+function ListItem({ data }) {
 
 	return (
 		<>

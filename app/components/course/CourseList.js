@@ -13,10 +13,9 @@ function CourseList() {
 	async function getCourse() {
 		const result = await axios.get(`/server_api/course?profile=${loginID}`)
 		.then(res=>{
-			console.log(res);
 			setData(res.data)})
 	}
-		
+
 	useEffect(()=>{
 		getCourse();
 	}, [])

@@ -101,8 +101,6 @@ function page() {
 		} else {
 			console.error('Unexpected format for tags:', parsedProfileData.tag);
 		}
-
-
 	}
 
 	/* --비짓제주 api데이터 요청-- */
@@ -145,11 +143,6 @@ function page() {
 	const moveCourseList = () => {
 		router.push("/pages/course-list");
 	}
-
-	const moveCourseMake = () => {
-		router.push("/pages/course-make");
-	}
-
 
 	return (
 		<>

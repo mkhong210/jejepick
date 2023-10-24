@@ -1,13 +1,9 @@
 "use client"
-
-import { useContext, useEffect, useState } from "react";
-import resultdb from "../../testdb/result.json"
+import { useEffect, useState } from "react";
 import style from '../pages/personal-result/result.module.scss'
-import { MyContext } from "./Context";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Loading from "./loading/Loading";
-
 
 export default function Result() {
 	const [state, setState] = useState(false);

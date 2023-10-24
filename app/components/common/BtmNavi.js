@@ -9,7 +9,7 @@ function BtmNavi() {
 	const {btmStatus, setBtmStatus} = useContext(MyContext);
 	const router = useRouter();
 
-	const f5 = ()=>{
+	const listLoad = ()=>{
 		const reload = location.pathname;
 		if(reload == "/pages/list"){
 			window.location.reload();
@@ -18,7 +18,6 @@ function BtmNavi() {
 		}
 	}
 
-	console.log('reload');
 	return (
 		<footer className={`${style.footer} ${btmStatus ? 'hidden':''}`+` bottom`}>
 			<ul className={style.footer_wrap}>
@@ -40,7 +39,7 @@ function BtmNavi() {
 						<p>홈</p>
 					</Link>
 				</li>
-				<li onClick={f5} className={style.footer_item}>
+				<li onClick={listLoad} className={style.footer_item}>
 					<Link href={`/pages/list`}>
 						<img src='/asset/common/Icon_list.svg' />
 						<p>전체리스트</p>

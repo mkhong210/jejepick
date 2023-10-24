@@ -1,13 +1,11 @@
 "use client";
-
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import React from 'react'
 import style from './courseMake.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import 'swiper/css/free-mode';
-import { FreeMode, Pagination } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 import { useRouter } from "next/navigation";
 import commonfalse from "@/app/components/common/commonfalse";
 import { MyContext } from "@/app/components/Context";
@@ -26,8 +24,7 @@ function page() {
 	const router = useRouter();
 	const [modalTitle, setModalTitle] = useState('');
 	const [JejuData, setJejuData] = useState([]);
-	const [localx, setLocalx] = useState(null);
-	const { setHeadStatus, setBtmStatus,isStatus,setIsStatus} = useContext(MyContext);
+	const { setHeadStatus, setBtmStatus, isStatus, setIsStatus} = useContext(MyContext);
 
 	let loginID;
 
@@ -123,7 +120,6 @@ function page() {
 		getData();
 	}, [])
 
-	
 	/* --서버 데이터 요청-- */
 	useEffect(() => {
 		if (loginID && JejuData.length){
@@ -137,18 +133,15 @@ function page() {
 		}
 	}, [loginID,isStatus,JejuData])
 
-
 	/* ------------------------------- */
 
 	const moveList = () => {
 		router.push("/pages/list");
 	}
 
-
 	if (loading && !data.length && !data2.length && !data3.length) {
 		return <div><Loading /></div>;
 	}
-	console.log(data,'-===============')
 
 	return (
 		<div className={style.course_make + ` inner`}>
@@ -171,9 +164,7 @@ function page() {
 							clickable: true,
 						}}
 						modules={[Pagination]}
-
 						className={style.api_pic_list}>
-
 
 						{data.length ?
 							data.map((item) => (

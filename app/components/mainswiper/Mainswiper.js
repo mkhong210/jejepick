@@ -10,7 +10,6 @@ import 'swiper/css';
 import { Autoplay } from 'swiper/modules';
 import ListItem from '../list/ListItem';
 import axios from 'axios';
-import Heart from '../Heart';
 import { MyContext } from '../Context';
 import LoadingComp from '../loading/LoadingComp';
 
@@ -41,7 +40,7 @@ function Mainswiper() {
 
 	const height = () => {
 		const totalItems = document.getElementsByClassName(`${style.contents_2_bestplacelist}`);
-
+		
 		for (let i = 0; i < totalItems.length; i++) {
 			const item = totalItems[i];
 			const children = item.children;

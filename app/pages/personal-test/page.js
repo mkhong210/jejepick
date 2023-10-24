@@ -1,15 +1,17 @@
 "use client"
-import React, { useEffect } from 'react'
-import style from './personalTest.module.scss'
+import React, { useContext, useEffect } from 'react'
 import Test from '@/app/components/Test'
+import { MyContext } from '@/app/components/Context';
+import commontrue from '@/app/components/common/commontrue';
 
 function page() {
+	const { setHeadStatus, setBtmStatus } = useContext(MyContext);
+	
 	useEffect(() => {
-		const head = document.getElementsByClassName(`header`);
-		head[0].classList.add(style.hidden);
-		const btm = document.getElementsByClassName(`bottom`);
-		btm[0].classList.add(style.hidden);
-	}, []);
+		setHeadStatus(true);
+		setBtmStatus(true);
+		commontrue();
+	}, [])
 	
 	return (
 		<>

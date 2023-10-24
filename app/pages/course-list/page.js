@@ -21,9 +21,6 @@ function page() {
 				<h2>내가 만든 제주도 제일 좋은 코스!</h2>
 				<CourseList  />
 				<CourseBtn route={"/pages/course-make"} />
-				{/* <div onClick={moveCourseMake} className={style.course_plus}>
-					<p>추가 +</p>
-				</div> */}
 			</div>
 		</div>
 	)
