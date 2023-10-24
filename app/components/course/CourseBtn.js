@@ -9,7 +9,6 @@ function CourseBtn({route}) {
 		router.push(`${route}`);
 	}
 	
-	console.log(route)
 	return (
 		<div onClick={moveCourseMake} className={style.course_plus}>
 			<p>코스 추가 +</p>
