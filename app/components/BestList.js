@@ -93,7 +93,8 @@ export default function BestList () {
     // if (loading && aaa.data2) {
     //   return <div><LoadingComp /></div>;
     // }
-    
+    console.log(bestlist);
+
     if (!data.length && !tags.length) {
       return <div><LoadingComp /></div>;
     }

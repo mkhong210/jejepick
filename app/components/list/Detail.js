@@ -88,8 +88,8 @@ function Detail() {
               <p>“{data.introduction}”</p>
             </li>
             <li>
-              {tagData.map((item) => (
-                <span>{item}</span>
+              {tagData.map((item,k) => (
+                <span key={k}>{item}</span>
               ))}
             </li>
           </ul>
