@@ -19,7 +19,7 @@ function TotalList({ tabTxt, totalData, searchedData}) {
 
 
 
-	const filterData = (newData) => {
+	const filterData = () => {
 		const filteredData1 = newData.filter(item => item.contentscd.label === '숙박');
 		const filteredData2 = newData.filter(item => item.contentscd.label === '음식점');
 		const filteredData3 = newData.filter(item => item.contentscd.label === '관광지');
@@ -43,6 +43,10 @@ function TotalList({ tabTxt, totalData, searchedData}) {
 	
 	useEffect(() => {
 		setNewData(totalData)
+		height();
+		if(newData.length){
+			filterData(newData);
+		}
 	}, [totalData])
 
 	useEffect(() => {
@@ -56,8 +60,6 @@ function TotalList({ tabTxt, totalData, searchedData}) {
 	if (loading) {
 		return <div><Loading /></div>;
 	}
-	console.log(tabTxt, data, data2, data3)
-	
 	return (
 		<>
 			<ul className={style.total_list}>
