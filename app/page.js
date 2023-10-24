@@ -1,18 +1,16 @@
 "use client"
-import Image from 'next/image'
 import style from './page.module.scss'
 import { useContext, useEffect } from 'react';
 import { MyContext } from './components/Context';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
-	const { status, headStatus, setHeadStatus, btmStatus, setBtmStatus } = useContext(MyContext);
+	const {setHeadStatus, setBtmStatus } = useContext(MyContext);
 	const router = useRouter();
 	
 /* 	useEffect(() => {
 		setHeadStatus(true);
 		setBtmStatus(true);
-		// common();
 	}, []); */
 
 	setTimeout(() => router.push('/pages/login'), 2000);

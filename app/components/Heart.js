@@ -1,7 +1,6 @@
 "use client";
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
-// import style from '../pages/favorite/favorite.module.scss'
 import './list/listitem.scss'
 import { MyContext } from './Context';
 
@@ -30,10 +29,6 @@ function Heart({dataId}) {
 		imageChange();
 	},[jim])
 
-	
-
-	
-
 	const heartclick = (e) => {
 		e.preventDefault();
 		const loginID = window.localStorage.getItem('loginId');
@@ -42,7 +37,7 @@ function Heart({dataId}) {
 			if (!isSelected) {
 				axios.post(`/server_api/item`, { profile: loginID, contentsid: itemId })
 					.then((response) => {						
-						alert("찜목록에 추가되었습니다.");
+						// alert("찜목록에 추가되었습니다.");
 						setJim(response.data);
 						setIsSelected(true);
 						setImageSrc("/asset/common/Icon_favorite_full.svg");
@@ -56,13 +51,9 @@ function Heart({dataId}) {
 					// alert("찜목록에서 제거되었습니다.")
 					setIsSelected(false);
 					setImageSrc("/asset/common/Icon_favorite.svg");
-					
-
 				})
 				// .catch((error) => { console.log('Error:'.error) });
 			}
-			
-			
 		}
 	}
 

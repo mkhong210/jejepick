@@ -1,23 +1,16 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import style from '../../pages/list/list.module.scss'
-import List from '@/app/components/list/List';
 import ListItem from './ListItem';
-import axios from 'axios';
 import Loading from '../loading/Loading';
 
 function TotalList({ tabTxt, totalData, searchedData}) {
-	// console.log(tabTxt);
-	// 데이터 불러오기
 	
 	const [data, setData] = useState([]); // 숙박/숙소
 	const [data2, setData2] = useState([]); // 음식점/맛집
 	const [data3, setData3] = useState([]); // 관광지/관광
 	const [loading, setLoading] = useState(true);
 	const [newData, setNewData] = useState([]);
-	
-
-
 
 	const filterData = () => {
 		const filteredData1 = newData.filter(item => item.contentscd.label === '숙박');
@@ -28,22 +21,10 @@ function TotalList({ tabTxt, totalData, searchedData}) {
 		setData3(filteredData3); // 관광지/관광 데이터 저장
 		setLoading(false);
 	};
-	
-	const height = () => {
-		const totalItems = document.getElementsByClassName(`${style.total_item}`);
 
-		for (let i = 0; i < totalItems.length; i++) {
-			const item = totalItems[i];
-			const children = item.children;
-			if (children.length > 0) {
-				children[0].classList.add('active');
-			}
-		}
-	}
-	
 	useEffect(() => {
 		setNewData(totalData)
-		height();
+		// height();
 		if(newData.length){
 			filterData(newData);
 		}
@@ -53,7 +34,6 @@ function TotalList({ tabTxt, totalData, searchedData}) {
 		if(newData.length){
 			filterData(newData);			
 		}
-		height();		
 	}, [newData])
 
 	
@@ -83,10 +63,7 @@ function TotalList({ tabTxt, totalData, searchedData}) {
 							))
 						)
 				}
-				
 			</ul>
-
-			
 		</>
 	)
 }
