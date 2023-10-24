@@ -5,10 +5,12 @@ import style from '../../pages/course-list/courseList.module.scss';
 import axios from 'axios'; // axios를 import
 
 function CouseItem({ item,setData }) {
+
 	const router  = useRouter()
-	const handleDelete = async (num) => {
+	
+	const handleDelete = async (num, profile) => {
 		try {
-		const del = await axios.delete(`/server_api/course?num=${num}`);
+		const del = await axios.delete(`/server_api/course?num=${num}&profile=${profile}`);
 		
 		setData(del.data);
 		} catch (error) {
@@ -23,7 +25,7 @@ function CouseItem({ item,setData }) {
 				<p className={style.txt}>{item.coursename}</p>
 			</button>
 
-			<button className={style.del_btn} onClick={()=>{handleDelete(item.num)}}>
+			<button className={style.del_btn} onClick={()=>{handleDelete(item.num, item.profile)}}>
 				삭제
 			</button>
 		

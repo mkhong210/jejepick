@@ -4,7 +4,8 @@ export async function POST(req){
 
     const data = await queryExecute(`insert into itemtable (contentsid,profile) values (?,?)`,[contentsid,profile]);
     //데이터를 넣는법
-    return Response.json([]);
+    const data2 = await queryExecute('SELECT * from itemtable where profile=?',[profile]);
+    return Response.json(data2);
 }
 
 
@@ -25,6 +26,8 @@ export async function GET(req){
 export async function DELETE(req){
     const {contentsid,profile} = await req.json();
     const data = await queryExecute('DELETE FROM itemtable where contentsid = ? AND profile = ?',[contentsid,profile]);
+
+    const data2 = await queryExecute('SELECT * from itemtable where profile=?',[profile]);
    
-    return Response.json([]);
+    return Response.json(data2);
 }

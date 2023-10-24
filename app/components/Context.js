@@ -31,12 +31,14 @@ function Context({ children }) {
 		// }
 	}
 
+
 	//찜에서 데이터 가져오기
 	const favorite = async ()=>{
 		const loginID = window.localStorage.getItem('loginId'); 
 		if(loginID){
 			const  response =await axios.get(`/server_api/item?profile=${loginID}`);
 			setJim(response.data);
+			console.log(response.data);
 		}
 	}
 	

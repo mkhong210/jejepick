@@ -43,6 +43,7 @@ function Heart({dataId}) {
 				axios.post(`/server_api/item`, { profile: loginID, contentsid: itemId })
 					.then((response) => {						
 						alert("찜목록에 추가되었습니다.");
+						setJim(response.data);
 						setIsSelected(true);
 						setImageSrc("/asset/common/Icon_favorite_full.svg");
 					})
@@ -51,14 +52,17 @@ function Heart({dataId}) {
 			else {
 				axios.delete(`/server_api/item`, { data: { profile: loginID, contentsid: itemId } })
 				.then((response) => {
-					
-					alert("찜목록에서 제거되었습니다.")
+					setJim(response.data);
+					// alert("찜목록에서 제거되었습니다.")
 					setIsSelected(false);
 					setImageSrc("/asset/common/Icon_favorite.svg");
-					setIsStatus(!isStatus);
+					
+
 				})
-				.catch((error) => { console.log('Error:'.error) });
+				// .catch((error) => { console.log('Error:'.error) });
 			}
+			
+			
 		}
 	}
 

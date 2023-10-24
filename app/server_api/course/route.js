@@ -22,6 +22,6 @@ export async function DELETE(req){
     const num=req.nextUrl.searchParams.get('num');
     const profile=req.nextUrl.searchParams.get('profile');
     const data = await queryExecute('DELETE from coursetable where  num=? ',[num]);
-    const getData = await queryExecute('select * from coursetable where num=? && profile=?',[num, profile]);
+    const getData = await queryExecute('select * from coursetable where profile=?',[profile]);
     return Response.json(getData);
 }
