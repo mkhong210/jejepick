@@ -25,7 +25,7 @@ function page() {
 	const [localx,setLocalx] =useState(null);
 	const [loginID,setloginID]=useState('');
 	const [JejuData,setJejuData]=useState([]);
-	const {setHeadStatus, setBtmStatus, isStatus,setIsStatus} = useContext(MyContext);
+	const {setHeadStatus, setBtmStatus, isStatus,jim} = useContext(MyContext);
 	/* -------------------------------------------- */
 	
 	const Login1 =()=>{
@@ -58,6 +58,7 @@ function page() {
 		getData();
 		Login1();
 	}, [])
+
 	/* --지도 요청 및 로딩 요청-- */
 	useEffect(() => {
 		if(!loading){
@@ -110,8 +111,8 @@ function page() {
 					  const markers = apiData.map((item) => {
 						const markerPosition = new window.kakao.maps.LatLng(item.latitude, item.longitude);
 						const marker = new window.kakao.maps.Marker({
-						position: markerPosition,
-						image: selectMarkerImage(item), // 커스텀 마커 이미지 사용
+							position: markerPosition,
+							image: selectMarkerImage(item), // 커스텀 마커 이미지 사용
 						});
 						// 마커를 지도에 추가
 						marker.setMap(_map);
@@ -125,23 +126,22 @@ function page() {
 		}
 	},[loading, apiData]);
 	
+
 /* ------------------------------- */
-	
-	/* --서버 데이터 요청-- */
-	useEffect(()=>{
-		loginID &&
-		axios.get(`/server_api/item?profile=${loginID}`)
-		.then((response)=>{console.log(response);setLocalx(response.data);})
-		.catch((error)=>{console.log('Error:'.error)});
-	},[loginID,isStatus])
+/* --서버 데이터 요청-- */
+useEffect(()=>{
+
+	setLocalx(jim);
+},[jim])
+
 
 	useEffect(()=>{
 		if(JejuData.length && localx){ //전체데이터와 찜한데이터가 있다면
+	
 			const localxContentsIds = localx.map(item => item.contentsid); //찜한데이터에서 contentsid가 있는걸 가져옴
 			const filtercontentsid=JejuData.filter((item)=>localxContentsIds.includes(item.contentsid))
 			filterData(filtercontentsid); 
 			setApiData(filtercontentsid);
-			
 		}
 	},[JejuData,localx])
 	/* ------------------------------- */

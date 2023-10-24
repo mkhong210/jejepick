@@ -7,32 +7,34 @@ import Heart from '../Heart';
 
 function List({bestlist,data}) {
 
-const [randomItems,setRandomItems] = useState([]);
+// const [randomItems,setRandomItems] = useState([]);
 
 let [ddd,setDdd] = useState([]);
 
 	function filter(e) {
 		let filteredData = data ? data.filter(obj => obj.alltag && obj.alltag.includes(bestlist[0]) && obj.alltag.includes(bestlist[1])) : [];
 		
-		setDdd(filteredData)
+		
+			
+		setDdd(filteredData.slice(0, 3))
 	}
 
 	// 무작위로 3개의 요소 선택
-	function getRandomItems(arr, numItems) {
+	/* function getRandomItems(arr, numItems) {
 		const shuffled = arr.sort(() => 0.5 - Math.random());
 		return shuffled.slice(0, numItems);
-	}
+	} */
 	
 	
 	useEffect(()=>{
 		filter();
 	},[data,bestlist])
 
-	useEffect(()=>{
+	/* useEffect(()=>{
 		setRandomItems(getRandomItems(ddd, 3));
-	},[ddd])
+	},[ddd]) */
 
-	if (!randomItems.length) {
+	if (!ddd.length) {
 		return <div>Loading...</div>;
 	}
 
@@ -40,7 +42,7 @@ let [ddd,setDdd] = useState([]);
 	return (
 		<>
 			<ul className={style.list}>
-				{randomItems.map((item, k) => (
+				{ddd.map((item, k) => (
 					<li className={style.list_item} key={k}>
 						<Link href={`/pages/list/${item.contentsid}`} className='item_wrap'>
 							<div className='img_wrap'>
