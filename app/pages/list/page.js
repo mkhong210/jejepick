@@ -25,16 +25,15 @@ function Page() {
 	// 검색 창
 	async function searchBox(e) {
 		e.preventDefault();
-			setState(false);
-			let sText = e.target.children[0].value;
-			e.target.children[0].value = '';
-			let searchData = totalData.filter(data=>data.title.includes(sText));
-			
-			if (searchData.length){
+		let sText = e.target.children[0].value;
+		e.target.children[0].value = '';
+		let searchData = totalData.filter(data=>data.title.includes(sText));
+		
+		if (searchData.length){
 			setSearchedlData(searchData);
-			
 			const tab = document.getElementById('tabMenu');
 			tab.classList.add('hidden')
+			setState(false);
 		
 		}else{
 			alert('검색결과가 없습니다.')
