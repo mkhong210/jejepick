@@ -62,7 +62,8 @@ function page() {
 		if (!loading) {
 			const kakaoMapScript = document.createElement('script')
 			kakaoMapScript.async = false
-			kakaoMapScript.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=c528248b7e7766216d83483fea8e2360&autoload=false`
+			// JavaScript 키
+			kakaoMapScript.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=40bef1c532f551ae7518c6619445dfbc&autoload=false`
 			document.head.appendChild(kakaoMapScript)
 			let _map;
 

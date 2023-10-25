@@ -52,14 +52,11 @@ export default function Home() {
 
 	//======================경유지 관련 코드 =========================
 
-	const map = useRef();
-	const REST_API_KEY = "6ded06fd9b620e77bf2e95a12ec6f927";
-	const url = `/api/map/kakao?origin=127.11015314141542,37.39472714688412&destination=127.10824367964793,37.401937080111644&waypoints=&priority=RECOMMEND&car_fuel=GASOLINE&car_hipass=false&alternatives=false&road_details=false`;
-
 	useEffect(() => {
 		const kakaoMapScript = document.createElement("script");
 		kakaoMapScript.async = false;
-		kakaoMapScript.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=c528248b7e7766216d83483fea8e2360&autoload=false`;
+		// JavaScript 키
+		kakaoMapScript.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=	40bef1c532f551ae7518c6619445dfbc&autoload=false`;
 		document.head.appendChild(kakaoMapScript);
 
 		let loadMap, _map;
