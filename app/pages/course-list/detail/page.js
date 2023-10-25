@@ -158,7 +158,7 @@ export default function Home() {
 							"/asset/image/map/ICON_way_pin.svg",
 							"/asset/image/map/ICON_final_pin.svg",
 						];
-						let imageSize = new kakao.maps.Size(24, 35);
+						let imageSize = new kakao.maps.Size(30, 41);
 						function marker(title, position, n) {
 							console.log(n);
 							let image = new kakao.maps.MarkerImage(markerImg[n], imageSize);
@@ -219,13 +219,12 @@ export default function Home() {
 				<p>내가만든 제일 좋은 여행 코스!</p>
 				<div className={style.title}>
 					<img src='/asset/image/map/ICON_yellow_pin.svg'></img>
-					<h1>회원님의 {courseName} 여행 코스</h1>
+					<h1>{courseName} 여행 코스</h1>
 				</div>
 				<div className={style.sec1}>
 					{getNandL().map((data, i) => (
 						<div className={style.sec2} key={i}>
 							<p>{data.title}</p>
-							<span></span>
 							<p>{data.label}</p>
 						</div>
 					))}
