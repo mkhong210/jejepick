@@ -28,7 +28,7 @@ function Heart({dataId}) {
 			}
 		}
 		imageChange();
-	},[jim])
+	},[jim,dataId])
 
 	
 
@@ -53,13 +53,9 @@ function Heart({dataId}) {
 				axios.delete(`/server_api/item`, { data: { profile: loginID, contentsid: itemId } })
 				.then((response) => {
 					setJim(response.data);
-					// alert("찜목록에서 제거되었습니다.")
 					setIsSelected(false);
 					setImageSrc("/asset/common/Icon_favorite.svg");
-					
-
 				})
-				// .catch((error) => { console.log('Error:'.error) });
 			}
 			
 			

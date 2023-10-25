@@ -166,7 +166,7 @@ function Memberform() {
                         )
                     } */}
                 </div>
-                <input type='password' name='pw' placeholder='영어 대소문자,숫자 조합의 8-15자' defaultValue={passwordCheck} onChange={onChangePassword} id='pw1' className={style.PWEnter} required/>
+                <input type='password' name='pw' placeholder='숫자+영문자+특수문자 조합으로 작성해주세요' defaultValue={passwordCheck} onChange={onChangePassword} id='pw1' className={style.PWEnter} required/>
                 {/* <p>{password.length}</p> */}
                     
             </div>

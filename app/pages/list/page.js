@@ -38,11 +38,13 @@ function Page() {
 		
 		}else{
 			alert('검색결과가 없습니다.')
+			
 		}
 	}
 
-	// console.log(searchedData);
+	console.log('aa-----------------aaa',totalData);
 	// 탭 메뉴
+
 	function tab_click() {
 		// const tabItem = document.querySelectorAll('.tab_list .tab_item')
 		const tabItem = document.getElementsByClassName(`${style.tab_list}`);
