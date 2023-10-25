@@ -4,6 +4,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 import style from "./courseList_id.module.scss";
 import { useSearchParams } from "next/navigation";
 import { MyContext } from "@/app/components/Context";
+import commonfalse from "@/app/components/common/commonfalse";
+import Loading from "@/app/components/loading/Loading";
 
 export default function Home() {
 	const { setHeadStatus, setBtmStatus } = useContext(MyContext);
@@ -15,6 +17,7 @@ export default function Home() {
 	const idArray = JSON.parse(idString);
 	const [finaldata, setFinaldata] = useState([]);
 	const [apiData, setApiData] = useState();
+	const [loading, setLoading] = useState(true);
 
 	//return 값 함수
 	const courseName = nameString; // 코스 이름
@@ -203,9 +206,14 @@ export default function Home() {
 				}, 1000);
 			}, []);
 		}
+		setLoading(false);
 	}, [finaldata]);
 
 	//======================경유지 관련 코드 =========================
+
+	if (loading) {
+		return <div><Loading /></div>;
+	}
 
 	return (
 		<div className={style.main}>
@@ -218,7 +226,7 @@ export default function Home() {
 				</div>
 				<div className={style.sec1}>
 					{getNandL().map((data, i) => (
-						<div className={style.sec2}>
+						<div className={style.sec2} key={i}>
 							<p>{data.title}</p>
 							<span></span>
 							<p>{data.label}</p>
