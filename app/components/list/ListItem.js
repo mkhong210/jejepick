@@ -12,8 +12,8 @@ function ListItem({ data }) {
 					<img src={data?.repPhoto?.photoid?.thumbnailpath} alt={data.title} />
 				</div>
 				<div className='text_wrap'>
-					<p>{data.title}</p>
-					<Heart dataId={data.contentsid} />
+					<p>{data?.title}</p>
+					<Heart dataId={data?.contentsid} />
 				</div>
 			</Link>
 			

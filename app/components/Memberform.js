@@ -85,7 +85,7 @@ function Memberform() {
 			return { color: 'red' }; // 불일치할 때의 스타일
 		}
 	};
-
+  
 	const nv = useRouter();
 	const insertFn = (e) => {
 		e.preventDefault();

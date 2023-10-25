@@ -66,9 +66,6 @@ function page() {
 			document.head.appendChild(kakaoMapScript)
 			let _map;
 
-			/* 6ded06fd9b620e77bf2e95a12ec6f927//700d399006256f95732f06b19c046ba5 //
-			b4d5c54781cd807a3c7df8e02c56b1ab//
-			f994c0177a2d896baf8df65a58458e9f//&autoload=false*/
 			const onLoadKakaoAPI = () => {
 				window.kakao.maps.load(() => {
 					// 지도 위치 설정
