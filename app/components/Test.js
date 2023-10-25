@@ -1,16 +1,12 @@
 "use client"
 import testdb from "../../testdb/data.json"
-import resultdb from "../../testdb/result.json"
 import style from '../pages/personal-test/personalTest.module.scss'
 import { useContext, useEffect, useState } from "react"
-import axios from 'axios';
 import { useRouter } from "next/navigation";
 import { MyContext } from "./Context";
 
 export default function Test() {
-
 	const router = useRouter();
-
 	const [jsondata, setJsondata] = useState(testdb);
 	const [num, setNum] = useState(0);
 	const [option, setOption] = useState('')

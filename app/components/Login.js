@@ -34,17 +34,13 @@ function Login() {
 				else {
 					nv.push('/pages/main');
 				}
-
 			} else {
 				// 로그인 실패 처리
 				alert(response.data.message);
 			}
 		} catch (error) {
 			console.error('로그인 요청 실패', error);
-		}/* 
-        if(loginInfo!=null){
-            setidInput(loginInfo);
-        } */
+		}
 	}
 
 	return (
@@ -66,7 +62,6 @@ function Login() {
 							className={style.idInput}
 							required
 						/>
-
 					</div>
 					<div className={style.pwInputContents}>
 						<img src='/asset/common/icon_pw.svg'></img>
@@ -79,10 +74,7 @@ function Login() {
 							className={style.pwInput}
 							required
 						/>
-
 					</div>
-
-
 					<input
 						type='submit'
 						name='Login'

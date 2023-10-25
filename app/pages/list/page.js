@@ -20,8 +20,8 @@ function Page() {
 		const result = await axios.get('/api/visit');
 		const newData = result.data;
 		setTotalData(newData);
-		
 	}
+
 	// 검색 창
 	async function searchBox(e) {
 		e.preventDefault();
@@ -41,18 +41,16 @@ function Page() {
 		}
 	}
 
-	console.log('aa-----------------aaa',totalData);
 	// 탭 메뉴
-
 	function tab_click() {
 		// const tabItem = document.querySelectorAll('.tab_list .tab_item')
 		const tabItem = document.getElementsByClassName(`${style.tab_list}`);
 		const tabtab = [...tabItem[0].children];
 		const hadActive = document.getElementsByClassName(`${style.active}`);
-		
+
 		let num = 0, txt = '';
-		tabtab.forEach(function(v,k) {
-			v.addEventListener('click', function() {
+		tabtab.forEach(function (v, k) {
+			v.addEventListener('click', function () {
 				tabtab[num].classList.remove(`${style.active}`);
 				this.classList.add(`${style.active}`);
 				txt = this.children[1].innerText;
@@ -62,25 +60,11 @@ function Page() {
 		});
 	}
 
-	const height = () => {
-		const totalItems = document.getElementsByClassName(`${style.list_item}`);
-		
-		for (let i = 0; i < totalItems.length; i++) {
-			const item = totalItems[i];
-			const children = item.children;
-			
-			if (children.length > 0) {
-				children[0].classList.add('active')
-			}
-		}
-	}
-
 	useEffect(() => {
 		setHeadStatus(false);
 		setBtmStatus(false);
 		commonfalse();
 		tab_click();
-		height();
 		setTabTxt("숙소");
 		getData();
 	}, []);
@@ -98,7 +82,6 @@ function Page() {
 				</form>
 				<div className={style.tab_wrap} id='tabMenu'>
 					<ul className={style.tab_list}>
-						
 						<li className={`${style.tab_item} ${style.active}`}>
 							<img src='/asset/image/map/ICON_yellow_pin.svg' />
 							<p>숙소</p>
@@ -113,13 +96,12 @@ function Page() {
 						</li>
 					</ul>
 				</div>
-				
 				<div className={style.totallist_wrap}>
 					<h2>전체 여행 정보</h2>
-					{ state ? 
-						<TotalList tabTxt={tabTxt} totalData={totalData} searchedData={searchedData}/> 
-						:  
-						<SearchList searchedData={searchedData}/>
+					{state ?
+						<TotalList tabTxt={tabTxt} totalData={totalData} searchedData={searchedData} />
+						:
+						<SearchList searchedData={searchedData} />
 					}
 				</div>
 			</div>

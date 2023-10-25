@@ -5,12 +5,13 @@ import { useRouter } from 'next/navigation'
 import { MyContext } from "../../components/Context";
 import resultdb from "../../../testdb/result.json"
 import axios from 'axios';
+import commontrue from '@/app/components/common/commontrue';
 
 function page() {
 	const [num, setNum] = useState(0);
 	const [state,setState] = useState(false);
 	const router = useRouter();
-	const {testResultValue} = useContext(MyContext);
+	const {testResultValue, setHeadStatus, setBtmStatus} = useContext(MyContext);
 	const [jsondata, setJsondata] = useState(resultdb);
 	let loginID;
 
@@ -67,6 +68,10 @@ function page() {
 			setNum(7)
 			setState(true)
 		}
+		
+		setHeadStatus(true);
+		setBtmStatus(true);
+		commontrue();
 	},[])
 
 	//로컬스토리지 id, json 결과의 num번째 내용, 키워드 5개를 DB에 입력

@@ -7,97 +7,70 @@ import CourseList from "@/app/components/course/CourseList";
 import Mainswiper from "@/app/components/mainswiper/Mainswiper";
 import commonfalse from "@/app/components/common/commonfalse";
 import axios from "axios";
-import { Router } from "next/navigation";
 import CourseBtn from "@/app/components/course/CourseBtn";
 
 function page() {
-	const { status, setHeadStatus, setBtmStatus } = useContext(MyContext);
-	
+	const { setHeadStatus, setBtmStatus } = useContext(MyContext);
+
 	let loginID;
 
-	if(typeof window !== 'undefined'){
+	if (typeof window !== 'undefined') {
 		loginID = localStorage.getItem('loginId')
 	}
-	
+
 	useEffect(() => {
 		setHeadStatus(false);
 		setBtmStatus(false);
 		commonfalse();
-		status();
-		height();
 	}, []);
 
-	const height = () => {
-		const totalItems = document.getElementsByClassName(`${style.contents_2_bestplacelist}`);
-		console.log(totalItems)
-		
-
-		for (let i = 0; i < totalItems.length; i++) {
-			const item = totalItems[i];
-			const children = item.children;
-
-			if (children.length > 0) {
-				// const child = children[0].children[0].children;
-				// for (let i = 0; i < child.length; i++) {
-				// 	const childc = child[i].children[0];
-				// 	childc.classList.add('child')
-				// }
-			}
-		}
-	}
-
 	//로컬아이디
-	
 	//성향,이름 데이터
 	const [aaa, setAaa] = useState({ data1: null, data2: null });
 
 	// 첫 번째 요청 (로그인내용)
 	useEffect(() => {
 		if (loginID) {
-		  axios.get(`/server_api/ja?id=${loginID}`)
-		  .then((response) => {
-			  setAaa((prevData) => ({
-				...prevData,
-				data1: response.data,
-			  }));
-			})
-			.catch((error) => {
-			  console.log('Error:', error);
-			});
-		  }
-		}, [loginID]);
-	
-	  // 두 번째 요청(성향테스트결과)
-	  useEffect(() => {
-		if (loginID) {
-		  axios.get(`/server_api/jaresult?profile=${loginID}`)
-		  .then((response) => {
-			  setAaa((prevData) => ({
-				...prevData,
-				data2: response.data,
-			  }));
-		  })
-			.catch((error) => {
-			  console.log('Error:', error);
-			});
-		  }
-		}, [loginID]);
-		
-		let myName = null;
-		let tendency = null;
-		
-		if (aaa.data1 && aaa.data1.length > 0) {
-		  myName = aaa.data1[0].name;
+			axios.get(`/server_api/ja?id=${loginID}`)
+				.then((response) => {
+					setAaa((prevData) => ({
+						...prevData,
+						data1: response.data,
+					}));
+				})
+				.catch((error) => {
+					console.log('Error:', error);
+				});
 		}
-		
-		if (aaa.data2 && aaa.data2.length > 0) {
-		  const parsedProfileData = JSON.parse(aaa.data2[0].contents);
-		  tendency = parsedProfileData.tendency;
-		}
+	}, [loginID]);
 
-		const moveCourseMake = () => {
-			Router.push("/pages/course-make");
+	// 두 번째 요청(성향테스트결과)
+	useEffect(() => {
+		if (loginID) {
+			axios.get(`/server_api/jaresult?profile=${loginID}`)
+				.then((response) => {
+					setAaa((prevData) => ({
+						...prevData,
+						data2: response.data,
+					}));
+				})
+				.catch((error) => {
+					console.log('Error:', error);
+				});
 		}
+	}, [loginID]);
+
+	let myName = null;
+	let tendency = null;
+
+	if (aaa.data1 && aaa.data1.length > 0) {
+		myName = aaa.data1[0].name;
+	}
+
+	if (aaa.data2 && aaa.data2.length > 0) {
+		const parsedProfileData = JSON.parse(aaa.data2[0].contents);
+		tendency = parsedProfileData.tendency;
+	}
 
 	return (
 		<>
@@ -117,7 +90,7 @@ function page() {
 								</div>
 								<div className={style.weather_text_wrap}>
 									<p>제주특별자치도</p>
-									<p className={style.weather_text}><Weather/></p>
+									<p className={style.weather_text}><Weather /></p>
 								</div>
 							</div>
 						</div>
@@ -138,25 +111,6 @@ function page() {
 					</div>
 					<div className={style.contents_2_bestplacelist}>
 						<Mainswiper />
-						{/* <Swiper
-							spaceBetween={20}
-							slidesPerView={2.3}
-							loop={true}
-							autoplay={{
-								delay: 2500,
-								disableOnInteraction: false,
-							}}
-							modules={[Autoplay]}
-							className="mySwiper"
-						>
-							<SwiperSlide><ListItem /></SwiperSlide>
-							<SwiperSlide><ListItem /></SwiperSlide>
-							<SwiperSlide><ListItem /></SwiperSlide>
-							<SwiperSlide><ListItem /></SwiperSlide>
-							<SwiperSlide><ListItem /></SwiperSlide>
-							<SwiperSlide><ListItem /></SwiperSlide>
-							<SwiperSlide><ListItem /></SwiperSlide>
-						</Swiper> */}
 					</div>
 				</div>
 				<div className={style.contents_3 + ` inner`}>
@@ -166,7 +120,7 @@ function page() {
 					</div>
 					<div className={style.course_wrap}>
 						<CourseList />
-						<CourseBtn route={"/pages/course-make"}/>
+						<CourseBtn route={"/pages/course-make"} />
 					</div>
 				</div>
 			</div>

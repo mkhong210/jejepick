@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import style from '../../pages/list/list.module.scss'
 import './listitem.scss'
-import ListItem from './ListItem'
 import Link from 'next/link'
 import Heart from '../Heart';
+import LoadingComp from '../loading/LoadingComp';
 
 function List({bestlist,data}) {
 
@@ -13,9 +13,7 @@ let [ddd,setDdd] = useState([]);
 
 	function filter(e) {
 		let filteredData = data ? data.filter(obj => obj.alltag && obj.alltag.includes(bestlist[0]) && obj.alltag.includes(bestlist[1])) : [];
-		
-		
-			
+
 		setDdd(filteredData.slice(0, 3))
 	}
 
@@ -24,21 +22,20 @@ let [ddd,setDdd] = useState([]);
 		const shuffled = arr.sort(() => 0.5 - Math.random());
 		return shuffled.slice(0, numItems);
 	} */
-	
-	
+
 	useEffect(()=>{
 		filter();
 	},[data,bestlist])
 
+	// 랜덤
 	/* useEffect(()=>{
 		setRandomItems(getRandomItems(ddd, 3));
 	},[ddd]) */
 
 	if (!ddd.length) {
-		return <div>Loading...</div>;
+		return <div><LoadingComp /></div>;
 	}
 
-	
 	return (
 		<>
 			<ul className={style.list}>
