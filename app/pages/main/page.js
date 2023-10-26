@@ -3,10 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 import style from "./main.module.scss";
 import { MyContext } from "@/app/components/Context";
 import Weather from "@/app/components/weather/Weather";
-import CourseList from "@/app/components/course/CourseList";
 import Mainswiper from "@/app/components/mainswiper/Mainswiper";
 import commonfalse from "@/app/components/common/commonfalse";
 import axios from "axios";
+import SliceCourse from "@/app/components/course/SliceCourse";
 import CourseBtn from "@/app/components/course/CourseBtn";
 
 function page() {
@@ -116,10 +116,13 @@ function page() {
 				<div className={style.contents_3 + ` inner`}>
 					<div className={style.text_wrap}>
 						<h2>나의 여행코스</h2>
-						<p>더보기</p>
+						<a href="/pages/course-list" className={style.more_btn}>
+							<p>더보기</p>
+							<img src="/asset/common/Icon_arrow_right.svg" alt="오른쪽 화살표" />
+						</a>
 					</div>
 					<div className={style.course_wrap}>
-						<CourseList />
+						<SliceCourse />
 						<CourseBtn route={"/pages/course-make"} />
 					</div>
 				</div>

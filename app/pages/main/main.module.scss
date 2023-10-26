@@ -1,4 +1,3 @@
-
 #main.on{
 	background-color: white;
 }
@@ -133,6 +132,16 @@
 			font-style: normal;
 			font-weight: 500;
 			line-height: normal;
+		}
+	}
+	.more_btn {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		p {
+			font-size: 1.6rem;
 		}
 	}
 	.course_wrap{

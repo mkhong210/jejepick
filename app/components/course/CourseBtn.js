@@ -10,9 +10,9 @@ function CourseBtn({route}) {
 	}
 	
 	return (
-		<div onClick={moveCourseMake} className={style.course_plus}>
+		<button onClick={moveCourseMake} className={style.course_plus}>
 			<p>코스 추가 +</p>
-		</div>
+		</button>
 	)
 }
 
