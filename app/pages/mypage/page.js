@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { MyContext } from '@/app/components/Context';
 import ListItem from '@/app/components/list/ListItem';
-import CourseList from '@/app/components/course/CourseList';
+import SliceCourse from '@/app/components/course/SliceCourse';
 import CourseBtn from '@/app/components/course/CourseBtn';
 import commontrue from '@/app/components/common/commontrue';
 
@@ -132,16 +132,8 @@ function page() {
 
 	const limitWow = wow.slice(0, 3);
 
-	const moveFavorite = () => {
-		router.push("/pages/favorite");
-	}
-
 	const moveList = () => {
 		router.push("/pages/list");
-	}
-
-	const moveCourseList = () => {
-		router.push("/pages/course-list");
 	}
 
 	return (
@@ -158,7 +150,7 @@ function page() {
 						</div>
 						<div>
 							<p>{tendency}</p>
-							<h3>{myName}</h3>
+							<h3>{myName} 님</h3>
 						</div>
 					</div>
 					<div className={style.proconbottom}>
@@ -187,7 +179,10 @@ function page() {
 				</div>
 				<div className={style.mycontopnav}>
 					<h2>나의 찜 목록</h2>
-					<p onClick={moveFavorite}>더보기</p>
+					<a href="/pages/favorite" className={style.more_btn}>
+						<p>더보기</p>
+						<img src="/asset/common/Icon_arrow_right.svg" alt="오른쪽 화살표" />
+					</a>
 				</div>
 				<div className={style.mypagecon2}>
 					<ul className={style.cont2_wrap}>
@@ -205,14 +200,17 @@ function page() {
 				</div>
 				<div className={style.mycontopnav}>
 					<h2>나의 여행코스</h2>
-					<p onClick={moveCourseList}>더보기</p>
+					<a href="/pages/course-list" className={style.more_btn}>
+						<p>더보기</p>
+						<img src="/asset/common/Icon_arrow_right.svg" alt="오른쪽 화살표" />
+					</a>
 				</div>
 				<div className={style.mypagecon3}>
-					<CourseList />
+					<SliceCourse />
 					<CourseBtn route={"/pages/course-make"}/>
 				</div>
+				<div onClick={logOut} className={style.logout}>로그아웃</div>
 			</div>
-			<div onClick={logOut} className={style.logout}>로그아웃</div>
 		</>
 	)
 }

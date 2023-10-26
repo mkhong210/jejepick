@@ -1,7 +1,8 @@
 // page course-list
 .course_list {
 	padding-top: 20px;
-	h2{
+
+	h2 {
 		margin-left: 10px;
 		font-size: 1.6rem;
 		color: #979797;
@@ -10,8 +11,7 @@
 }
 
 // comp courselist
-.list_wrap {
-}
+.list_wrap {}
 
 // 코스 만들기 버튼
 .course_plus {
@@ -34,23 +34,24 @@
 	}
 }
 
-.course_btn{
-    width: 100%;   
-    display: flex;
-    justify-content: center;
+.course_btn {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 	align-items: center;
-    pointer-events: cursor;
+	pointer-events: cursor;
 	margin-top: 50px;
 }
-.course_btn > p {
-	width: 30%; 
+
+.course_btn>p {
+	width: 30%;
 	display: flex;
-    justify-content: center;
+	justify-content: center;
 	align-items: center;
 	border: 0px, solid transparent;
-    border-radius: 30px;
-    height: 30px;
-    background-color: rgb(255,235,134);
+	border-radius: 30px;
+	height: 30px;
+	background-color: rgb(255, 235, 134);
 }
 
 
@@ -65,15 +66,17 @@
 	align-items: center;
 	position: relative;
 	margin: 20px auto;
-	width:100%;
+	width: 100%;
+
 	.txt {
 		font-size: 1.6rem;
 		margin-left: 20px;
 		font-weight: 600;
 	}
 }
-.whole{
-	position:relative;
+
+.whole {
+	position: relative;
 }
 
 .del_btn {
@@ -81,7 +84,33 @@
 	font-size: 1.6rem;
 	font-weight: 500;
 	position: absolute;
-	top: 35px;
+	top: 50%;
 	right: 30px;
 	transform: translateY(-50%);
+}
+
+@media screen and (max-width: 480px) {
+	// comp courseitem
+	.item_wrap {
+		padding: 16px 20px;
+		img{
+			width: 16px;
+		}
+		.txt {
+			font-size: 1.6rem;
+			margin-left: 14px;
+		}
+	}
+	.del_btn {
+		font-size: 1.4rem;
+	}
+
+	// 코스 만들기 버튼
+.course_plus {
+	margin: 28px 0 40px 0;
+	padding: 16px;
+	p {
+		font-size: 1.4rem;
+	}
+}
 }
