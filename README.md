@@ -1,11 +1,13 @@
 # Team-Project - JeJePick
-팀 프로젝트로 진행한 제주도 관광 어플 제제픽입니다.
+팀 프로젝트로 진행한 제주도 사용자 맞춤 여행지 추천 서비스 어플 제제픽입니다.
 - 성향테스트를 통해 제주도 관광지를 추천받고 추천받은 관광지를 토대로 코스를 기획할 수 있는 어플
+
+<img src="./public/asset/jejepick_splash.jpg" alt="제제픽 표지"/>
 
 
 ## 팀원 - 6명 
 권오성, 김호성, 박정아, 이지영, 조자룡, 홍민경
-
+<br />
 
 ## 사용 API 
 1. 비짓제주 관광정보 OPEN API
@@ -14,7 +16,7 @@
    [공공데이터포털-날씨 API](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084)
 3. 카카오 맵 API
    [카카오 맵 RestAPI / Javascript](https://apis.map.kakao.com/)
-
+<br/>
 
 ## 제제픽 흐름도 
 <img src="./public/asset/jejepick.png" alt="제제픽 흐름도"/>
