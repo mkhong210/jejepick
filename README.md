@@ -1,33 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Team-Project - JeJePick
+팀 프로젝트로 진행한 제주도 관광 어플 제제픽입니다.
+- 성향테스트를 통해 제주도 관광지를 추천받고 추천받은 관광지를 토대로 코스를 기획할 수 있는 어플
 
-## Getting Started
+## 팀원 - 6명 
 
-First, run the development server:
+## 사용 API 
+1. 비짓제주 관광정보 OPEN API
+   [제주도 관광/숙박/맛집 OPEN API](https://www.visitjeju.net/kr/visitjejuapi)
+2. 기상청 단기예보 조회서비스
+   [공공데이터포털-날씨 API](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084)
+3. 카카오 맵 API
+   [카카오 맵 RestAPI / Javascript](https://apis.map.kakao.com/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 제제픽 흐름도 
+<img src="/asset/jejepick.png" alt="제제픽 흐름도"/>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
 
