@@ -4,17 +4,22 @@
 
 <img src="./public/asset/jejepick_splash.jpg" alt="제제픽 표지"/>
 
+## 배포주소
+> [JEJEPICK 보러가기](https://jejepick.vercel.app/)
+
+## Stack
+NEXT / SCSS / JavaScript / PWA / Vercel / Visual Studio code
 
 ## 팀원 - 6명 
 권오성, 김호성, 박정아, 이지영, 조자룡, 홍민경
 <br />
 
 ## 사용 API 
-1. 비짓제주 관광정보 OPEN API
+1. 비짓제주 관광정보
    [제주도 관광/숙박/맛집 OPEN API](https://www.visitjeju.net/kr/visitjejuapi)
 2. 기상청 단기예보 조회서비스
    [공공데이터포털-날씨 API](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084)
-3. 카카오 맵 API
+3. 카카오 지도
    [카카오 맵 RestAPI / Javascript](https://apis.map.kakao.com/)
 <br/>
 
